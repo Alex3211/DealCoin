@@ -278,7 +278,4 @@ __pycache__/
 # Cake - Uncomment if you are using it
 # tools/
 
-### VisualStudio Patch ###
-build/
-
 # End of https://www.gitignore.io/api/visualstudio
