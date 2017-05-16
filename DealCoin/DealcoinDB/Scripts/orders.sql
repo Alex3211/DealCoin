@@ -19,5 +19,5 @@ delivery_postale varchar(255) not null,
 shipping_cost decimal(10,2) not null,
  
 constraint PK_orders primary key(ordersId),
-constraint FK_orders_users foreign key(usersId) references dc.users(usersId)
+constraint FK_orders_users foreign key(usersId) references dc.users(userId)
 )
