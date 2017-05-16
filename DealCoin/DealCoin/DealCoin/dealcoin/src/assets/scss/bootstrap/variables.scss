@@ -1,0 +1,8 @@
+/** * Toute cette partie permet de surcharger les variables de bootstrap */
+
+/* La je modifie la couleur principale */
+$brand-primary: #5a3966;
+// Dans "variables.scss" surchargez cette variable (insérer la ligne avant le @import final, pas après)  
+$icon-font-path: "/node_modules/bootstrap-sass/assets/fonts/bootstrap/";
+/** * J'importe enfin le fichier de variables par défaut de bootstrap qui va permettre de définir les variables que je n'ai pas surchargées */
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables";
