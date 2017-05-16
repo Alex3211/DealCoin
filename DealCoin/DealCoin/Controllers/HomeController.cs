@@ -12,6 +12,7 @@ namespace DealCoin.Controllers
         {
             ViewData["NoLayout"] = true;
             return View();
+            // lala
         }
     }
 }
