@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[message]
+﻿CREATE TABLE [dc].[message]
 (
 messageId INT NOT NULL IDENTITY(1,1),
 email varchar(50) NOT NULL,

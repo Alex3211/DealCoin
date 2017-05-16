@@ -60,8 +60,12 @@
     <Folder Include="Scripts" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Scripts\Create-schema-dc.sql" />
-    <None Include="Scripts\Create-tCategories.sql" />
-    <None Include="Scripts\Create-DB.sql" />
+    <Build Include="Scripts\categories.sql" />
+    <Build Include="Scripts\commandeProduit.sql" />
+    <Build Include="Scripts\Create-schema-dc.sql" />
+    <Build Include="Scripts\message.sql" />
+    <Build Include="Scripts\orders.sql" />
+    <Build Include="Scripts\products.sql" />
+    <Build Include="Scripts\users.sql" />
   </ItemGroup>
 </Project>

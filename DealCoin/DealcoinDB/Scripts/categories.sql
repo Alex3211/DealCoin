@@ -8,6 +8,5 @@ status int DEFAULT 0,
 position int NOT NULL,
 posted_date date NOT NULL,
 
- constraint PK_tCategories primary key(CategoriesId),
- constraint FK_categories_categories foreign key (parentId) references dc.categories(parentId)
+ constraint PK_categories primary key(categoriesId)
 );
