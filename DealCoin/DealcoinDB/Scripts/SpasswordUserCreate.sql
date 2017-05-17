@@ -1,7 +1,7 @@
 ﻿create procedure dc.SpasswordUserCreate
 (
     @email    nvarchar(64),
-    @password varbinary(128)
+    @Password varbinary(128)
 )
 as
 begin

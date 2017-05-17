@@ -34,6 +34,26 @@ namespace DealCoin.DAL
                     .FirstOrDefault();
             }
         }
+        public User FindByGoogleId(string googleId)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                return con.Query<User>(
+                        "select u.UserId, u.Email, u.[Password], u.GithubAccessToken, u.GoogleRefreshToken, u.GoogleId, u.GithubId from iti.vUser u where u.GoogleId = @GoogleId",
+                        new { GoogleId = googleId })
+                    .FirstOrDefault();
+            }
+        }
+        public void AddGoogleToken(int userId, string googleId, string refreshToken)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                con.Execute(
+                    "iti.sUserAddGoogleToken",
+                    new { UserId = userId, GoogleId = googleId, RefreshToken = refreshToken },
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
         public void CreatePasswordUser(string email, byte[] password)
         {
             using (SqlConnection con = new SqlConnection(_connectionString))
@@ -91,6 +111,16 @@ namespace DealCoin.DAL
                 con.Execute(
                     "iti.sPasswordUserUpdate",
                     new { UserId = userId, Password = password },
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
+        public void UpdateGoogleToken(string googleId, string refreshToken)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                con.Execute(
+                    "iti.sGoogleUserUpdate",
+                    new { GoogleId = googleId, RefreshToken = refreshToken },
                     commandType: CommandType.StoredProcedure);
             }
         }

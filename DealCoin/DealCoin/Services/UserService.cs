@@ -60,11 +60,6 @@ namespace DealCoin.Services
             return _userLink.FindByGoogleId( googleId );
         }
 
-        public User FindGithubUser( int githubId )
-        {
-            return _userLink.FindByGithubId( githubId );
-        }
-
         public IEnumerable<string> GetAuthenticationProviders( string userId )
         {
             return _userLink.GetAuthenticationProviders( userId );

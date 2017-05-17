@@ -5,7 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using DealCoin.DAL;
 using DealCoin.Authentication;
-using DealCoin.Models.AccountViewModels;
+using DealCoin.Models.AccountView;
 using DealCoin.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Authentication;
