@@ -4,7 +4,8 @@
       <!-- Page Content -->
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 text-center">
+        <div class="col-lg-3"></div>
+            <div class="col-lg-6 text-center">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Ecrivez votre adress e-mail ici" aria-describedby="basic-addon2">
                     <span class="input-group-addon" id="basic-addon2">@example.com</span>

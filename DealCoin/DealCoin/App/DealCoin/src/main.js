@@ -6,6 +6,9 @@ import home from './vue/home.vue'
 import connexion from './vue/connexion.vue'
 import inscription from './vue/inscription.vue'
 import apropos from './vue/apropos.vue'
+import articles from './vue/articles.vue'
+import article from './vue/article.vue'
+import articleDetails from './vue/articleDetails.vue'
 
 Vue.use(VueRouter)
 
@@ -60,6 +63,21 @@ const router = new VueRouter({
       path: '/apropos',
       name: 'apropos',
       component: apropos
+    },
+    {
+      path: '/articles',
+      name: 'articles',
+      component: articles
+    },
+    {
+      path: '/articleDetails',
+      name: 'articleDetails',
+      component: articleDetails
+    },
+    {
+      path: '/article',
+      name: 'article',
+      component: article
     }
   ]
 })
