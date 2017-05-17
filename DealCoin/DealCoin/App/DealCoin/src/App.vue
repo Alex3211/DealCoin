@@ -23,6 +23,9 @@
                     </li>
                     <li>
                         <router-link to="/apropos"><a href="#" class="Element">A propos</a></router-link>
+                    </li> 
+                    <li>
+                        <router-link to="/articles"><a href="#" class="Element">Articles</a></router-link>
                     </li>
                 </ul>
             </div>

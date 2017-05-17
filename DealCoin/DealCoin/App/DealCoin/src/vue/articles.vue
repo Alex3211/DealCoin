@@ -1,11 +1,17 @@
 <template>
-      <div class="container">
+  <div class="hello">
+        <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h1>DealCoin</h1>
-                <p class="lead"> l’ascension du e-commerce ainsi que les problèmes de paiements, nous avons décidé de créer DealCoin. C’est un site de e-commerce sécurisé et anonyme grâce à notre méthode de paiement en bitcoins. Cela permet à un utilisateur d’acheter ou vendre un article et de pouvoir se faire livrer à domicile. L’avantage de notre méthode de paiement est de remplacer la carte de crédit qui est traçable et piratable.</p>
+
+                <div v-for="i in list" class="row">
+                  <div v-for="i in list" class="col-md-3">
+                    <ArticlePage></ArticlePage>
+                  </div>
+                  <br>
+                </div>
             </div>
-            <!--<connexion></connexion>-->
         </div>
     </div>
   </div>
@@ -32,7 +38,7 @@ a {
 </style>
 
 <script>
-import Connexion from './connexion.vue'
+import article from './article.vue'
 
 export default {
   data() {
@@ -42,7 +48,7 @@ export default {
   },
   components: {
     // <my-component> will only be available in parent's template
-    'connexion': Connexion
+    'ArticlePage': article
   }
 }
 </script>
