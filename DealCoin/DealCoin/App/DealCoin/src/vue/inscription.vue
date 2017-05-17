@@ -2,7 +2,8 @@
       <!-- Page Content -->
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 text-center">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6 text-center">
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Pseudo</span>
                     <input type="text" class="form-control" placeholder="Ecrivez votre pseudo ici" aria-describedby="basic-addon1">
