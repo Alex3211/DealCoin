@@ -1,6 +1,8 @@
 import Vue from 'vue'
-import home from './vue/home.vue'
 import VueRouter from 'vue-router'
+
+import App from './App.vue'
+import home from './vue/home.vue'
 import connexion from './vue/connexion.vue'
 import inscription from './vue/inscription.vue'
 import apropos from './vue/apropos.vue'
@@ -13,7 +15,7 @@ Vue.use(VueRouter)
  * @param {*} from 
  * @param {*} next 
  */
-function requireAuth (to, from, next)  {
+/*function requireAuth (to, from, next)  {
   if (!AuthService.isConnected) {
     next({
       path: '/login',
@@ -31,7 +33,7 @@ function requireAuth (to, from, next)  {
 
   next();
 }
-
+*/
 /**
  * Declaration of the different routes of our application, and the corresponding components
  */
@@ -91,5 +93,5 @@ AuthService.appRedirect = () => router.replace('/');*/
 new Vue({
   el: '#app',
   router,
-  render: h => h(home)
+  render: h => h(App)
 })

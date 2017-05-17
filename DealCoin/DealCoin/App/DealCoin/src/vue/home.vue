@@ -6,6 +6,7 @@
                 <h1>DealCoin</h1>
                 <p class="lead"> l’ascension du e-commerce ainsi que les problèmes de paiements, nous avons décidé de créer DealCoin. C’est un site de e-commerce sécurisé et anonyme grâce à notre méthode de paiement en bitcoins. Cela permet à un utilisateur d’acheter ou vendre un article et de pouvoir se faire livrer à domicile. L’avantage de notre méthode de paiement est de remplacer la carte de crédit qui est traçable et piratable.</p>
             </div>
+            <!--<connexion></connexion>-->
         </div>
     </div>
   </div>
@@ -30,3 +31,19 @@ a {
   color: #42b983;
 }
 </style>
+
+<script>
+import Connexion from './connexion.vue'
+
+export default {
+  data() {
+    return {
+      list: [1, 2, 3, 4]
+    }
+  },
+  components: {
+    // <my-component> will only be available in parent's template
+    'connexion': Connexion
+  }
+}
+</script>
