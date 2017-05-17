@@ -17,19 +17,28 @@ namespace DealCoin.DAL
             _connectionString = connectionString;
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<User> GetUser()
         {
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
-                return con.Query<User>("select u.UserId, u.Email, u.[Password], u.GithubAccessToken, u.GoogleRefreshToken, u.GoogleId, u.GithubId from iti.vUser u;");
+                return con.Query<User>("select u.userId, u.email, u.[Password], from dc.users u;");
             }
         }
+        public IEnumerable<User> GetGoogleUser()
+        {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                return con.Query<User>("select u.GoogleRefreshToken, u.GoogleId from dc.users u;");
+            }
+        }
+
+
         public void CreatePasswordUser(string email, byte[] password)
         {
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 con.Execute(
-                    "iti.sPasswordUserCreate",
+                    "dc.SpasswordUserCreate",
                     new { Email = email, Password = password },
                     commandType: CommandType.StoredProcedure);
             }
@@ -40,7 +49,7 @@ namespace DealCoin.DAL
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 con.Execute(
-                    "iti.sGoogleUserCreate",
+                    "dc.SgoogleUserCreate",
                     new { Email = email, GoogleId = googleId, RefreshToken = refreshToken },
                     commandType: CommandType.StoredProcedure);
             }
@@ -50,7 +59,7 @@ namespace DealCoin.DAL
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 return con.Query<string>(
-                    "select p.ProviderName from iti.vAuthenticationProvider p where p.UserId = @UserId",
+                    "select p.ProviderName from dc.vAuthenticationProvider p where p.UserId = @userId",
                     new { UserId = userId });
             }
         }
@@ -59,7 +68,7 @@ namespace DealCoin.DAL
         {
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
-                con.Execute("iti.sUserDelete", new { UserId = userId }, commandType: CommandType.StoredProcedure);
+                con.Execute("dc.SuserDelete", new { UserId = userId }, commandType: CommandType.StoredProcedure);
             }
         }
 
@@ -68,7 +77,7 @@ namespace DealCoin.DAL
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 con.Execute(
-                    "iti.sUserUpdate",
+                    "dc.SuserUpdate",
                     new { UserId = userId, Email = email },
                     commandType: CommandType.StoredProcedure);
             }
@@ -79,7 +88,7 @@ namespace DealCoin.DAL
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 con.Execute(
-                    "iti.sPasswordUserUpdate",
+                    "dc.SpasswordUserUpdate",
                     new { UserId = userId, Password = password },
                     commandType: CommandType.StoredProcedure);
             }
