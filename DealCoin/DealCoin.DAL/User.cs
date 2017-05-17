@@ -10,20 +10,17 @@ namespace DealCoin.DAL
 
         public byte[] Password { get; set; }
 
-        public string GoogleRefreshToken { get; set; }
-
-        public string GoogleId { get; set; }
-
-        public int Nom { get; set; }
-        public int Prenom { get; set; }
-        public int Tel { get; set; }
-        public int Adresse { get; set; }
-        public int Departement { get; set; }
-        public int City { get; set; }
-        public int Postal { get; set; }
+        public string Nom { get; set; }
+        public string Prenom { get; set; }
+        public string Tel { get; set; }
+        public string Adresse { get; set; }
+        public string Departement { get; set; }
+        public string City { get; set; }
+        public string Postal { get; set; }
         public int Statut { get; set; }
         public int Visites { get; set; }
-        public int LastLogin { get; set; }
+        public string Role { get; set; }
+        public DateTime LastLogin { get; set; }
 
     }
 }
