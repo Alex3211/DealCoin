@@ -8,7 +8,7 @@ using Dapper;
 
 namespace DealCoin.DAL
 {
-    class UserLink
+    public class UserLink
     {
         readonly string _connectionString;
 
@@ -22,6 +22,16 @@ namespace DealCoin.DAL
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 return con.Query<User>("select u.UserId, u.Email, u.[Password], u.GithubAccessToken, u.GoogleRefreshToken, u.GoogleId, u.GithubId from iti.vUser u;");
+            }
+        }
+        public User FindByEmail(string email)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                return con.Query<User>(
+                        "select u.UserId, u.Email, u.[Password], u.GithubAccessToken, u.GoogleRefreshToken, u.GoogleId, u.GithubId from iti.vUser u where u.Email = @Email",
+                        new { Email = email })
+                    .FirstOrDefault();
             }
         }
         public void CreatePasswordUser(string email, byte[] password)

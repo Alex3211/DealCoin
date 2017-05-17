@@ -15,8 +15,11 @@ namespace DealCoin.DAL
         public string GoogleId { get; set; }
 
         public int Nom { get; set; }
+
         public int Prenom { get; set; }
+
         public int Tel { get; set; }
+
         public int Adresse { get; set; }
         public int Departement { get; set; }
         public int City { get; set; }
