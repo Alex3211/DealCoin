@@ -61,11 +61,21 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Scripts\categories.sql" />
-    <Build Include="Scripts\commandeProduit.sql" />
     <Build Include="Scripts\Create-schema-dc.sql" />
     <Build Include="Scripts\message.sql" />
     <Build Include="Scripts\orders.sql" />
     <Build Include="Scripts\products.sql" />
     <Build Include="Scripts\users.sql" />
+    <Build Include="Scripts\ordersProducts.sql" />
+    <Build Include="Scripts\SgoogleUserCreate.sql" />
+    <Build Include="Scripts\SgoogleUserUpdate.sql" />
+    <Build Include="Scripts\SpasswordUserCreate.sql" />
+    <Build Include="Scripts\SpasswordUserUpdate.sql" />
+    <Build Include="Scripts\SuserAddGoogleToken.sql" />
+    <Build Include="Scripts\SuserAddPassword.sql" />
+    <Build Include="Scripts\SuserDelete.sql" />
+    <Build Include="Scripts\SuserUpdate.sql" />
+    <Build Include="Scripts\userGoogle.sql" />
+    <Build Include="Scripts\vAuthenticationProvider.sql" />
   </ItemGroup>
 </Project>

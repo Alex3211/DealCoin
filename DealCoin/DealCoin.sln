@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26228.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DealCoin", "DealCoin\DealCoin.csproj", "{DC673127-155F-4E9D-9037-1D2251940B63}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DealCoin.BDD", "DealCoin.BDD\DealCoin.BDD.csproj", "{4B50B497-D703-4D52-998E-42F60847A4B8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DealCoin.DAL", "DealCoin.DAL\DealCoin.DAL.csproj", "{82ACA70A-2CF1-45E0-8981-D17C5AC922A0}"
 EndProject
@@ -21,10 +19,6 @@ Global
 		{DC673127-155F-4E9D-9037-1D2251940B63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC673127-155F-4E9D-9037-1D2251940B63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC673127-155F-4E9D-9037-1D2251940B63}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4B50B497-D703-4D52-998E-42F60847A4B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4B50B497-D703-4D52-998E-42F60847A4B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4B50B497-D703-4D52-998E-42F60847A4B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4B50B497-D703-4D52-998E-42F60847A4B8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{82ACA70A-2CF1-45E0-8981-D17C5AC922A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{82ACA70A-2CF1-45E0-8981-D17C5AC922A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82ACA70A-2CF1-45E0-8981-D17C5AC922A0}.Release|Any CPU.ActiveCfg = Release|Any CPU

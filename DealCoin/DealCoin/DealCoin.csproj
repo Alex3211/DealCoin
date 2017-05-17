@@ -14,6 +14,10 @@
     <EmbeddedResource Remove="DealCoin\dealcoin\**" />
     <None Remove="DealCoin\dealcoin\**" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json.template" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
