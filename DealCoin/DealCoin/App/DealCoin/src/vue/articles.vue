@@ -6,8 +6,8 @@
                 <h1>DealCoin</h1>
 
                 <div v-for="i in list" class="row">
-                  <div v-for="i in list" class="col-md-3">
-                    <ArticlePage></ArticlePage>
+                  <div v-for="j in list" class="col-md-3">
+                    <ArticlePage :id="j"></ArticlePage>
                   </div>
                   <br>
                 </div>

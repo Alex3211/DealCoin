@@ -1,6 +1,6 @@
 <template>
-    <div class="articles"><router-link to="/articleDetails">
-        <p>toto</p>
+    <div class="articles"><router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}">
+        <p>{{Articleid}}</p>
         <p>titi</p>
         <p>tutu</p>
     </router-link></div>
@@ -32,17 +32,13 @@ a {
 </style>
 
 <script>
-import Connexion from './connexion.vue'
-
 export default {
+  props:["id"],
   data() {
     return {
-      list: [1, 2, 3, 4]
+      list: [1, 2, 3, 4],
+      Articleid: this.id
     }
-  },
-  components: {
-    // <my-component> will only be available in parent's template
-    'connexion': Connexion
   }
 }
 </script>

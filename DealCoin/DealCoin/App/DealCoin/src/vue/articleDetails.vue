@@ -3,11 +3,13 @@
         <div class="row">
           <div class="col-lg-3"></div>
             <div class="col-lg-6 text-center">
-              <div class="articles"><router-link to="/articles">
-                  <p>toto</p>
-                  <p>titi</p>
-                  <p>tutu</p>
-              </router-link></div>
+              <div class="articles">
+                <router-link to="/articles">
+                    <p>{{Articleid}}</p>
+                    <p>titi</p>
+                    <p>tutu</p>
+                </router-link>
+              </div>
             </div>
       </div>
   </div>
@@ -44,12 +46,16 @@ import Connexion from './connexion.vue'
 export default {
   data() {
     return {
-      list: [1, 2, 3, 4]
+      Articleid: 'null'
     }
   },
   components: {
     // <my-component> will only be available in parent's template
     'connexion': Connexion
+  },       
+  mounted: function() {
+  var q = this.$route.query.article
+  this.Articleid = q
   }
 }
 </script>
