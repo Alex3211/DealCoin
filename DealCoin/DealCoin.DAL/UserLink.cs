@@ -8,7 +8,7 @@ using Dapper;
 
 namespace DealCoin.DAL
 {
-    class UserLink
+    public class UserLink
     {
         readonly string _connectionString;
 
@@ -17,28 +17,29 @@ namespace DealCoin.DAL
             _connectionString = connectionString;
         }
 
-        public IEnumerable<User> GetUser()
+        public IEnumerable<User> GetAll()
         {
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
-                return con.Query<User>("select u.userId, u.email, u.[Password], from dc.users u;");
+                return con.Query<User>("select u.UserId, u.Email, u.[Password], u.GithubAccessToken, u.GoogleRefreshToken, u.GoogleId, u.GithubId from iti.vUser u;");
             }
         }
-        public IEnumerable<User> GetGoogleUser()
+        public User FindByEmail(string email)
         {
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
-                return con.Query<User>("select u.GoogleRefreshToken, u.GoogleId from dc.users u;");
+                return con.Query<User>(
+                        "select u.UserId, u.Email, u.[Password], u.GithubAccessToken, u.GoogleRefreshToken, u.GoogleId, u.GithubId from iti.vUser u where u.Email = @Email",
+                        new { Email = email })
+                    .FirstOrDefault();
             }
         }
-
-
         public void CreatePasswordUser(string email, byte[] password)
         {
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 con.Execute(
-                    "dc.SpasswordUserCreate",
+                    "iti.sPasswordUserCreate",
                     new { Email = email, Password = password },
                     commandType: CommandType.StoredProcedure);
             }
@@ -49,7 +50,7 @@ namespace DealCoin.DAL
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 con.Execute(
-                    "dc.SgoogleUserCreate",
+                    "iti.sGoogleUserCreate",
                     new { Email = email, GoogleId = googleId, RefreshToken = refreshToken },
                     commandType: CommandType.StoredProcedure);
             }
@@ -59,7 +60,7 @@ namespace DealCoin.DAL
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 return con.Query<string>(
-                    "select p.ProviderName from dc.vAuthenticationProvider p where p.UserId = @userId",
+                    "select p.ProviderName from iti.vAuthenticationProvider p where p.UserId = @UserId",
                     new { UserId = userId });
             }
         }
@@ -68,7 +69,7 @@ namespace DealCoin.DAL
         {
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
-                con.Execute("dc.SuserDelete", new { UserId = userId }, commandType: CommandType.StoredProcedure);
+                con.Execute("iti.sUserDelete", new { UserId = userId }, commandType: CommandType.StoredProcedure);
             }
         }
 
@@ -77,7 +78,7 @@ namespace DealCoin.DAL
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 con.Execute(
-                    "dc.SuserUpdate",
+                    "iti.sUserUpdate",
                     new { UserId = userId, Email = email },
                     commandType: CommandType.StoredProcedure);
             }
@@ -88,7 +89,7 @@ namespace DealCoin.DAL
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 con.Execute(
-                    "dc.SpasswordUserUpdate",
+                    "iti.sPasswordUserUpdate",
                     new { UserId = userId, Password = password },
                     commandType: CommandType.StoredProcedure);
             }
