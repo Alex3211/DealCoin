@@ -10,13 +10,13 @@ class AuthService {
         window.addEventListener("message", (e) => this.onMessage(e), false);
     }
 
-    get identity() {
-        return ITI.PrimarySchool.getIdentity();
+    /*get identity() {
+        return DealCoin.getIdentity();
     }
 
     set identity(i) {
-        ITI.PrimarySchool.setIdentity(i);
-    }
+        Dealcoin.setIdentity(i);
+    }*/
 
     get isConnected() {
         return this.identity != null;

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import $ from 'jquery'
 
 import App from './App.vue'
 import home from './vue/home.vue'
@@ -9,6 +10,7 @@ import apropos from './vue/apropos.vue'
 import articles from './vue/articles.vue'
 import article from './vue/article.vue'
 import articleDetails from './vue/articleDetails.vue'
+import AuthService from './services/AuthService.js'
 
 Vue.use(VueRouter)
 
@@ -18,10 +20,10 @@ Vue.use(VueRouter)
  * @param {*} from 
  * @param {*} next 
  */
-/*function requireAuth (to, from, next)  {
+function requireAuth (to, from, next)  {
   if (!AuthService.isConnected) {
     next({
-      path: '/login',
+      path: '/connexion',
       query: { redirect: to.fullPath }
     });
 
@@ -36,7 +38,7 @@ Vue.use(VueRouter)
 
   next();
 }
-*/
+
 /**
  * Declaration of the different routes of our application, and the corresponding components
  */
@@ -82,32 +84,21 @@ const router = new VueRouter({
   ]
 })
 
-/**
- * Configuration of the authentication service
- */
+AuthService.allowedOrigins = ['http://localhost:5000', /* 'http://Dealcoin.com' */];
 
-// Allowed urls to access the application (if your website is http://mywebsite.com, you have to add it)
-//AuthService.allowedOrigins = ['http://localhost:5000', /* 'http://mywebsite.com' */];
+// AuthService.logoutEndpoint = '/Account/LogOff';
 
-// Server-side endpoint to logout
-//AuthService.logoutEndpoint = '/Account/LogOff';
+ AuthService.providers = {
+   'Base': {
+     endpoint: '/Account/Login'
+   },
+   'Google': {
+     endpoint: '/Account/ExternalLogin?provider=Google'
+   }
+ };
 
-// Allowed providers to log in our application, and the corresponding server-side endpoints
-/*AuthService.providers = {
-  'Base': {
-    endpoint: '/Account/Login'
-  },
-  'Google': {
-    endpoint: '/Account/ExternalLogin?provider=Google'
-  },
-  'GitHub': {
-    endpoint: '/Account/ExternalLogin?provider=GitHub'
-  },
-};
+/* AuthService.appRedirect = () => router.replace('/');*/
 
-AuthService.appRedirect = () => router.replace('/');*/
-
-// Creation of the root Vue of the application
 new Vue({
   el: '#app',
   router,

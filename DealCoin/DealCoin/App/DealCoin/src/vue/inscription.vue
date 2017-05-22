@@ -23,10 +23,38 @@
                     <span class="input-group-addon" id="basic-addon1">Confirmation mot de passe</span>
                     <input type="text" class="form-control" placeholder="Ecrivez votre mot de passe ici" aria-describedby="basic-addon1">
                 </div>
+                <a href="#" @click="login('Base')">Inscription</a>
             </div>
         </div>
     </div>
 </template>
+<script>
+import AuthService from '../services/AuthService'
+import Vue from 'vue'
+import $ from 'jquery'
+
+export default {
+        data() {
+            return {
+                endpoint: null
+            }
+        },
+        mounted() {
+            AuthService.registerAuthenticatedCallback(() => this.onAuthenticated());
+        },
+        beforeDestroy() {
+            AuthService.removeAuthenticatedCallback(() => this.onAuthenticated());
+        },
+        methods: {
+            login(provider) {
+                AuthService.login(provider);
+            },
+            onAuthenticated() {
+                 this.$router.replace('/');
+            }
+        }
+    }
+</script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1, h2 {
