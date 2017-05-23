@@ -8,6 +8,7 @@ import connexion from './vue/connexion.vue'
 import inscription from './vue/inscription.vue'
 import apropos from './vue/apropos.vue'
 import articles from './vue/articles.vue'
+import homeco from './vue/homeco.vue'
 import article from './vue/article.vue'
 import articleDetails from './vue/articleDetails.vue'
 import AuthService from './services/AuthService.js'
@@ -80,6 +81,12 @@ const router = new VueRouter({
       path: '/article',
       name: 'article',
       component: article
+    }
+    ,
+    {
+      path: '/homeco',
+      name: 'homeco',
+      component: homeco,beforeEnter: requireAuth
     }
   ]
 })

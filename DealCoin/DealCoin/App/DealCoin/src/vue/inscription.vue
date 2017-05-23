@@ -50,7 +50,7 @@ export default {
                 AuthService.login(provider);
             },
             onAuthenticated() {
-                 this.$router.replace('/');
+                 this.$router.replace('/homeco');
             }
         }
     }
