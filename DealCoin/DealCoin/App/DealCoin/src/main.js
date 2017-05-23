@@ -1,4 +1,6 @@
+import 'babel-polyfill'
 import Vue from 'vue'
+import store from './vuex/store'
 import VueRouter from 'vue-router'
 import $ from 'jquery'
 
@@ -11,7 +13,7 @@ import articles from './vue/articles.vue'
 import homeMembers from './vue/homeMembers.vue'
 import article from './vue/article.vue'
 import articleDetails from './vue/articleDetails.vue'
-import AuthService from './services/AuthService.js'
+import AuthService from './services/AuthService'
 
 Vue.use(VueRouter)
 
@@ -104,10 +106,11 @@ AuthService.logoutEndpoint = '/Account/LogOff';
    }
  };
 
-/* AuthService.appRedirect = () => router.replace('/');*/
+AuthService.appRedirect = () => router.replace('/');
 
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
 })

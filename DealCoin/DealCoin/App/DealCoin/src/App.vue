@@ -15,7 +15,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li>
+                    <li v-if="!services.isConnected">
                       <router-link to="/connexion"><a href="#" class="Element">Connection</a></router-link>
                     </li>
                     <li>
@@ -24,7 +24,7 @@
                     <li>
                         <router-link to="/articles"><a href="#" class="Element">Articles</a></router-link>
                     </li>
-                    <li>
+                    <li v-if="services.isConnected">
                         <router-link to="/logout">Se déconnecter</router-link>
                     </li>
                 </ul>
@@ -41,8 +41,15 @@
 </style>
 
 <script>
+import AuthService from './services/AuthService.js'
+
 export default {
-  name: 'app'
+    name: 'app',
+    data() {
+        return {
+            services: AuthService
+        }
+    },
 }
 </script>
 
