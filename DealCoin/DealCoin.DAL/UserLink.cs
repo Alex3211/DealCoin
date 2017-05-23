@@ -46,7 +46,7 @@ namespace DealCoin.DAL
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 return con.Query<User>(
-                        "select refreshToken, u.googleId from dc.userGoogle where googleId = @GoogleId",
+                        "select refreshToken, googleId from dc.googleUser where googleId = @GoogleId",
                         new { GoogleId = googleId })
                     .FirstOrDefault();
             }
