@@ -1,40 +1,44 @@
-
-
-    <template>
-      <!-- Page Content -->
-    <div class="container">
-        <div class="row">
-        <div class="col-lg-3"></div>
-            <div class="col-lg-6 text-center">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Ecrivez votre adress e-mail ici" aria-describedby="basic-addon2">
-                    <span class="input-group-addon" id="basic-addon2">@example.com</span>
-                </div>
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Mot de passe</span>
-                    <input type="text" class="form-control" placeholder="Ecrivez votre mot de passe ici" aria-describedby="basic-addon1">
-                </div>
+<template>
+    <div>
+        <div class="text-center">
+            <div class="page-header">
+                <h1>Bienvenue sur DealCoin!</h1>
             </div>
+            <button type="button" @click="login('Google')" class="btn btn-lg btn-block btn-primary"><i class="fa fa-google" aria-hidden="true"></i> Se connecter via Google</button>
+            <button type="button" @click="login('Base')" class="btn btn-lg btn-block btn-default">Se connecter sur notre site</button>
         </div>
     </div>
 </template>
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
+<script>
+import AuthService from '../services/AuthService'
+import Vue from 'vue'
+import $ from 'jquery'
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
+export default {
+        data() {
+            return {
+                endpoint: null
+            }
+        },
+        mounted() {
+            AuthService.registerAuthenticatedCallback(() => this.onAuthenticated());
+        },
+        beforeDestroy() {
+            AuthService.removeAuthenticatedCallback(() => this.onAuthenticated());
+        },
+        methods: {
+            login(provider) {
+                AuthService.login(provider);
+            },
+            onAuthenticated() {
+                 this.$router.replace('/homeMembers');
+            }
+        }
+    }
+</script>
+<style lang="less">
+    iframe {
+        width: 100%;
+        height: 600px;
+    }
 </style>

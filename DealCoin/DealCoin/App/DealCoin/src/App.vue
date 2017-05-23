@@ -19,13 +19,13 @@
                       <router-link to="/connexion"><a href="#" class="Element">Connection</a></router-link>
                     </li>
                     <li>
-                        <router-link to="/inscription"><a href="#" class="Element">Inscription</a></router-link>
-                    </li>
-                    <li>
                         <router-link to="/apropos"><a href="#" class="Element">A propos</a></router-link>
                     </li> 
                     <li>
                         <router-link to="/articles"><a href="#" class="Element">Articles</a></router-link>
+                    </li>
+                    <li>
+                        <router-link to="/logout">Se déconnecter</router-link>
                     </li>
                 </ul>
             </div>

@@ -5,10 +5,10 @@ import $ from 'jquery'
 import App from './App.vue'
 import home from './vue/home.vue'
 import connexion from './vue/connexion.vue'
-import inscription from './vue/inscription.vue'
+import Logout from './vue/Logout.vue'
 import apropos from './vue/apropos.vue'
 import articles from './vue/articles.vue'
-import homeco from './vue/homeco.vue'
+import homeMembers from './vue/homeMembers.vue'
 import article from './vue/article.vue'
 import articleDetails from './vue/articleDetails.vue'
 import AuthService from './services/AuthService.js'
@@ -58,9 +58,9 @@ const router = new VueRouter({
       component: connexion
     },
     {
-      path: '/inscription',
-      name: 'inscription',
-      component: inscription
+      path: '/logout',
+      name: 'Logout',
+      component: Logout
     },
     {
       path: '/apropos',
@@ -84,16 +84,16 @@ const router = new VueRouter({
     }
     ,
     {
-      path: '/homeco',
-      name: 'homeco',
-      component: homeco,beforeEnter: requireAuth
+      path: '/homeMembers',
+      name: 'homeMembers',
+      component: homeMembers,beforeEnter: requireAuth
     }
   ]
 })
 
 AuthService.allowedOrigins = ['http://localhost:5000', /* 'http://Dealcoin.com' */];
 
-// AuthService.logoutEndpoint = '/Account/LogOff';
+AuthService.logoutEndpoint = '/Account/LogOff';
 
  AuthService.providers = {
    'Base': {
