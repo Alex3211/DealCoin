@@ -27,8 +27,13 @@
                     <li>
                         <router-link to="/articles"><a href="#" class="Element">Articles</a></router-link>
                     </li>
+                     <li>
+                        <router-link to="/articles"><a href="#" class="Element">Panier</a>{{}}</router-link>
+                    </li>
+
                 </ul>
             </div>
+            
         </div>
     </nav>
     <img src="./assets/logo.png">
