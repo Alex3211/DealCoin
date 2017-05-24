@@ -1,7 +1,7 @@
 ﻿create procedure dc.SgoogleUserUpdate
 (
-    @googleId varchar(32),
-    @refreshToken varchar(64)
+    @googleId NVARCHAR(MAX),
+    @refreshToken NVARCHAR(MAX)
 )
 as
 begin
