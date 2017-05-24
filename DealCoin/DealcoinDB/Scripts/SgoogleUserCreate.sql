@@ -1,12 +1,12 @@
 ﻿create procedure dc.SgoogleUserCreate
 (
     @email        nvarchar(64),
-    @googleId     varchar(32),
-    @refreshToken varchar(64)
+    @googleId     NVARCHAR(MAX),
+    @refreshToken NVARCHAR(MAX)
 )
 as
 begin
-    insert into dc.users(email) values(@email);
+    insert into dc.users(email,Password) values(@email,1);
     declare @userId int;
     select @userId = scope_identity();
     insert into dc.googleUser(userId,  googleId,  refreshToken)

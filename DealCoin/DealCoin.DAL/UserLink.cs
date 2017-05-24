@@ -46,7 +46,7 @@ namespace DealCoin.DAL
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 return con.Query<User>(
-                        "select refreshToken, u.googleId from dc.userGoogle where googleId = @GoogleId",
+                        "select  dc.users.email, googleId,refreshToken from dc.googleUser JOIN dc.users ON dc.googleUser.userId = dc.users.userId where googleId = @GoogleId",
                         new { GoogleId = googleId })
                     .FirstOrDefault();
             }
@@ -55,10 +55,10 @@ namespace DealCoin.DAL
         {
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
-                con.Execute(
-                    "insert into dc.userGoogle(UserId,  GoogleId,  RefreshToken) values(@UserId, @GoogleId, @RefreshToken); ",
-                    new { UserId = userId, GoogleId = googleId, RefreshToken = refreshToken },
-                    commandType: CommandType.StoredProcedure);
+                con.Query<User>(
+                    "insert into dc.googleUser(UserId,  GoogleId,  RefreshToken) values(@UserId, @GoogleId, @RefreshToken); ",
+                    new { UserId = userId, GoogleId = googleId, RefreshToken = refreshToken })
+                    .FirstOrDefault();
             }
         }
         public void CreatePasswordUser(string email, byte[] password)
@@ -127,7 +127,7 @@ namespace DealCoin.DAL
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 con.Query<string>(
-                    "update dc.userGoogle set refreshToken = @RefreshToken where googleId = @GoogleId;",
+                    "update dc.googleUser set refreshToken = @RefreshToken where googleId = @GoogleId;",
                     new { GoogleId = googleId, RefreshToken = refreshToken });
             }
         }

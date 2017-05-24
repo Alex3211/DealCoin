@@ -1,8 +1,8 @@
 ﻿create procedure dc.SuserAddGoogleToken
 (
     @userId       int,
-    @googleId     varchar(32),
-    @refreshToken varchar(64)
+    @googleId     NVARCHAR(MAX),
+    @refreshToken NVARCHAR(MAX)
 )
 as
 begin
