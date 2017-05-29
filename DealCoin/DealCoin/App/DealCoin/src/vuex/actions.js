@@ -1,4 +1,10 @@
 import * as types from './mutation-types'
+import { INCREMENT } from './mutation-types'
+
+export const increment = ({ commit }) => commit(INCREMENT)
+
+
+
 
 /**
  * Notify when an error happens

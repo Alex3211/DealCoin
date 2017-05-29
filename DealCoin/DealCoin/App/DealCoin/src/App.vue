@@ -27,6 +27,9 @@
                     <li v-if="services.isConnected">
                         <router-link to="/logout">Se déconnecter</router-link>
                     </li>
+                    <li>
+                    <NbItem></NbItem>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -42,8 +45,12 @@
 
 <script>
 import AuthService from './services/AuthService.js'
+import NbItem from './vue/NbItem.vue'
 
 export default {
+     components: {
+    NbItem,
+  },
     name: 'app',
     data() {
         return {

@@ -14,6 +14,8 @@ import homeMembers from './vue/homeMembers.vue'
 import article from './vue/article.vue'
 import articleDetails from './vue/articleDetails.vue'
 import AuthService from './services/AuthService'
+import NbItem from './vue/NbItem.vue'
+import Increment from './vue/Increment.vue'
 
 Vue.use(VueRouter)
 
@@ -83,8 +85,17 @@ const router = new VueRouter({
       path: '/article',
       name: 'article',
       component: article
-    }
-    ,
+    },
+    {
+      path: '/NbItem',
+      name: 'NbItem',
+      component: NbItem
+    },
+    {
+      path: '/Increment',
+      name: 'Increment',
+      component: Increment
+    },
     {
       path: '/homeMembers',
       name: 'homeMembers',
