@@ -28,7 +28,7 @@
                         <router-link to="/logout">Se déconnecter</router-link>
                     </li>
                     <li>
-                    <NbItem></NbItem>
+                        <router-link to="">Panier {{ getCount }}</router-link>
                     </li>
                 </ul>
             </div>
@@ -44,19 +44,21 @@
 </style>
 
 <script>
+import {mapGetters} from 'vuex'
 import AuthService from './services/AuthService.js'
-import NbItem from './vue/NbItem.vue'
 
 export default {
-     components: {
-    NbItem,
-  },
     name: 'app',
     data() {
         return {
             services: AuthService
         }
     },
+    computed:{
+    ...mapGetters(
+      [
+        'getCount'
+    ])}
 }
 </script>
 
