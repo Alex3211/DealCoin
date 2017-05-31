@@ -263,3 +263,5 @@ src/ITI.PrimarySchool.WebApp/appsettings.json
 src/ITI.PrimarySchool.DB/appsettings.json
 
 DealCoin/DealcoinDB/DealcoinDB\.jfm
+
+DealCoin/DealCoin/appsettings\.json
