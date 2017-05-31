@@ -27,6 +27,9 @@
                     <li v-if="services.isConnected">
                         <router-link to="/logout">Se déconnecter</router-link>
                     </li>
+                    <li>
+                        <router-link to="">Panier {{ getCount }}</router-link>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -41,6 +44,7 @@
 </style>
 
 <script>
+import {mapGetters} from 'vuex'
 import AuthService from './services/AuthService.js'
 
 export default {
@@ -50,6 +54,11 @@ export default {
             services: AuthService
         }
     },
+    computed:{
+    ...mapGetters(
+      [
+        'getCount'
+    ])}
 }
 </script>
 
