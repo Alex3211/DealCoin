@@ -2,7 +2,7 @@
 (
 userId INT NOT NULL IDENTITY(1,1),
 email varchar(64) NOT NULL,
-[Password] VARBINARY(128) not null,
+[Password] VARBINARY(128) NOT null,
 nom varchar(255) null,
 prenom varchar(255) null,
 phone varchar(255) null,

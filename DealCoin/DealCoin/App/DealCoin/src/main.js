@@ -15,6 +15,7 @@ import article from './vue/article.vue'
 import articleDetails from './vue/articleDetails.vue'
 import AuthService from './services/AuthService'
 import Increment from './vue/Increment.vue'
+import Account from './vue/Account.vue'
 
 Vue.use(VueRouter)
 
@@ -89,6 +90,11 @@ const router = new VueRouter({
       path: '/Increment',
       name: 'Increment',
       component: Increment
+    },
+    {
+      path: '/Account',
+      name: 'Account',
+      component: Account
     },
     {
       path: '/homeMembers',

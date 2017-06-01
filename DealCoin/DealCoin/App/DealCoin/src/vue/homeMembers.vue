@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h1>DealCoin</h1>
-                <p class="lead">bien venu!</p>
+                <p class="lead">bienvenu!</p>
             </div>
         </div>
     </div>

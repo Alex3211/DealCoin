@@ -30,7 +30,11 @@
                     <li>
                         <router-link to="">Panier {{ getCount }}</router-link>
                     </li>
+                    <li>
+                        <router-link to="/Account">Mon compte</router-link>
+                    </li>
                 </ul>
+                
             </div>
         </div>
     </nav>
