@@ -33,6 +33,17 @@
                     <li>
                         <router-link to="/Account">Mon compte</router-link>
                     </li>
+                    
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ auth.email }} <span class="caret"></span></a>
+                        
+                        <ul class="dropdown-menu">
+                            <li><router-link to="/Logout">Se déconnecter</router-link></li>
+                        </ul>
+                    </li>
                 </ul>
                 
             </div>
@@ -55,14 +66,16 @@ export default {
     name: 'app',
     data() {
         return {
-            services: AuthService
+            services: AuthService,
         }
     },
     computed:{
     ...mapGetters(
       [
-        'getCount'
-    ])}
+        'getCount',
+    ]),
+    auth: () => AuthService
+    }
 }
 </script>
 
@@ -70,6 +83,7 @@ export default {
 .router-link-active a {
     color:white;
 }
+
 .Element{
     color:#9d9d9d;
 }

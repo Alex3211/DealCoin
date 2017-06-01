@@ -34,6 +34,11 @@ class AuthService {
         return identity ? identity.email : null;
     }
 
+    hisEmail(){
+        var identity = this.identity;
+        return (identity.email)
+    }
+
     get boundProviders() {
         var identity = this.identity;
 
