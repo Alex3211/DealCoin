@@ -5,11 +5,8 @@
             <div class="col-lg-12 text-center">
                 <h1>DealCoin</h1>
 
-                <div v-for="i in list" class="row">
-                  <div v-for="j in list" class="col-md-3">
-                    <ArticlePage :id="j"></ArticlePage>
-                  </div>
-                  <br>
+                <div v-for="i in article" class="row">
+                    <ArticlePage :id="i"></ArticlePage>
                 </div>
             </div>
         </div>
@@ -39,11 +36,21 @@ a {
 
 <script>
 import article from './article.vue'
+import articleApiService from '../services/ArticleServices.js'
 
 export default {
   data() {
     return {
-      list: [1, 2, 3, 4]
+      article: [] 
+    }
+  },
+  async mounted(){
+    await this.loadArticle();
+  },
+  methods: {
+    loadArticle: async function(){
+      var e = await articleApiService.getArticleListAsync();
+      this.article = e.content;
     }
   },
   components: {

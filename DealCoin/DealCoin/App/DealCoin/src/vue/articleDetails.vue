@@ -5,9 +5,9 @@
             <div class="col-lg-6 text-center">
               <div class="articles">
                 <router-link to="/articles">
-                    <p>{{Articleid}}</p>
-                    <p>titi</p>
-                    <p>tutu</p>
+                    <p>{{Articleid.title}}</p>
+                    <p>{{Articleid.price}}</p>
+                    <p>{{Articleid.posted_date}}</p>
                 </router-link>
               </div>
             </div>
