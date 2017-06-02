@@ -18,3 +18,5 @@ last_login date,
 constraint PK_users primary key(userId),
 constraint UK_users_email unique(email)
 );
+
+

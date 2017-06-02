@@ -36,7 +36,7 @@ export default {
             onAuthenticated() {
                 this.email = AuthService.hisEmail();
                 this.loadModelUser(this.email);
-                if(User.status != 0){
+                if(this.User.status != 0){
                 this.$router.replace('/homeAdmin');
                 }
                 else{ 
