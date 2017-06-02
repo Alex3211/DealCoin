@@ -15,6 +15,7 @@ import homeAdmin from './vue/homeAdmin.vue'
 import article from './vue/article.vue'
 import articleDetails from './vue/articleDetails.vue'
 import AuthService from './services/AuthService'
+import ArticleServices from './services/ArticleServices'
 import Increment from './vue/Increment.vue'
 import Account from './vue/Account.vue'
 
@@ -75,22 +76,22 @@ const router = new VueRouter({
     {
       path: '/articles',
       name: 'articles',
-      component: articles
+      component: articles, beforeEnter: requireAuth
     },
     {
       path: '/articleDetails',
       name: 'articleDetails',
-      component: articleDetails
+      component: articleDetails, beforeEnter: requireAuth
     },
     {
       path: '/article',
       name: 'article',
-      component: article
+      component: article, beforeEnter: requireAuth
     },
     {
       path: '/Increment',
       name: 'Increment',
-      component: Increment
+      component: Increment, beforeEnter: requireAuth
     },
     {
       path: '/Account',

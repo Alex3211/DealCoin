@@ -1,9 +1,9 @@
 <template>
     <div class="articles"><router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}">
-        <p>{{Articleid}}</p>
+        <p>{{Articleid.title}}</p>
     </router-link>
-        <p>titi</p>
-        <p>tutu</p>  
+        <p>{{Articleid.price}}</p>
+        <p>{{Articleid.posted_date}}</p>  
     <Increment></Increment>
 
 
@@ -20,8 +20,7 @@ export default {
   props:["id"],
   data() {
     return {
-           Articleid: this.id,
-           counter:0
+           Articleid: this.id
     }
   }
 }

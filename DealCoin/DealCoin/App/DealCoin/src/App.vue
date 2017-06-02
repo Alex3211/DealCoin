@@ -21,13 +21,13 @@
                     <li>
                         <router-link to="/apropos"><a href="#" class="Element">A propos</a></router-link>
                     </li> 
-                    <li>
+                    <li v-if="services.isConnected">
                         <router-link to="/articles"><a href="#" class="Element">Articles</a></router-link>
                     </li>
                     <li v-if="services.isConnected">
                         <router-link to="/logout">Se déconnecter</router-link>
                     </li>
-                    <li>
+                    <li v-if="services.isConnected">
                         <router-link to="">Panier {{ getCount }}</router-link>
                     </li>
                     <li>
