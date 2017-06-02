@@ -24,6 +24,7 @@ namespace DealCoin.DAL
         public int Departement { get; set; }
         public int City { get; set; }
         public int Postal { get; set; }
+        public string role { get; set; }
         public int Statut { get; set; }
         public int Visites { get; set; }
         public int LastLogin { get; set; }

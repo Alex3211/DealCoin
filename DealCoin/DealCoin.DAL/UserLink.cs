@@ -24,6 +24,16 @@ namespace DealCoin.DAL
                 return con.Query<User>("select u.userId, u.email, u.[Password], from dc.users u;");
             }
         }
+        public User getUser(string _Mail)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                return con.Query<User>(
+                        "select userId, email, Password, nom, prenom, phone, addresse,departement,city,postale,role,status,visits,last_login from dc.users where email = @Mail ;",
+                        new { Mail = _Mail })
+                    .FirstOrDefault();
+            }
+        }
         public IEnumerable<User> GetGoogleUser()
         {
             using (SqlConnection con = new SqlConnection(_connectionString))

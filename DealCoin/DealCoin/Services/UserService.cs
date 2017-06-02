@@ -14,6 +14,11 @@ namespace DealCoin.Services
             _userLink = userLink;
             _passwordHasher = passwordHasher;
         }
+        public Result<User> getUser(string email)
+        {
+            User user = _userLink.getUser(email);
+            return Result.Success(Status.Ok, user);
+        }
 
         public bool CreatePasswordUser( string email, string password )
         {

@@ -15,6 +15,7 @@ import homeAdmin from './vue/homeAdmin.vue'
 import article from './vue/article.vue'
 import articleDetails from './vue/articleDetails.vue'
 import AuthService from './services/AuthService'
+import UserService from './services/UserService'
 import Increment from './vue/Increment.vue'
 import Account from './vue/Account.vue'
 
