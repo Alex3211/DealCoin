@@ -4,8 +4,7 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h1>DealCoin</h1>
-
-                <div v-for="i in article" class="row">
+                <div v-for="i in article" class="col-md-3">
                     <ArticlePage :id="i"></ArticlePage>
                 </div>
             </div>

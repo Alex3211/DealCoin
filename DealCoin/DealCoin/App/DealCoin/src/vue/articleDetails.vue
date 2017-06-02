@@ -1,18 +1,20 @@
 <template>
-    <div class="container">
-        <div class="row">
-          <div class="col-lg-3"></div>
-            <div class="col-lg-6 text-center">
-              <div class="articles">
-                <router-link to="/articles">
-                    <p>{{Articleid.title}}</p>
-                    <p>{{Articleid.price}}</p>
-                    <p>{{Articleid.posted_date}}</p>
-                </router-link>
-              </div>
-            </div>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+      <div class="articles">
+        <router-link to="/articles">
+            <p>{{Articleid.title}}</p>
+            <p>{{Articleid.photo}}</p>
+            <p>Catégorie : {{Articleid.categoriesId}}</p>
+            <p>Crée le {{Articleid.created}}</p>
+            <p>{{Articleid.price}}</p>
+            <p>Mis a jour le {{Articleid.updated}}</p>
+        </router-link>
       </div>
+  <div class="col-md-4"></div>
   </div>
+</div>
 </template>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
