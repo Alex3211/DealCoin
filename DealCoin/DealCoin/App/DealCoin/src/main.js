@@ -11,6 +11,7 @@ import Logout from './vue/Logout.vue'
 import apropos from './vue/apropos.vue'
 import articles from './vue/articles.vue'
 import homeMembers from './vue/homeMembers.vue'
+import homeAdmin from './vue/homeAdmin.vue'
 import article from './vue/article.vue'
 import articleDetails from './vue/articleDetails.vue'
 import AuthService from './services/AuthService'
@@ -94,6 +95,11 @@ const router = new VueRouter({
       path: '/homeMembers',
       name: 'homeMembers',
       component: homeMembers,beforeEnter: requireAuth
+    },
+    {
+      path: '/homeAdmin',
+      name: 'homeAdmin',
+      component: homeAdmin,beforeEnter: requireAuth
     }
   ]
 })
