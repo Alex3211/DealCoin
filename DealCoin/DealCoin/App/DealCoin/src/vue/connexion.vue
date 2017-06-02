@@ -36,17 +36,18 @@ export default {
             onAuthenticated() {
                 this.email = AuthService.hisEmail();
                 this.loadModelUser(this.email);
-                if(this.User.status != 0){
-                this.$router.replace('/homeAdmin');
-                }
-                else{ 
-                this.$router.replace('/homeMembers');
-                }
-               
             },
             loadModelUser: async function(email) {
               this.User = await UserService.getUserAsync(this.email);
               this.User = this.User.content;
+                if(this.User.status == 1)
+                {
+                this.$router.replace('/homeAdmin');
+                }
+                else
+                {
+                this.$router.replace('/homeMembers'); 
+                }
             }
         }
     }

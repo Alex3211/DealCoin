@@ -9,6 +9,25 @@
     </div>
   </div>
 </template>
+<script>
+import AuthService from '../services/AuthService'
+import UserService from '../services/UserService'
+import Vue from 'vue'
+import $ from 'jquery'
+
+export default {
+        data() {
+            return {
+            
+            }
+        },
+        mounted() {
+            
+        },
+        methods: {
+        }
+    }
+</script>
 <style scoped>
 h1, h2 {
   font-weight: normal;
