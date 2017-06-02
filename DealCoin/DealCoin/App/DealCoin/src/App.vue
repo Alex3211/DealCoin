@@ -16,7 +16,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li v-if="!services.isConnected">
-                      <router-link to="/connexion"><a href="#" class="Element">Connection</a></router-link>
+                      <router-link to="/connexion"><a href="#" class="Element">Connexion</a></router-link>
                     </li>
                     <li>
                         <router-link to="/apropos"><a href="#" class="Element">A propos</a></router-link>

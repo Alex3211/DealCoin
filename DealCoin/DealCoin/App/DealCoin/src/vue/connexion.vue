@@ -11,13 +11,16 @@
 </template>
 <script>
 import AuthService from '../services/AuthService'
+import UserService from '../services/UserService'
 import Vue from 'vue'
 import $ from 'jquery'
 
 export default {
         data() {
             return {
-                endpoint: null
+                endpoint: null,
+                User:[],
+                email: null
             }
         },
         mounted() {
@@ -31,7 +34,19 @@ export default {
                 AuthService.login(provider);
             },
             onAuthenticated() {
-                 this.$router.replace('/homeMembers');
+                this.email = AuthService.hisEmail();
+                this.loadModelUser(this.email);
+                if(User.status != 0){
+                this.$router.replace('/homeAdmin');
+                }
+                else{ 
+                this.$router.replace('/homeMembers');
+                }
+               
+            },
+            loadModelUser: async function(email) {
+              this.User = await UserService.getUserAsync(this.email);
+              this.User = this.User.content;
             }
         }
     }
