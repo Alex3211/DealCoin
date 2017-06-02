@@ -15,11 +15,8 @@ import homeAdmin from './vue/homeAdmin.vue'
 import article from './vue/article.vue'
 import articleDetails from './vue/articleDetails.vue'
 import AuthService from './services/AuthService'
-<<<<<<< HEAD
 import ArticleServices from './services/ArticleServices'
-=======
 import UserService from './services/UserService'
->>>>>>> Victor
 import Increment from './vue/Increment.vue'
 import Account from './vue/Account.vue'
 
