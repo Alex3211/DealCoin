@@ -10,9 +10,7 @@ import { mapActions } from 'vuex'
 export default {
   name: 'increment',
   methods:{
-    ...mapActions([
-      'increment'
-    ])
+    ...mapActions(['increment'])
 
   }
 }
