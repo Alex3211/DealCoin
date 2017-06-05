@@ -28,7 +28,7 @@
                         <router-link to="/logout">Se déconnecter</router-link>
                     </li>
                     <li v-if="services.isConnected">
-                        <router-link to="">Panier {{ getCount }}</router-link>
+                        <router-link to="">Panier <span class="badge">{{ getCount }}</span></router-link>
                     </li>
                     <li>
                         <router-link to="/Account">Mon compte</router-link>
@@ -36,9 +36,9 @@
                     
                 </ul>
 
-                <ul class="nav navbar-nav navbar-right">
+                <ul v-if="services.isConnected" class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ auth.email }} <span class="caret"></span></a>
+                        <a v-if="services.isConnected" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ auth.email }} <span class="caret"></span></a>
                         
                         <ul class="dropdown-menu">
                             <li><router-link to="/Logout">Se déconnecter</router-link></li>
@@ -49,7 +49,7 @@
             </div>
         </div>
     </nav>
-    <img src="./assets/logo.png">
+    
     <router-view></router-view>
   </div>
 </template>
