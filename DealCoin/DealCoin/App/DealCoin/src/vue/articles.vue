@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
         <div class="container">
+        <img src="../assets/logo.png">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h1>DealCoin</h1>
