@@ -3,6 +3,7 @@
     <div class="container">
       <img src="../assets/logo.png"><div class="row">
             <div class="col-lg-12 text-center">
+            <h3>Bonjour, {{model.nom}}, vous pouvez modifier votre compte ici.</h3>
 
           <div align="left">
                 <h1>Modifier le profil</h1>
@@ -133,6 +134,10 @@ export default {
         confirmNewPass: null
       }
      },
+     mounted() {
+            this.email = AuthService.hisEmail();
+            this.loadModelUser(this.email);
+        },
     methods: {
             onSubmit: async function(e) {
               e.preventDefault();

@@ -10,7 +10,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <router-link to="/"><a class="navbar-brand Element" href="#" >dealcoin</a></router-link>
+                <router-link to="/"><a class="navbar-brand Element" href="#" >DealCoin</a></router-link>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -19,39 +19,23 @@
                       <router-link to="/connexion"><a href="#" class="Element">Connexion</a></router-link>
                     </li>
                     <li>
-                        <router-link to="/apropos"><a href="#" class="Element">A propos</a></router-link>
+                        <router-link to="/apropos"><a href="#" class="Element">À propos</a></router-link>
                     </li> 
                     <li v-if="services.isConnected">
                         <router-link to="/articles"><a href="#" class="Element">Articles</a></router-link>
                     </li>
                     <li v-if="services.isConnected">
-                        <router-link to="/logout">Se déconnecter</router-link>
-                    </li>
-                    <li v-if="services.isConnected">
                         <router-link to="">Panier <span class="badge">{{ getCount }}</span></router-link>
                     </li>
-                    <li>
+                    <li v-if="services.isConnected">
                         <router-link to="/Account">Mon compte</router-link>
-                    </li>
-                    <div class="btn-group">
-                    <button type="button" class="btn btn-danger">Action</button>
-                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                    </div>
+                    </li> 
                 </ul>
 
                 <ul v-if="services.isConnected" class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a v-if="services.isConnected" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ auth.email }} <span class="caret"></span></a>
+                        <a v-if="services.isConnected" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+                        aria-haspopup="true" aria-expanded="false">{{ auth.email }} <span class="caret"></span></a>
                         
                         <ul class="dropdown-menu">
                             <li><router-link to="/Logout">Se déconnecter</router-link></li>
