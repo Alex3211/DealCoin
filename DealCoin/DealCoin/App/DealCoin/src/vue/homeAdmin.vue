@@ -1,4 +1,5 @@
 <template>
+
 <div class="container">
     <div class="row">
         <div class="col-md-3">
@@ -10,13 +11,6 @@
                 <li><a href="" data-target-id="pages"><i class="fa fa-file-o fa-fw"></i>Raport</a></li>
             </ul>
         </div>
-        <div class="col-md-9 well admin-content" id="home">
-          <div class="container">
-            <a class="btn icon-btn btn-success" href="#"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add</a>
-            <a class="btn icon-btn btn-info" href="#"><span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>Share</a>
-            <a class="btn icon-btn btn-warning" href="#"><span class="glyphicon btn-glyphicon glyphicon-minus img-circle text-warning"></span>Remove</a>
-            <a class="btn icon-btn btn-danger" href="#"><span class="glyphicon btn-glyphicon glyphicon-trash img-circle text-danger"></span>Delete</a>
-          </div>
             <p>
                 Hello! This is a forked snippet.<br>
                 It is for users, which use one-page layouts.
@@ -67,15 +61,16 @@
                 </a>
             </div>
         </div>
-        </div>
-        </div>
+        <canvas class="myChart" width="250" height="250"></canvas>
     </div>
 </div>
 
 </template>
+
 <script>
 import AuthService from '../services/AuthService'
 import UserService from '../services/UserService'
+import Chart from 'chart.js';
 import Vue from 'vue'
 import $ from 'jquery'
 
@@ -85,10 +80,48 @@ export default {
             }
         },
         mounted() {
-            
+            this.displayGraph();
         },
         methods: {
-            
+            displayGraph() {
+                var ctx = this.$el.querySelector(".myChart");
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                        datasets: [{
+                            label: '# of Votes',
+                            data: [12, 19, 3, 5, 2, 3],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }]
+                        }
+                    }
+                });
+            }
         }
     }
 </script>
