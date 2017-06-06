@@ -60,8 +60,12 @@
                         Twitter Followers</p>
                 </a>
             </div>
+            <canvas class="myChart" width="150" height="150"></canvas>
+            <canvas class="line" width="750" height="750"></canvas>
+            <canvas class="pie" width="750" height="750"></canvas>
+            <canvas class="dognut" width="750" height="750"></canvas>
+            <canvas class="polar" width="750" height="750"></canvas>
         </div>
-        <canvas class="myChart" width="250" height="250"></canvas>
     </div>
 </div>
 
@@ -81,6 +85,10 @@ export default {
         },
         mounted() {
             this.displayGraph();
+            this.graphLine();
+            this.graphPie();
+            this.graphDognut();
+            this.graphPolar();
         },
         methods: {
             displayGraph() {
@@ -90,7 +98,7 @@ export default {
                     data: {
                         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
                         datasets: [{
-                            label: '# of Votes',
+                            label: 'NB of Votes',
                             data: [12, 19, 3, 5, 2, 3],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
@@ -120,6 +128,68 @@ export default {
                             }]
                         }
                     }
+                });
+            },
+            graphLine(){
+                var ctx = this.$el.querySelector(".line");
+                var myLineChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: [10, 100, 1000, 10000, 100000, 1000000],
+                        datasets: [{
+                            label: 'Nb des Votes',
+                            data: [10, 20, 30, 1000, 50, 60],
+                            pointBackgroundColor:[
+                                'rgba(255,99,132,1)'
+                            ],
+                            fill : false,
+                            borderColor : 'rgba(215, 220, 44, 0.9)',
+                            pointStyle:'triangle'
+                        }]
+                    },
+                    options: {}
+                });
+            },
+            graphPie(){
+                var ctx = this.$el.querySelector(".pie");
+                var myPieChart = new Chart(ctx,{
+                    type: 'pie',
+                    data: {
+                        labels: ['Jeux', 'Vetement','Technologie'],
+                        datasets: [{
+                            data: [20, 50, 30],
+                            backgroundColor: ['rgba(215, 220, 44, 0.9)','rgba(215, 22, 44, 0.9)','rgba(88, 162, 5, 0.9)']
+                        }]
+                    },
+                    options: {}
+                });
+            },
+            graphDognut(){
+                var ctx = this.$el.querySelector(".dognut");
+                var myDoughnutChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Jeux', 'Vetement','Technologie'],
+                        datasets: [{
+                            data: [20, 50, 30],
+                            backgroundColor: ['rgba(215, 220, 44, 0.9)','rgba(215, 22, 44, 0.9)','rgba(88, 162, 5, 0.9)']
+                        }]
+                    },
+                    options: {}
+                });
+            },
+            graphPolar(){
+                var ctx = this.$el.querySelector(".polar");
+                var myPolarChart = new Chart(ctx, {
+                    type: 'polarArea',
+                    data: {
+                        labels: ['Jeux', 'Vetement','Technologie'],
+                        datasets: [{
+                            data: [20, 50, 30],
+                            backgroundColor: ['rgba(215, 220, 44, 0.9)','rgba(215, 22, 44, 0.9)','rgba(88, 162, 5, 0.9)']
+                        }]
+                    },
+                    options: {}
                 });
             }
         }
