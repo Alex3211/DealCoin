@@ -9,7 +9,7 @@ namespace DealCoin.Models.AccountView
 {
     public class ArticleViewModel
     {
-        public int? UserId { get; set; }
+        public int UserId { get; set; }
 
         [Required]
         public int CategoriesId { get; set; }

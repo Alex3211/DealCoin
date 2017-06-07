@@ -85,6 +85,8 @@ a {
 <script>
 import article from './article.vue'
 import articleApiService from '../services/ArticleServices.js'
+import UserService from '../services/UserService.js'
+import AuthService from '../services/AuthService.js'
 
 export default {
   data() {
@@ -97,10 +99,14 @@ export default {
             photo :null,
             desc1:null,
             price : null,
-        }
+        },
+        model1:{}
+    
     }
   },
   async mounted(){
+      this.email = AuthService.hisEmail();
+      this.LoadModelUser(this.email);
   },
   methods: {
     onSubmit: async function(e) {
@@ -109,6 +115,10 @@ export default {
         if (this.model.title.length == 0)
             this.model.title = 0;   
         result = await articleApiService.postArticleListAsync(this.model);
+    },
+    LoadModelUser: async function(email){
+        this.model1 = await UserService.getUserAsync(email);
+        this.model.userId = this.model1.content.userId;
     }
   },
   components: {
