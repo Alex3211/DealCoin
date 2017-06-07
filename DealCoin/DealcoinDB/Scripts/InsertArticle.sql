@@ -6,7 +6,7 @@ GO
 
 INSERT INTO [dc].[categories]([name],[parentId],[type],[description],[status],[position],[posted_date])VALUES('Téléphonie',0,2,'Téléphones',0,0,'2010-04-02')
 GO
-INSERT INTO [dc].[products]([categoriesId],[title],[photo],[desc1],[price],[posted_date],[created],[created_pk],[created_ip],[updated],[updated_pk],[updated_ip])VALUES(2,'Premier téléphone','./maphoto.png','Super 3310 !','10€',null,null,null,null,null,null,null)
+INSERT INTO [dc].[products]([userId],[categoriesId],[title],[photo],[desc1],[price],[posted_date],[created],[created_pk],[created_ip],[updated],[updated_pk],[updated_ip])VALUES(1,2,'Premier téléphone','./maphoto.png','Super 3310 !','10€',null,null,null,null,null,null,null)
 INSERT INTO [dc].[products]([categoriesId],[title],[photo],[desc1],[price],[posted_date],[created],[created_pk],[created_ip],[updated],[updated_pk],[updated_ip])VALUES(2,'Second téléphone','./maphoto.png','Super 3310 !','10€',null,null,null,null,null,null,null)
 INSERT INTO [dc].[products]([categoriesId],[title],[photo],[desc1],[price],[posted_date],[created],[created_pk],[created_ip],[updated],[updated_pk],[updated_ip])VALUES(2,'Troisieme téléphone','./maphoto.png','Super 3310 !','10€',null,null,null,null,null,null,null)
 INSERT INTO [dc].[products]([categoriesId],[title],[photo],[desc1],[price],[posted_date],[created],[created_pk],[created_ip],[updated],[updated_pk],[updated_ip])VALUES(2,'un autre téléphone','./maphoto.png','Super 3310 !','10€',null,null,null,null,null,null,null)
