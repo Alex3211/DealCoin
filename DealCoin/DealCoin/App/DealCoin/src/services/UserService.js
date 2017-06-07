@@ -12,6 +12,10 @@ class UserService {
     {
         return await getAsync(endpoint, email, AuthService.accessToken);
     }
+    async getAllUserAsync()
+    {
+        return await getAsync(endpoint, 'All/', AuthService.accessToken);
+    }
     async postUserAsync(model)
     {
         return await postAsync(endpoint, model.userId, AuthService.accessToken, model);

@@ -6,10 +6,9 @@ import * as getters from './getters'
 
 import app from './modules/app'
 import panier from './modules/panier'
+import User from './modules/User'
 
 Vue.use(Vuex)
-
-
 
 const debug = process.env.NODE_ENV !== 'production'
 
@@ -18,7 +17,8 @@ export default new Vuex.Store({
   getters,
   modules: {
       app,
-      panier
+      panier,
+      User
   },
   strict: debug
 })
