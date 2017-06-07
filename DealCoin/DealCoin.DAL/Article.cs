@@ -6,6 +6,8 @@ namespace DealCoin.DAL
 {
     public class Article
     {
+        public int productsId { get; set; }
+        public int userId { get; set; }
         public int categoriesId { get; set; }
         public string title{ get; set; }
         public string photo { get; set; }
