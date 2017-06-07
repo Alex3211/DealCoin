@@ -3,60 +3,56 @@
         <div class="container">
         <img src="../assets/logo.png">
         <div class="row">
-            <div class="col-lg-12 text-center">
-                <div align="left">
-                    <h1>Ajouter un article</h1>
-
-                    <form @submit="onSubmit($event)" class="form-horizontal" role="form">
-                    <div class="form-group">
-                        <label class="col-lg-1 control-label">Catégorie:</label>
-                        <div class="col-lg-3">
-                        <input class="form-control" v-model="model.categoriesId" type="text">
-                        </div>
-                        <br>
+            <h1>Ajouter un article</h1>
+            <form @submit="onSubmit($event)" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-lg-1 control-label">Catégorie:</label>
+                    <div class="col-lg-11">
+                        <select class="form-control" name="cars">
+                            <option id="test" v-for="i in category" value="volvo" v-model="model.categoriesId" v-bind:value="i.categoriesId"> {{i.name}}</option>
+                        </select>
                     </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-1 control-label">Titre:</label>
-                        <div class="col-lg-3">
-                        <input class="form-control" v-model="model.title" type="text">
-                        </div>
-                        <br>
-                    </div> 
-
-                    <div class="form-group">
-                        <label class="col-lg-1 control-label">Photo:</label>
-                        <div class="col-lg-3">
-                        <input class="form-control" v-model="model.photo" type="text">
-                        </div>
-                        <br>
-                    </div> 
-
-                    <div class="form-group">
-                        <label class="col-lg-1 control-label">Description:</label>
-                        <div class="col-lg-3">
-                        <input class="form-control" v-model="model.desc1" type="text">
-                        </div>
-                        <br>
-                    </div> 
-
-                    <div class="form-group">
-                        <label class="col-lg-1 control-label">Prix: </label>
-                        <div class="col-lg-3">
-                        <input class="form-control" v-model="model.price" type="text">
-                        </div>
-                        <br>
+                    <br>
+                </div> 
+                <div class="form-group">
+                    <label class="col-lg-1 control-label">Titre:</label>
+                    <div class="col-lg-11">
+                    <input class="form-control" v-model="model.title" type="text">
                     </div>
+                    <br>
+                </div> 
 
-                    <div class="form-group">
-                        <label class="col-md-1 control-label"></label>
-                        <div class="col-md-3">
-                            <input name ="Save" class="btn btn-primary" value="Enregistrer" type="submit">            
-                        </div>
+                <div class="form-group">
+                    <label class="col-lg-1 control-label">Photo:</label>
+                    <div class="col-lg-11">
+                    <input class="form-control" v-model="model.photo" type="text">
                     </div>
-                </form>
+                    <br>
+                </div> 
+
+                <div class="form-group">
+                    <label class="col-lg-1 control-label">Description:</label>
+                    <div class="col-lg-11">
+                    <input class="form-control" v-model="model.desc1" type="text">
+                    </div>
+                    <br>
+                </div> 
+
+                <div class="form-group">
+                    <label class="col-lg-1 control-label">Prix: </label>
+                    <div class="col-lg-11">
+                    <input class="form-control" v-model="model.price" type="text">
+                    </div>
+                    <br>
                 </div>
-            </div>
+
+                <div class="form-group">
+                    <label class="col-md-1 control-label"></label>
+                    <div class="col-md-11">
+                        <input name ="Save" class="btn btn-primary" value="Enregistrer" type="submit">            
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
   </div>
@@ -83,15 +79,15 @@ a {
 </style>
 
 <script>
-import article from './article.vue'
-import articleApiService from '../services/ArticleServices.js'
 import UserService from '../services/UserService.js'
 import AuthService from '../services/AuthService.js'
+import CategoryApiService from '../services/CategoryService.js'
+import articleApiService from '../services/ArticleServices.js'
 
 export default {
   data() {
     return {
-      article: [],
+      category: [],
       model: {
             userId : null,
             categoriesId : null,
@@ -101,29 +97,31 @@ export default {
             price : null,
         },
         model1:{}
-    
     }
   },
   async mounted(){
       this.email = AuthService.hisEmail();
       this.LoadModelUser(this.email);
+      await this.loadCategory();
   },
   methods: {
+    loadCategory: async function(){
+      var e = await CategoryApiService.getCategoryListAsync();
+      this.category = e.content;
+    },
     onSubmit: async function(e) {
         e.preventDefault();
         var result = null;
+        this.model.categoriesId = document.getElementById("test").value;
         if (this.model.title.length == 0)
             this.model.title = 0;   
         result = await articleApiService.postArticleListAsync(this.model);
+        this.$router.replace('/articles');
     },
     LoadModelUser: async function(email){
         this.model1 = await UserService.getUserAsync(email);
         this.model.userId = this.model1.content.userId;
     }
-  },
-  components: {
-    // <my-component> will only be available in parent's template
-    'ArticlePage': article
   }
 }
 </script>

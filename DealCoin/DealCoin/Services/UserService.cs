@@ -19,6 +19,10 @@ namespace DealCoin.Services
             User user = _userLink.getUser(email);
             return Result.Success(Status.Ok, user);
         }
+        public Result<IEnumerable<User>> getAllUser()
+        {
+            return Result.Success(Status.Ok, _userLink.getAllUser());
+        }
 
         public bool CreatePasswordUser( string email, string password )
         {

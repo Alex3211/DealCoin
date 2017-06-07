@@ -74,13 +74,16 @@
 <script>
 import AuthService from '../services/AuthService'
 import UserService from '../services/UserService'
-import Chart from 'chart.js';
+//import Chart from 'chart.js';
 import Vue from 'vue'
 import $ from 'jquery'
+
+import { mapGetters,mapActions } from 'vuex'
 
 export default {
         data() {
             return {
+                user:{}
             }
         },
         mounted() {
@@ -89,8 +92,16 @@ export default {
             this.graphPie();
             this.graphDognut();
             this.graphPolar();
+            this.loadUser();
         },
         methods: {
+            ...mapGetters(['getUser']),
+            ...mapActions(['setuser']),
+            loadUser: async function(){
+                var User = await UserService.getAllUserAsync();
+                this.user = User;
+                this.setuser(User);
+            },
             displayGraph() {
                 var ctx = this.$el.querySelector(".myChart");
                 var myChart = new Chart(ctx, {

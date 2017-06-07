@@ -1,7 +1,9 @@
 import * as types from './mutation-types'
 import { INCREMENT } from './mutation-types'
+import { GETUSER } from './mutation-types'
 
 export const increment = ({ commit }) => commit(INCREMENT)
+export const setuser = ({ commit },user) => commit(GETUSER,user)
 
 /**
  * Notify when an error happens

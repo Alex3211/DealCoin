@@ -26,14 +26,20 @@ namespace DealCoin.Controllers
         [HttpGet("{email}")]
         public IActionResult GetUser(string email)
         {
-            Services.Result<User> result = _userService.getUser(email);
+            Result<User> result = _userService.getUser(email);
+            return new JsonResult(result);
+        }
+        [HttpGet("All/")]
+        public IActionResult GetAllUser()
+        {
+            Result<IEnumerable <User>>  result = _userService.getAllUser();
             return new JsonResult(result);
         }
 
         [HttpPut("{model}")]
         public IActionResult UpdateUser([FromBody] UserViewModel _model)
         {
-            Result<IEnumerable<User>> result = _userService.UpdateUser(_model.userId,_model.nom, _model.prenom, _model.phone,
+            Result<IEnumerable<User>> result = _userService.UpdateUser(_model.userId, _model.nom, _model.prenom, _model.phone,
                 _model.addresse, _model.departement, _model.city, _model.postale);
             return new JsonResult(result);
         }
