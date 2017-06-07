@@ -7,6 +7,7 @@ function dataFilter(data, type) {
 }
 
 export async function postAsync(url, data) {
+    console.log("POST :".JSON.stringify(data));
     return await $.ajax({
         method: 'POST',
         url: url,
@@ -21,6 +22,7 @@ export async function postAsync(url, data) {
 }
 
 export async function putAsync(url, data) {
+    console.log("PUT :".JSON.stringify(data));
     return await $.ajax({
         method: 'PUT',
         url: url,
@@ -35,6 +37,7 @@ export async function putAsync(url, data) {
 }
 
 export async function getAsync(url) {
+    console.log("GET :".JSON.stringify(data));
     return await $.ajax({
         method: 'GET',
         url: url,
@@ -47,6 +50,7 @@ export async function getAsync(url) {
 }
 
 export async function deleteAsync(url) {
+    console.log("DELETE :".JSON.stringify(data));
     return await $.ajax({
         method: 'DELETE',
         url: url,

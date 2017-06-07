@@ -4,6 +4,7 @@
   <div class="col-md-4">
       <div class="articles">
         <router-link to="/articles">
+            <p>{{Articleid.productsId}}</p>
             <p>{{Articleid.title}}</p>
             <p>{{Articleid.photo}}</p>
             <p>Catégorie : {{Articleid.categoriesId}}</p>

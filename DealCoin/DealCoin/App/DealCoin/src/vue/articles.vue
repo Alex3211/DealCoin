@@ -4,6 +4,7 @@
         <img src="../assets/logo.png">
         <div class="row">
             <div class="col-lg-12 text-center">
+            <router-link to="/EditArticle"><button>Add or update</button></router-link>
                 <h1>DealCoin</h1>
                 <div v-for="i in article" class="col-md-3">
                     <ArticlePage :id="i"></ArticlePage>

@@ -74,7 +74,7 @@
 <script>
 import AuthService from '../services/AuthService'
 import UserService from '../services/UserService'
-import Chart from 'chart.js';
+//import Chart from 'chart.js';
 import Vue from 'vue'
 import $ from 'jquery'
 
