@@ -9,11 +9,13 @@
 
                     <form @submit="onSubmit($event)" class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label class="col-lg-1 control-label">Catégorie:</label>
-                        <div class="col-lg-3">
-                        <input class="form-control" v-model="model.categoriesId" type="text">
+                        <div class="container" v-for="i in category">
+                            <div class="row">
+                                <label class="radio-inline">
+                                <input type="radio" v-model="model.categoriesId" name="radioGroup" id="" :value="i.categoriesId"> {{i.name}}
+                                </label>                        
+                            </div>
                         </div>
-                        <br>
                     </div>
 
                     <div class="form-group">
@@ -83,15 +85,15 @@ a {
 </style>
 
 <script>
-import article from './article.vue'
-import articleApiService from '../services/ArticleServices.js'
 import UserService from '../services/UserService.js'
 import AuthService from '../services/AuthService.js'
+import CategoryApiService from '../services/CategoryService.js'
+import articleApiService from '../services/ArticleServices.js'
 
 export default {
   data() {
     return {
-      article: [],
+      category: [],
       model: {
             userId : null,
             categoriesId : null,
@@ -101,29 +103,30 @@ export default {
             price : null,
         },
         model1:{}
-    
     }
   },
   async mounted(){
       this.email = AuthService.hisEmail();
       this.LoadModelUser(this.email);
+      await this.loadCategory();
   },
   methods: {
+    loadCategory: async function(){
+      var e = await CategoryApiService.getCategoryListAsync();
+      this.category = e.content;
+    },
     onSubmit: async function(e) {
         e.preventDefault();
         var result = null;
         if (this.model.title.length == 0)
             this.model.title = 0;   
         result = await articleApiService.postArticleListAsync(this.model);
+        this.$router.replace('/articles');
     },
     LoadModelUser: async function(email){
         this.model1 = await UserService.getUserAsync(email);
         this.model.userId = this.model1.content.userId;
     }
-  },
-  components: {
-    // <my-component> will only be available in parent's template
-    'ArticlePage': article
   }
 }
 </script>
