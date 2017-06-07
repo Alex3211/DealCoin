@@ -69,5 +69,12 @@ namespace DealCoin.Services
         {
             return _userLink.GetAuthenticationProviders( userId );
         }
+
+        public Result<IEnumerable<User>> UpdateUser(int userId,string nom, string prenom, string phone, string addresse,
+            string departement, string city, string postale)
+        {
+            return Result.Success(Status.Ok, _userLink.UpdateUser(userId,nom,prenom,phone,addresse,departement,
+            city,postale));
+        }
     }
 }

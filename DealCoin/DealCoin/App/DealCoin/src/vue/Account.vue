@@ -4,7 +4,6 @@
       <img src="../assets/logo.png"><div class="row">
             <div class="col-lg-12 text-center">
             <h3>Bonjour, {{model.nom}}, vous pouvez modifier votre compte ici.</h3>
-
           <div align="left">
                 <h1>Modifier le profil</h1>
 
@@ -12,7 +11,7 @@
                 <div class="form-group">
                   <label class="col-lg-1 control-label">Nom:</label>
                   <div class="col-lg-3">
-                    <input class="form-control" v-model="model.lastName" type="text" value="ddddd">
+                    <input class="form-control" v-model="model.nom" type="text" value="ddddd">
                   </div>
                   <br>
                 </div>
@@ -20,7 +19,7 @@
                 <div class="form-group">
                   <label class="col-lg-1 control-label">Prénom:</label>
                   <div class="col-lg-3">
-                    <input class="form-control" v-model="model.firstName" type="text">
+                    <input class="form-control" v-model="model.prenom" type="text">
                   </div>
                   <br>
                 </div>
@@ -28,7 +27,7 @@
                 <div class="form-group">
                   <label class="col-lg-1 control-label">Téléphone:</label>
                   <div class="col-lg-3">
-                    <input class="form-control" v-model="model.tel" type="text">
+                    <input class="form-control" v-model="model.phone" type="text">
                   </div>
                   <br>
                 </div> 
@@ -36,7 +35,7 @@
                 <div class="form-group">
                   <label class="col-lg-1 control-label">Adresse:</label>
                   <div class="col-lg-3">
-                    <input class="form-control" v-model="model.adresse" type="text">
+                    <input class="form-control" v-model="model.addresse" type="text">
                   </div>
                   <br>
                 </div> 
@@ -119,46 +118,27 @@ import AuthService from '../services/AuthService.js'
 export default {
   	data () {
       return {
-        model: {
-            lastName : null,
-            firstName : null,
-            tel : null,
-            adresse :null,
-            departement:null,
-            city : null,
-            postale:null,
-            mail : null
-        },
+        model: {},
         email: "",
         newPass: null,
         confirmNewPass: null
       }
      },
-     mounted() {
+    async mounted() {
             this.email = AuthService.hisEmail();
             this.loadModelUser(this.email);
         },
     methods: {
             onSubmit: async function(e) {
               e.preventDefault();
-              var result = null;
-                if (this.model.tel.length == 0)
-                  this.model.tel = 0;   
-              result = await UserService.postUserAsync(this.model);
-              if(result != null)
-              {
-                this.model = await UserService.getUserAsync(this.email);
-                this.model = this.model.content;
-                this.message = "Profil modifié.";
-                document.getElementById('2').className = 'on';
-                window.setTimeout(function() {
-                document.getElementById('2').className = 'off';                
-                }, 4000);
-              }
+              var result = null;  
+              result = await UserService.putUserAsync(this.model);
             },
             loadModelUser: async function(email) {
-              this.model = await UserService.getUserAsync(email);
-              this.model = this.model.content;
+              
+              var Model2= await UserService.getUserAsync(email);
+              this.model=Model2.content;
+              //this.model.userId = this.model.content.userId;
             },
             async deleteAccount(){
 
@@ -190,16 +170,6 @@ export default {
               var result = null;
               result = await UserService.putUserAsync(this.model);
               this.model.pass = null
-              if(result != null)
-              {
-                this.model = await UserService.getUserAsync(this.email);
-                this.model = this.model.content;
-                this.message = "Compte modifié"
-                document.getElementById('1').className = 'on';
-                window.setTimeout(function() {
-                document.getElementById('1').className = 'off';                
-                }, 4000);              
-              }
             }
     }
 }

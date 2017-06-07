@@ -18,12 +18,12 @@ namespace DealCoin.DAL
 
         public string Prenom { get; set; }
 
-        public string Tel { get; set; }
+        public string phone { get; set; }
 
-        public string Adresse { get; set; }
+        public string Addresse { get; set; }
         public string Departement { get; set; }
         public string City { get; set; }
-        public string Postal { get; set; }
+        public string Postale { get; set; }
         public string role { get; set; }
         public int status { get; set; }
         public int Visites { get; set; }

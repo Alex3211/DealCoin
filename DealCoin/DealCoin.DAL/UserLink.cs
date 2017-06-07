@@ -141,5 +141,16 @@ namespace DealCoin.DAL
                     new { GoogleId = googleId, RefreshToken = refreshToken });
             }
         }
+
+        public IEnumerable<User> UpdateUser(int _userId,string _nom, string _prenom, string _phone, string _addresse,
+            string _departement, string _city, string _postale)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                return con.Query<User>(
+                    "update dc.users set nom = @nom, prenom = @prenom, phone = @phone, addresse = @addresse, departement = @departement, city = @city, postale = @postale where userId = @userId; ",
+                new { userId=_userId, nom = _nom, prenom = _prenom, phone = _phone, addresse = _addresse, departement = _departement, city = _city, postale = _postale });
+            }
+        }
     }
 }

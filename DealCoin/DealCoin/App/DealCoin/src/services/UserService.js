@@ -18,7 +18,7 @@ class UserService {
     }
     async putUserAsync(model)
     {
-        return await putAsync(endpoint, model.userId, AuthService.accessToken, model);
+        return await putAsync(endpoint, model, AuthService.accessToken, model);
     }
 //supprimer compte user
     async deleteUserAsync(Id)

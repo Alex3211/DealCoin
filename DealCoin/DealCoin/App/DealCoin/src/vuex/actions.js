@@ -3,9 +3,6 @@ import { INCREMENT } from './mutation-types'
 
 export const increment = ({ commit }) => commit(INCREMENT)
 
-
-
-
 /**
  * Notify when an error happens
  * @param {*} param0 

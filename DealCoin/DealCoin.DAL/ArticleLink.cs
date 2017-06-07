@@ -33,6 +33,5 @@ namespace DealCoin.DAL
                     new { UserId = userId, categorieId = categorieId, title = title, photo = photo, desc1 = desc1, price = price });
             }
         }
-
     }
 }
