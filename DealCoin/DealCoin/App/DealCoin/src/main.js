@@ -15,6 +15,7 @@ import homeMembers from './vue/homeMembers.vue'
 import homeAdmin from './vue/homeAdmin.vue'
 import article from './vue/article.vue'
 import articleDetails from './vue/articleDetails.vue'
+import EditArticle from './vue/EditArticle.vue'
 import AuthService from './services/AuthService'
 import ArticleServices from './services/ArticleServices'
 import UserService from './services/UserService'
@@ -84,6 +85,11 @@ const router = new VueRouter({
       path: '/articleDetails',
       name: 'articleDetails',
       component: articleDetails, beforeEnter: requireAuth
+    },
+    {
+      path: '/EditArticle',
+      name: 'EditArticle',
+      component: EditArticle, beforeEnter: requireAuth
     },
     {
       path: '/article',

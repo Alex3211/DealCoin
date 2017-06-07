@@ -22,5 +22,17 @@ namespace DealCoin.DAL
                 return con.Query<Article>("select * from dc.products");
             }
         }
+
+        public IEnumerable<Article> AddArticlesR(int userId, int categorieId, string title, string photo, string desc1, string price)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                return con.Query<Article>(
+                    "insert into dc.products([userId],[categoriesId],[title],[photo],[desc1],[price],[posted_date],[created],[created_pk],[created_ip],[updated],[updated_pk],[updated_ip]) " +
+                    "values(@UserId, @categorieId, @title, @photo, @desc1, @price,null,null,null,null,null,null,null); ",
+                    new { UserId = userId, categorieId = categorieId, title = title, photo = photo, desc1 = desc1, price = price });
+            }
+        }
+
     }
 }

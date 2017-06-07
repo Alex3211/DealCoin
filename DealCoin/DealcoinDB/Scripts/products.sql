@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [dc].[products]
 (
 productsId int IDENTITY(1,1) NOT NULL,
+userId int  NOT NULL,
 categoriesId int NULL,
 title varchar(100) NULL,
 photo varchar(200),

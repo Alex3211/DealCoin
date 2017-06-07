@@ -7,6 +7,7 @@ function dataFilter(data, type) {
 }
 
 export async function postAsync(url, data) {
+    console.log(JSON.stringify(data));
     return await $.ajax({
         method: 'POST',
         url: url,
