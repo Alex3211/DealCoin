@@ -1,16 +1,17 @@
 <template>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            <ul class="nav nav-pills nav-stacked admin-menu">
-                <li class="active"><a href="#" data-target-id="home"><i class="fa fa-home fa-fw"></i>Home</a></li>
-                <li><a href="" data-target-id="widgets"><i class="fa fa-list-alt fa-fw"></i>Users</a></li>
-                <li><a href="" data-target-id="pages"><i class="fa fa-file-o fa-fw"></i>Ventes</a></li>
-                <li><a href="" data-target-id="widgets"><i class="fa fa-list-alt fa-fw"></i>Articles</a></li>
-                <li><a href="" data-target-id="pages"><i class="fa fa-file-o fa-fw"></i>Raport</a></li>
-            </ul>
-        </div>
+        <nav class="navbar navbar-default" role="navigation">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><router-link to="/homeAdmin"><i class="fa fa-home fa-fw"></i>Home</router-link></li>
+                        <li><router-link to="/userAdmin"><i class="fa fa-list-alt fa-fw"></i>Users</router-link></li>
+                        <li><router-link to="/cellAdmin"><i class="fa fa-list-alt fa-fw"></i>Cell</router-link></li>
+                        <li><router-link to="/articleAdmin"><i class="fa fa-list-alt fa-fw"></i>Articles</router-link></li>
+                        <li><router-link to="/reportAdmin"><i class="fa fa-list-alt fa-fw"></i>Report</router-link></li>
+                    </ul>   
+                </div>
+            </nav>
             <p>
                 Hello! This is a forked snippet.<br>
                 It is for users, which use one-page layouts.
@@ -74,7 +75,7 @@
 <script>
 import AuthService from '../services/AuthService'
 import UserService from '../services/UserService'
-//import Chart from 'chart.js';
+import Chart from 'chart.js';
 import Vue from 'vue'
 import $ from 'jquery'
 

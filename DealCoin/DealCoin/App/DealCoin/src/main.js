@@ -13,6 +13,10 @@ import apropos from './vue/apropos.vue'
 import articles from './vue/articles.vue'
 import homeMembers from './vue/homeMembers.vue'
 import homeAdmin from './vue/homeAdmin.vue'
+import userAdmin from './vue/UserAdmin.vue'
+import cellAdmin from './vue/CellAdmin.vue'
+import articleAdmin from './vue/ArticleAdmin.vue'
+import reportAdmin from './vue/ReportAdmin.vue'
 import article from './vue/article.vue'
 import articleDetails from './vue/articleDetails.vue'
 import EditArticle from './vue/EditArticle.vue'
@@ -115,6 +119,26 @@ const router = new VueRouter({
       path: '/homeAdmin',
       name: 'homeAdmin',
       component: homeAdmin,beforeEnter: requireAuth
+    },
+    {
+      path: '/userAdmin',
+      name: 'userAdmin',
+      component: userAdmin,beforeEnter: requireAuth
+    },
+    {
+      path: '/cellAdmin',
+      name: 'cellAdmin',
+      component: cellAdmin,beforeEnter: requireAuth
+    },
+    {
+      path: '/articleAdmin',
+      name: 'articleAdmin',
+      component: articleAdmin,beforeEnter: requireAuth
+    },
+    {
+      path: '/reportAdmin',
+      name: 'reportAdmin',
+      component: reportAdmin,beforeEnter: requireAuth
     }
   ]
 })
