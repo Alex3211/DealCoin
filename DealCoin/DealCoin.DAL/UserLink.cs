@@ -112,7 +112,7 @@ namespace DealCoin.DAL
             }
         }
 
-        public void Delete(int userId)
+        public void delete(int userId)
         {
             using (SqlConnection con = new SqlConnection(_connectionString))
             {

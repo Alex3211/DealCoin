@@ -12,7 +12,27 @@
             </ul>   
         </div>
     </nav>
-        Cell
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table" id="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Categorie Produit</th>
+                        <th>Date d'Achat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Telephone</td>
+                        <td>12/10/2016</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+        </div>
+    </div>
 </div>
 
 </template>

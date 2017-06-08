@@ -12,7 +12,29 @@
             </ul>   
         </div>
     </nav>
-    Article
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table" id="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Catégorie</th>
+                        <th>Nom</th>
+                        <th>Date d'ajout</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Telephone</td>
+                        <td>Iphone5</td>
+                        <td>12/10/2016</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+        </div>
+    </div>
 </div>
 
 </template>

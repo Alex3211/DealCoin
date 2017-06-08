@@ -20,6 +20,10 @@ class UserService {
     {
         return await postAsync(endpoint, model.userId, AuthService.accessToken, model);
     }
+    async postUserAdminAsync(model)
+    {
+        return await postAsync(endpoint, 'UserAdmin/'+model, AuthService.accessToken, model);
+    }
     async putUserAsync(model)
     {
         return await putAsync(endpoint, model, AuthService.accessToken, model);

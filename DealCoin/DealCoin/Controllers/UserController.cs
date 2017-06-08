@@ -35,6 +35,12 @@ namespace DealCoin.Controllers
             Result<IEnumerable <User>>  result = _userService.getAllUser();
             return new JsonResult(result);
         }
+        [HttpPost("UserAdmin/{model}")]
+        public bool CreatUserAdmin([FromBody] UserViewModel _model )
+        {
+            _userService.CreatePasswordUser(_model.email,_model.password);
+            return (true);
+        }
 
         [HttpPut("{model}")]
         public IActionResult UpdateUser([FromBody] UserViewModel _model)
@@ -42,6 +48,12 @@ namespace DealCoin.Controllers
             Result<IEnumerable<User>> result = _userService.UpdateUser(_model.userId, _model.nom, _model.prenom, _model.phone,
                 _model.addresse, _model.departement, _model.city, _model.postale);
             return new JsonResult(result);
+        }
+        [HttpDelete("{Id}")]
+        public bool DeleteEvent(int Id)
+        {
+            _userService.DeleteUser(Id);
+            return (true);
         }
 
     }
