@@ -19,6 +19,7 @@ namespace DealCoin.Services
             User user = _userLink.getUser(email);
             return Result.Success(Status.Ok, user);
         }
+
         public Result<IEnumerable<User>> getAllUser()
         {
             return Result.Success(Status.Ok, _userLink.getAllUser());
@@ -30,6 +31,7 @@ namespace DealCoin.Services
             _userLink.CreatePasswordUser( email, _passwordHasher.HashPassword( password ) );
             return true;
         }
+
         public bool CreateOrUpdateGoogleUser( string email, string googleId, string refreshToken )
         {
             if(_userLink.FindByGoogleId( googleId ) != null )
@@ -79,6 +81,7 @@ namespace DealCoin.Services
             return Result.Success(Status.Ok, _userLink.UpdateUser(userId,nom,prenom,phone,addresse,departement,
             city,postale));
         }
+
         public void DeleteUser(int _id)
         {
             _userLink.delete(_id);
