@@ -18,14 +18,16 @@
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Categorie Produit</th>
+                        <th>Description</th>
+                        <th>Prix</th>
                         <th>Date d'Achat</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Telephone</td>
+                    <tr v-for="s of sales">
+                        <td>{{s.orderProductsId}}</td>
+                        <td>{{s.desc1}}</td>
+                        <td>{{s.price}}</td>
                         <td>12/10/2016</td>
                     </tr>
                 </tbody>
@@ -39,8 +41,7 @@
 
 <script>
 import AuthService from '../services/AuthService'
-import UserService from '../services/UserService'
-import Chart from 'chart.js';
+import SalesService from '../services/SalesService'
 import Vue from 'vue'
 import $ from 'jquery'
 
@@ -49,16 +50,16 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
         data() {
             return {
-                user:{}
+                sales:{}
             }
         },
         mounted() {
-            this.loadUser();
+            this.loadSalesProducts();
         },
         methods: {
-            loadUser: async function(){
-                var User = await UserService.getAllUserAsync();
-                this.user = User;
+            loadSalesProducts: async function(){
+                var Sales = await SalesService.getAllSalesProductsAsync();
+                this.sales = Sales.content;
             }
         }
     }

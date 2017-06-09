@@ -26,6 +26,7 @@ import EditArticle from './vue/EditArticle.vue'
 import AuthService from './services/AuthService'
 import ArticleServices from './services/ArticleServices'
 import UserService from './services/UserService'
+import SalesService from './services/SalesService'
 import Increment from './vue/Increment.vue'
 import Account from './vue/Account.vue'
 
