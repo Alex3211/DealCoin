@@ -12,8 +12,13 @@ namespace DealCoin.Services
             _articleLink = articleLink;
         }
 
-        public Result<IEnumerable<Article>> GetAllArticles() {
+        public Result<IEnumerable<Article>> GetAllArticles()
+        {
             return Result.Success(Status.Ok, _articleLink.GetAll());
+        }
+        public Result<IEnumerable<Article>> GetArticlesById(int id)
+        {
+            return Result.Success(Status.Ok, _articleLink.GetAllArticleById(id));
         }
 
         public Result<IEnumerable<Article>> AddArticles(int userId, int categorieId, string title, string photo, string desc1, string price)

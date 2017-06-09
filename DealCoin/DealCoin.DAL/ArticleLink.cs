@@ -23,6 +23,16 @@ namespace DealCoin.DAL
             }
         }
 
+        public IEnumerable<Article> GetAllArticleById(int id)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                return con.Query<Article>("select * from dc.products where userId = @Id",
+                new { Id = id});
+
+            }
+        }
+
         public IEnumerable<Article> AddArticlesR(int userId, int categorieId, string title, string photo, string desc1, string price)
         {
             using (SqlConnection con = new SqlConnection(_connectionString))

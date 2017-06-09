@@ -1,3 +1,4 @@
+import AuthService from '../services/AuthService'
 import $ from 'jquery'
 
 function dataFilter(data, type) {
@@ -20,6 +21,20 @@ export async function postAsync(endpoint, id, token, data) {
     });
 }
 
+export async function postArticleAsync(url, data) {
+    return await $.ajax({
+        method: 'POST',
+        url: url,
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(data),
+        dataFilter: dataFilter,
+        headers: {
+            Authorization: `Bearer ${AuthService.accessToken}`
+        }
+    });
+}
+
 export async function putAsync(endpoint, id, token, data) {
     return await $.ajax({
         method: 'PUT',
@@ -38,6 +53,18 @@ export async function getAsync(endpoint, id, token) {
     return await $.ajax({
         method: 'GET',
         url: endpoint.concat('/', id),
+        dataType: 'json',
+        dataFilter: dataFilter,
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
+
+export async function getArticleAsync(url,token) {
+    return await $.ajax({
+        method: 'GET',
+        url: url,
         dataType: 'json',
         dataFilter: dataFilter,
         headers: {

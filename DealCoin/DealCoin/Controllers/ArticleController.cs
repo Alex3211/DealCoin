@@ -32,6 +32,13 @@ namespace DealCoin.Controllers
             return new JsonResult(result);
         }
 
+        [HttpGet("Id/{id}")]
+        public IActionResult GetArticles(int id)
+        {
+            Result<IEnumerable<Article>> result = _articleService.GetArticlesById(id);
+            return new JsonResult(result);
+        }
+
         [HttpPost]
         public IActionResult AddArticles([FromBody] ArticleViewModel _model)
         {
