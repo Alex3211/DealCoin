@@ -12,60 +12,19 @@
                     </ul>   
                 </div>
             </nav>
-            <p>
-                Hello! This is a forked snippet.<br>
-                It is for users, which use one-page layouts.
-            </p>
-            <p>
-                Here's the original one from BhaumikPatel: 
-                <br><br>
-                <strong>Thank you Bhaumik!</strong> 
-                Dans la vie on ne fait pas ce que l'on veut mais on est responsable de ce que l'on est.
-                <br><br>
-                Exige beaucoup de toi-même et attends peu des autres. Ainsi beaucoup d'ennuis te seront épargnés.
-                <br><br>
-            </p>
             <div class="col-md-3">
-            <div class="list-group">
-                <a href="http://www.jquery2dotnet.com" class="list-group-item visitor">
-                    <h3 class="pull-right">
-                        <i class="fa fa-eye"></i>
-                    </h3>
-                    <h4 class="list-group-item-heading count">
-                        1000</h4>
-                    <p class="list-group-item-text">
-                        Profile Views</p>
-                </a><a href="http://www.jquery2dotnet.com" class="list-group-item facebook-like">
-                    <h3 class="pull-right">
-                        <i class="fa fa-facebook-square"></i>
-                    </h3>
-                    <h4 class="list-group-item-heading count">
-                        1000</h4>
-                    <p class="list-group-item-text">
-                        Facebook Likes</p>
-                </a><a href="http://www.jquery2dotnet.com" class="list-group-item google-plus">
-                    <h3 class="pull-right">
-                        <i class="fa fa-google-plus-square"></i>
-                    </h3>
-                    <h4 class="list-group-item-heading count">
-                        1000</h4>
-                    <p class="list-group-item-text">
-                        Google+</p>
-                </a><a href="http://www.jquery2dotnet.com" class="list-group-item twitter">
-                    <h3 class="pull-right">
-                        <i class="fa fa-twitter-square"></i>
-                    </h3>
-                    <h4 class="list-group-item-heading count">
-                        1000</h4>
-                    <p class="list-group-item-text">
-                        Twitter Followers</p>
-                </a>
+                <canvas class="myChart"></canvas>
             </div>
-            <canvas class="myChart" width="150" height="150"></canvas>
-            <canvas class="line" width="750" height="750"></canvas>
-            <canvas class="pie" width="750" height="750"></canvas>
-            <canvas class="dognut" width="750" height="750"></canvas>
-            <canvas class="polar" width="750" height="750"></canvas>
+            <div class="col-md-3">
+                <canvas class="line"></canvas>
+            </div>
+            <div class="col-md-3">
+                <canvas class="pie"></canvas>
+            </div>
+            <div class="col-md-3">
+                <canvas class="dognut"></canvas>
+            </div>
+            <canvas class="polar"></canvas>
         </div>
     </div>
 </div>
