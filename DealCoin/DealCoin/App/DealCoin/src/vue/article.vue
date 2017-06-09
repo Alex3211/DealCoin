@@ -1,13 +1,25 @@
 <template>
-    <div class="articles"><router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}">
-        <p>{{Articleid.title}}</p>
-    </router-link>
+    <div class="articles" v-if="this.$route.fullPath == '/articles' ">
+        <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}">
+            <p>{{Articleid.title}}</p>
+        </router-link>
         <p>{{Articleid.price}}</p>
         <p>{{Articleid.posted_date}}</p>  
     <Increment></Increment>
-
-
-        </div>
+    </div>
+    <div class="articles" v-else-if="this.$route.fullPath == '/MyArticles' ">
+      <p>{{Articleid.title}}</p>
+      <p>{{Articleid.price}}</p>
+      <p>{{Articleid.posted_date}}</p>
+      <div class="btn-group" role="group" aria-label="...">
+        <router-link v-bind:to="{ path: 'EditArticle', query: { article: Articleid }}">
+          <button type="button" class="btn btn-default">Modifier</button>
+        </router-link>
+        <router-link v-bind:to="{ path: 'DelArticle', query: { article: Articleid }}">
+          <button type="button" class="btn btn-default">Supprimer</button>
+        </router-link>
+      </div>
+    </div>
 </template>
 
 <script>

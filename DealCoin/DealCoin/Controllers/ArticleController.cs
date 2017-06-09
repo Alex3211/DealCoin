@@ -51,5 +51,12 @@ namespace DealCoin.Controllers
             Result<IEnumerable<Article>> result = _articleService.UpdateArticles(_model.UserId, _model.CategoriesId, _model.Title, _model.Photo, _model.Desc1, _model.Price, _model.productsId);
             return new JsonResult(result);
         }
+
+        [HttpDelete("delete/{id}")]
+        public IActionResult UpdateArticles(int id)
+        {
+            Result<IEnumerable<Article>> result = _articleService.DeleteArticles(id);
+            return new JsonResult(result);
+        }
     }
 }

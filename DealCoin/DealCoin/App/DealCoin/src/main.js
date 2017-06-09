@@ -21,6 +21,7 @@ import article from './vue/article.vue'
 import MyArticles from './vue/MyArticles.vue'
 import articleDetails from './vue/articleDetails.vue'
 import InsertArticle from './vue/InsertArticle.vue'
+import DelArticle from './vue/DelArticle.vue'
 import EditArticle from './vue/EditArticle.vue'
 import AuthService from './services/AuthService'
 import ArticleServices from './services/ArticleServices'
@@ -96,6 +97,11 @@ const router = new VueRouter({
       path: '/MyArticles',
       name: 'MyArticles',
       component: MyArticles, beforeEnter: requireAuth
+    },
+    {
+      path: '/DelArticle',
+      name: 'DelArticle',
+      component: DelArticle, beforeEnter: requireAuth
     },
     {
       path: '/InsertArticle',

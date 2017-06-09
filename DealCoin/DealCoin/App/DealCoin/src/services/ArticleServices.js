@@ -25,7 +25,7 @@ class ArticlesApiService {
     
     async deleteArticleListAsync(Id)
     {
-        return await deleteAsync(endpoint, Id, AuthService.accessToken);
+        return await deleteAsync(endpoint,'delete/'+Id, AuthService.accessToken);
     }
 }
 

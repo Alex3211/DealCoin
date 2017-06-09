@@ -30,5 +30,10 @@ namespace DealCoin.Services
         {
             return Result.Success(Status.Ok, _articleLink.UpdateArticlesR(userId, categorieId, title, photo, desc1, price, productsId));
         }
+
+        public Result<IEnumerable<Article>> DeleteArticles(int id)
+        {
+            return Result.Success(Status.Ok, _articleLink.DeleteArticlesR(id));
+        }
     }
 }

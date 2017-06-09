@@ -3,7 +3,7 @@
         <div class="container">
         <img src="../assets/logo.png">
         <div class="row">
-            <h1>Ajouter un article</h1>
+            <h1>Modifier votre article</h1>
             <form @submit="onSubmit($event)" class="form-horizontal" role="form">
                 <div class="form-group">
                     <label class="col-lg-1 control-label">Catégorie:</label>
@@ -90,12 +90,12 @@ export default {
       category: [],
       model: {
             userId : null,
-            categoriesId : null,
+            categoriesId : this.$route.query.article.categoriesId,
             productsId : this.$route.query.article.productsId,
-            title : null,
-            photo :null,
-            desc1:null,
-            price : null,
+            title : this.$route.query.article.title,
+            photo :this.$route.query.article.photo,
+            desc1:this.$route.query.article.desc1,
+            price : this.$route.query.article.price,
         },
         model1:{}
     }
@@ -116,8 +116,8 @@ export default {
         this.model.categoriesId = document.getElementById("test").value;
         if (this.model.title.length == 0)
             this.model.title = 0;   
-        result = await articleApiService.putArticleListAsync(this.model);
-        this.$router.replace('/MyArticle');
+        if(this.model.userId == this.$route.query.article.userId)result = await articleApiService.putArticleListAsync(this.model);
+        this.$router.replace('/MyArticles');
     },
     LoadModelUser: async function(email){
         this.model1 = await UserService.getUserAsync(email);
