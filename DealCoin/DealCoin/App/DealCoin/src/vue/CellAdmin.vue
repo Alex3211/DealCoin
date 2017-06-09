@@ -56,20 +56,13 @@ export default {
             this.loadUser();
         },
         methods: {
-            ...mapGetters(['getUser']),
-            ...mapActions(['setuser']),
             loadUser: async function(){
                 var User = await UserService.getAllUserAsync();
                 this.user = User;
-                this.setuser(User);
             }
         }
     }
 </script>
 <style scoped>
-body{margin-top:20px;}
-.fa-fw {width: 2em;
-.btn-glyphicon { padding:8px; background:#ffffff; margin-right:4px; }
-.icon-btn { padding: 1px 15px 3px 2px; border-radius:50px;}
-}
+
 </style>

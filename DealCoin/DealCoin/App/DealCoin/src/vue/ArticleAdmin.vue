@@ -20,14 +20,16 @@
                         <th>Id</th>
                         <th>Catégorie</th>
                         <th>Nom</th>
+                        <th>Prix</th>
                         <th>Date d'ajout</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Telephone</td>
-                        <td>Iphone5</td>
+                    <tr v-for="a of article">
+                        <td>{{a.productsId}}</td>
+                        <td>{{a.desc1}}</td>
+                        <td>{{a.title}}</td>
+                        <td>{{a.price}}</td>
                         <td>12/10/2016</td>
                     </tr>
                 </tbody>
@@ -41,8 +43,7 @@
 
 <script>
 import AuthService from '../services/AuthService'
-import UserService from '../services/UserService'
-import Chart from 'chart.js';
+import articleApiService from '../services/ArticleServices.js'
 import Vue from 'vue'
 import $ from 'jquery'
 
@@ -51,19 +52,16 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
         data() {
             return {
-                user:{}
+                article:[]
             }
         },
         mounted() {
-            this.loadUser();
+            this.loadArticle();
         },
         methods: {
-            ...mapGetters(['getUser']),
-            ...mapActions(['setuser']),
-            loadUser: async function(){
-                var User = await UserService.getAllUserAsync();
-                this.user = User;
-                this.setuser(User);
+            loadArticle: async function(){
+            var e = await articleApiService.getArticleListAsync();
+            this.article = e.content;
             }
         }
     }
