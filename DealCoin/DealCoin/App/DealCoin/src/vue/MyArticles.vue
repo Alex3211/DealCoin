@@ -4,6 +4,7 @@
         <img src="../assets/logo.png">
         <div class="row">
             <div class="col-lg-12 text-center">
+            <router-link to="/InsertArticle"><button>Add</button></router-link>
                 <h1>DealCoin</h1>
                 <div v-for="i in article" class="col-md-3">
                     <ArticlePage :id="i"></ArticlePage>
@@ -35,22 +36,41 @@ a {
 </style>
 
 <script>
-import article from './article.vue'
+import UserService from '../services/UserService.js'
+import article from './C_article.vue'
 import articleApiService from '../services/ArticleServices.js'
+import AuthService from '../services/AuthService.js'
 
 export default {
   data() {
     return {
-      article: [] 
+      article: [],
+      model: {
+            userId : null,
+            productsId: null,
+            title : null,
+            photo :null,
+            desc1:null,
+            price : null,
+        },
+        model1:{},
+        email : null
     }
   },
   async mounted(){
-    await this.loadArticle();
+    this.email = AuthService.hisEmail();
+    await this.LoadModelUser(this.email);
+    this.loadArticle();
   },
   methods: {
     loadArticle: async function(){
-      var e = await articleApiService.getArticleListAsync();
+      var e = await articleApiService.GetArticleListByIdAsync(this.model1.content.userId);
       this.article = e.content;
+    },
+    LoadModelUser: async function(email){
+        this.model1 = await UserService.getUserAsync(email);
+        this.model.userId = this.model1.content.userId;
+        this.model.productsId = this.model1.content.productsId;
     }
   },
   components: {

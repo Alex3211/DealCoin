@@ -14,6 +14,8 @@ namespace DealCoin.Models.AccountView
         [Required]
         public int CategoriesId { get; set; }
 
+        public int productsId { get; set; }
+
         [Required]
         public string Title { get; set; }
 

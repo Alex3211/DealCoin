@@ -91,7 +91,6 @@ export default {
       model: {
             userId : null,
             categoriesId : null,
-            productsId : this.$route.query.article.productsId,
             title : null,
             photo :null,
             desc1:null,
@@ -116,8 +115,8 @@ export default {
         this.model.categoriesId = document.getElementById("test").value;
         if (this.model.title.length == 0)
             this.model.title = 0;   
-        result = await articleApiService.putArticleListAsync(this.model);
-        this.$router.replace('/MyArticle');
+        result = await articleApiService.postArticleListAsync(this.model);
+        this.$router.replace('/EditArticle');
     },
     LoadModelUser: async function(email){
         this.model1 = await UserService.getUserAsync(email);
