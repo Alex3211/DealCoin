@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DealCoin.DAL;
+using DealCoin.Models;
 
 namespace DealCoin.Services
 {
@@ -19,6 +20,7 @@ namespace DealCoin.Services
             User user = _userLink.getUser(email);
             return Result.Success(Status.Ok, user);
         }
+
         public Result<IEnumerable<User>> getAllUser()
         {
             return Result.Success(Status.Ok, _userLink.getAllUser());
@@ -30,6 +32,7 @@ namespace DealCoin.Services
             _userLink.CreatePasswordUser( email, _passwordHasher.HashPassword( password ) );
             return true;
         }
+
         public bool CreateOrUpdateGoogleUser( string email, string googleId, string refreshToken )
         {
             if(_userLink.FindByGoogleId( googleId ) != null )
@@ -73,15 +76,25 @@ namespace DealCoin.Services
             return _userLink.GetAuthenticationProviders( userId );
         }
 
+        public void DeleteUser(int _id)
+        {
+            _userLink.delete(_id);
+        }
+
         public Result<IEnumerable<User>> UpdateUser(int userId,string nom, string prenom, string phone, string addresse,
             string departement, string city, string postale)
         {
             return Result.Success(Status.Ok, _userLink.UpdateUser(userId,nom,prenom,phone,addresse,departement,
             city,postale));
         }
-        public void DeleteUser(int _id)
+
+        public bool UpdateUserCode(int _userId, string _password)
         {
-            _userLink.delete(_id);
+            var temp = _passwordHasher.HashPassword(_password);
+            _userLink.UpdateUserCode(_userId, temp);
+            //User user = _userLink.FindUserById(_userId);
+            //return Result.Success(Status.Ok, user);
+            return(true);
         }
     }
 }

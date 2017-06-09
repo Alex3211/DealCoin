@@ -46,7 +46,7 @@ namespace DealCoin.Controllers
         public IActionResult UpdateUser([FromBody] UserViewModel _model)
         {
             Result<IEnumerable<User>> result = _userService.UpdateUser(_model.userId, _model.nom, _model.prenom, _model.phone,
-                _model.addresse, _model.departement, _model.city, _model.postale);
+            _model.addresse, _model.departement, _model.city, _model.postale);
             return new JsonResult(result);
         }
         [HttpDelete("{Id}")]
@@ -56,5 +56,11 @@ namespace DealCoin.Controllers
             return (true);
         }
 
+        [HttpPut("UserPass/{model}")]
+        public bool UpdateUserCode([FromBody] UserViewModel _model)
+        {
+            _userService.UpdateUserCode(_model.userId, _model.password);
+            return (true);
+        }
     }
 }

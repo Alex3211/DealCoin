@@ -12,6 +12,8 @@ namespace DealCoin.Models
 
         public string password { get; set; }
 
+        public byte[] passwordb { get; set; }
+
         public int userId { get; set; }
 
         

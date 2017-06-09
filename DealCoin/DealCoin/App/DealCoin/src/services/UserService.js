@@ -28,6 +28,11 @@ class UserService {
     {
         return await putAsync(endpoint, model, AuthService.accessToken, model);
     }
+
+    async putUserPassAsync(model)
+    {
+        return await putAsync(endpoint,'UserPass/'+model, AuthService.accessToken, model);
+    }
 //supprimer compte user
     async deleteUserAsync(Id)
     {
