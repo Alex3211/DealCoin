@@ -56,5 +56,11 @@ namespace DealCoin.Controllers
             return (true);
         }
 
+        [HttpPut("UserPass/{model}")]
+        public bool UpdateUserCode([FromBody] UserViewModel _model)
+        {
+            _userService.UpdateUserCode(_model.userId, _model.password);
+            return (true);
+        }
     }
 }

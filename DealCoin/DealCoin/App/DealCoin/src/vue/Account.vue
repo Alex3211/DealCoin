@@ -85,13 +85,13 @@
             <div class="form-group">
               <label class="col-md-3 control-label">Mot de passe:</label>
               <div class="col-md-5">
-                <input class="form-control" v-model="newPass" type="password">
+                <input class="form-control" v-model="newCode" type="password">
               </div>
             </div>
             <div class="form-group">
               <label class="col-md-3 control-label"> Confirmation du mot de passe:</label>
               <div class="col-md-5">
-                <input class="form-control" v-model="confirmNewPass" type="password">
+                <input class="form-control" v-model="confirmNewCode" type="password">
               </div>
             </div>
             <div class="form-group">
@@ -120,8 +120,8 @@ export default {
       return {
         model: {},
         email: "",
-        newPass: null,
-        confirmNewPass: null
+        newCode: null,
+        confirmNewCode: null
       }
      },
     async mounted() {
@@ -150,11 +150,11 @@ export default {
             },
             onSubmitPasse: async function(e) {
               e.preventDefault();
-              if(this.newPass !== this.confirmNewPass) return 
-              this.model.Passe = this.newPass
+              if(this.newCode !== this.confirmNewCode) return 
+              this.model.password = this.newCode
               var result = null;
-              result = await UserService.putUserAsync(this.model);
-              this.model.pass = null
+              result = await UserService.putUserPassAsync(this.model);
+              //this.model.pass = null
             }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DealCoin.DAL;
+using DealCoin.Models;
 
 namespace DealCoin.Services
 {
@@ -75,6 +76,11 @@ namespace DealCoin.Services
             return _userLink.GetAuthenticationProviders( userId );
         }
 
+        public void DeleteUser(int _id)
+        {
+            _userLink.delete(_id);
+        }
+
         public Result<IEnumerable<User>> UpdateUser(int userId,string nom, string prenom, string phone, string addresse,
             string departement, string city, string postale)
         {
@@ -82,9 +88,13 @@ namespace DealCoin.Services
             city,postale));
         }
 
-        public void DeleteUser(int _id)
+        public bool UpdateUserCode(int _userId, string _password)
         {
-            _userLink.delete(_id);
+            var temp = _passwordHasher.HashPassword(_password);
+            _userLink.UpdateUserCode(_userId, temp);
+            //User user = _userLink.FindUserById(_userId);
+            //return Result.Success(Status.Ok, user);
+            return(true);
         }
     }
 }
