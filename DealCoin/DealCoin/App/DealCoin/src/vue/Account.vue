@@ -1,110 +1,110 @@
 <template>
-<div class="hello">
+<div>
     <div class="container">
-      <img src="../assets/logo.png"><div class="row">
+
             <div class="col-lg-12 text-center">
             <h3>Bonjour, {{model.nom}}, vous pouvez modifier votre compte ici.</h3>
-          <div align="left">
+            <div class="row">
+            
+          <div class="col-md-6">
                 <h1>Modifier le profil</h1>
+                
 
               <form @submit="onSubmit($event)" class="form-horizontal" role="form">
                 <div class="form-group">
-                  <label class="col-lg-1 control-label">Nom:</label>
-                  <div class="col-lg-3">
+                  <label class="col-lg-3 control-label">Nom:</label>
+                  <div class="col-lg-5">
                     <input class="form-control" v-model="model.nom" type="text" value="ddddd">
                   </div>
                   <br>
                 </div>
 
                 <div class="form-group">
-                  <label class="col-lg-1 control-label">Prénom:</label>
-                  <div class="col-lg-3">
+                  <label class="col-lg-3 control-label">Prénom:</label>
+                  <div class="col-lg-5">
                     <input class="form-control" v-model="model.prenom" type="text">
                   </div>
                   <br>
                 </div>
 
                 <div class="form-group">
-                  <label class="col-lg-1 control-label">Téléphone:</label>
-                  <div class="col-lg-3">
+                  <label class="col-lg-3 control-label">Téléphone:</label>
+                  <div class="col-lg-5">
                     <input class="form-control" v-model="model.phone" type="text">
                   </div>
                   <br>
                 </div> 
 
                 <div class="form-group">
-                  <label class="col-lg-1 control-label">Adresse:</label>
-                  <div class="col-lg-3">
+                  <label class="col-lg-3 control-label">Adresse:</label>
+                  <div class="col-lg-5">
                     <input class="form-control" v-model="model.addresse" type="text">
                   </div>
                   <br>
                 </div> 
 
                 <div class="form-group">
-                  <label class="col-lg-1 control-label">Département:</label>
-                  <div class="col-lg-3">
+                  <label class="col-lg-3 control-label">Département:</label>
+                  <div class="col-lg-5">
                     <input class="form-control" v-model="model.departement" type="text">
                   </div>
                   <br>
                 </div> 
 
                 <div class="form-group">
-                  <label class="col-lg-1 control-label">Ville: </label>
-                  <div class="col-lg-3">
+                  <label class="col-lg-3 control-label">Ville: </label>
+                  <div class="col-lg-5">
                     <input class="form-control" v-model="model.city" type="text">
                   </div>
                   <br>
                 </div>
 
                 <div class="form-group">
-                  <label class="col-lg-1 control-label">Code Postale:</label>
-                  <div class="col-lg-3">
+                  <label class="col-lg-3 control-label">Code Postale:</label>
+                  <div class="col-lg-5">
                     <input class="form-control" v-model="model.postale" type="text">
                   </div>
                   <br>
                 </div> 
 
                 <div class="form-group">
-                  <label class="col-md-1 control-label"></label>
-                  <div class="col-md-3">
+                  <label class="col-md-3 control-label"></label>
+                  <div class="col-md-5">
                     <input class="btn btn-primary" value="Enregistrer" type="submit">
                 </div>
                 </div>
               </form>
           </div>
 
-          <div align="left">
+          <div class="col-md-6">
             <h1>Modifier le compte</h1>
                 <form @submit="onSubmitPasse($event)" class="form-horizontal" role="form">    
             <div class="form-group">
-              <label class="col-lg-1 control-label">Email:</label>
-              <div class="col-lg-3">
-                <input class="form-control" v-model="model.mail" type="email"required>
-              </div>
+              <label class="col-lg-5 control-label"><h4>{{model.email}}</h4></label>
             </div>
             <div class="form-group">
-              <label class="col-md-1 control-label">Mot de passe:</label>
-              <div class="col-md-3">
+              <label class="col-md-3 control-label">Mot de passe:</label>
+              <div class="col-md-5">
                 <input class="form-control" v-model="newPass" type="password">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-md-1 control-label"> Confirmation du mot de passe:</label>
-              <div class="col-md-3">
+              <label class="col-md-3 control-label"> Confirmation du mot de passe:</label>
+              <div class="col-md-5">
                 <input class="form-control" v-model="confirmNewPass" type="password">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-md-1 control-label"></label>
-              <div class="col-md-3">
-                <input name ="Save" class="btn btn-primary" value="Enregistrer" type="submit">            
-                <a class="btn btn-danger" @click="deleteAccount">Supprimer le compte</a>
+              <label class="col-md-3 control-label"></label>
+              <div class="col-md-5">
+                <input name ="Save" class="btn btn-primary" value="Modifier le mot de passe" type="submit">
+                <a  align="right" class="btn btn-danger" @click="deleteAccount(model.userId)">Supprimer le compte</a>           
               </div>
             </div>
             </form>
 
           </div>
-
+</div>
             </div>
         </div>
         </div>
@@ -140,28 +140,13 @@ export default {
               this.model=Model2.content;
               //this.model.userId = this.model.content.userId;
             },
-            async deleteAccount(){
-
-            var model = await UserService.getUserAsync(this.email);
-            model = model.content;
-
-            model = await ConversationService.getEventIdAsync(this.model.userId);
-            model = model.content;
-
-            var confirme2 = confirm("Vous êtes sur le point de supprimer un compte. Tout vos événements vont êtres supprimer. Êtes-vous sûr ?");
-              if(confirme2 != false)
-              {
-                  var i = 0;
-                  while (i != model.length)
-                  {
-                      var result = await EventService.deleteEvent(model[i].eventId);
-                      if(result == false)
-                        return;
-                        i++;
-                  }
-                  await UserService.deleteUserAsync(this.model.userId);
-                  this.$router.replace('/');             
-              }
+            async deleteAccount(e){
+                if (confirm("Voulez-vous vraiment supprimer votre compte ?") == true) {
+                   await UserService.deleteUserAsync(e);
+                var User = await UserService.getAllUserAsync();
+                this.user = User.content;
+                this.$router.replace('/Logout');                    
+                }
             },
             onSubmitPasse: async function(e) {
               e.preventDefault();
@@ -190,10 +175,7 @@ li {
   margin: 0 10px;
 }
 
+div.div2{
 
-
-div.hello {
-  background-color : #70B2E2;
-  color : yellow;
 }
 </style>
