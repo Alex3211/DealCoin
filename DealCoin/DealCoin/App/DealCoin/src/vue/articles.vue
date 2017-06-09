@@ -19,8 +19,26 @@
                   </div>       
               </div>
               <br>
+              <nav aria-label="Page navigation">
+                <ul class="pagination">
+                  <li v-if="this.itemPage > 1" @click="pagDoUp(false)">
+                    <a href="#" aria-label="Previous">
+                      <span aria-hidden="true" >&laquo;</span>
+                    </a>
+                  </li>
+                  <li v-for="n in (Math.ceil(article.length/this.itemPerPage))" @click="pagi(n)">
+                    <a href="#" >{{n}}</a>
+                  </li>
+                  <li v-if=" this.itemPage < (Math.ceil(article.length/this.itemPerPage)) " @click="pagDoUp(true)">
+                    <a href="#" aria-label="Next">
+                      <span aria-hidden="true" >&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+              <br>
               <div class="row">
-                <div v-for="i in article" class="col-md-3">
+                <div v-for="i in PaginatedArticleList" class="col-md-3">
                   <ArticlePage :id="i"></ArticlePage><br>
                 </div>
               </div>
@@ -57,11 +75,15 @@ import articleApiService from '../services/ArticleServices.js'
 export default {
   data() {
     return {
-      article: [] 
+      article: [],
+      PaginatedArticleList: [],
+      itemPerPage: 4,
+      itemPage: 1
     }
   },
   async mounted(){
     await this.loadArticle();
+    this.TempTab();
   },
   methods: {
     loadArticle: async function(){
@@ -75,6 +97,32 @@ export default {
         else {
         document.getElementById('invisible').style.display = 'none';
       }      
+    },
+    pagi: function(page){
+      this.itemPage = page;
+      this.TempTab();
+    },
+    TempTab: function(){
+        this.PaginatedArticleList = [];
+      if(this.itemPage == 1 ){
+          for(var i = this.itemPage-1; i < (this.itemPerPage*this.itemPage); i++ ){
+              if(this.article[i])this.PaginatedArticleList.push(this.article[i]);
+          }
+      } else {
+          for(var i = (this.itemPage-1)*this.itemPerPage; i < (this.itemPerPage*this.itemPage); i++ ){
+              if(this.article[i])this.PaginatedArticleList.push(this.article[i]);
+          }
+      }
+    },
+    pagDoUp: function(bool){
+      if(bool) {
+        this.itemPage = this.itemPage + 1;
+        this.TempTab();
+      }
+      else {
+        this.itemPage = this.itemPage - 1;
+        this.TempTab();
+      }
     }
   },
   components: {
