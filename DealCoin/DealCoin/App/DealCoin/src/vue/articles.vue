@@ -4,10 +4,26 @@
         <img src="../assets/logo.png">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h1>DealCoin</h1>
+              <div class="row">
+                  <h1>DealCoin</h1>
+                  <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="btn btn-default" v-on:click="ShowSearchArticle()">Rechercher un article</button>
+                  </div>
+                  <br>
+                  <div class="col-md-1"></div>
+                  <div style='display:none;' class="col-md-10" id='invisible'>
+                    <br><div class="input-group input-group-lg">
+                      <span class="input-group-addon" id="sizing-addon1">Recherche d'article</span>
+                      <input type="text" class="form-control" placeholder="Titre de l'article" aria-describedby="sizing-addon1">
+                    </div>
+                  </div>       
+              </div>
+              <br>
+              <div class="row">
                 <div v-for="i in article" class="col-md-3">
-                    <ArticlePage :id="i"></ArticlePage>
+                  <ArticlePage :id="i"></ArticlePage><br>
                 </div>
+              </div>
             </div>
         </div>
     </div>
@@ -51,6 +67,14 @@ export default {
     loadArticle: async function(){
       var e = await articleApiService.getArticleListAsync();
       this.article = e.content;
+    },
+    ShowSearchArticle: async function(){
+      if(document.getElementById('invisible').style.display == 'none'){
+        document.getElementById('invisible').style.display = 'block';
+        }
+        else {
+        document.getElementById('invisible').style.display = 'none';
+      }      
     }
   },
   components: {

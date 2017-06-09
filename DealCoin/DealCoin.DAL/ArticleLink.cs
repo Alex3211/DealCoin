@@ -53,5 +53,15 @@ namespace DealCoin.DAL
                     new { UserId = userId, categorieId = categorieId, title = title, photo = photo, desc1 = desc1, price = price, ProductsId = productsId });
             }
         }
+
+        public IEnumerable<Article> DeleteArticlesR(int id)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                return con.Query<Article>(
+                    "DELETE FROM [dc].[products] WHERE productsId = @ID",
+                    new { ID = id });
+            }
+        }
     }
 }

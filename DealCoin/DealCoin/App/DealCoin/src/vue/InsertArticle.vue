@@ -116,7 +116,7 @@ export default {
         if (this.model.title.length == 0)
             this.model.title = 0;   
         result = await articleApiService.postArticleListAsync(this.model);
-        this.$router.replace('/EditArticle');
+        this.$router.replace('/MyArticles');
     },
     LoadModelUser: async function(email){
         this.model1 = await UserService.getUserAsync(email);

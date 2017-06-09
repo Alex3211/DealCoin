@@ -4,11 +4,28 @@
         <img src="../assets/logo.png">
         <div class="row">
             <div class="col-lg-12 text-center">
-            <router-link to="/InsertArticle"><button>Add</button></router-link>
-                <h1>DealCoin</h1>
-                <div v-for="i in article" class="col-md-3">
-                    <ArticlePage :id="i"></ArticlePage>
-                </div>
+            <div class="row">
+              <h1>Vos articles</h1>
+            </div>
+            <div class="row">
+              <br><div class="btn-group" role="group" aria-label="...">
+                <router-link to="/InsertArticle"><button type="button" class="btn btn-default">Ajouter un article</button></router-link>
+                <button type="button" class="btn btn-default" v-on:click="ShowSearchArticle()">Rechercher un article</button>
+              </div><br>
+              <div class="col-md-1"></div>
+              <div style='display:none;' class="col-md-10" id='invisible'>
+                <br><div class="input-group input-group-lg">
+                  <span class="input-group-addon" id="sizing-addon1">Recherche d'article</span>
+                  <input type="text" class="form-control" placeholder="Titre de l'article" aria-describedby="sizing-addon1">
+                </div><br>
+              </div>
+            </div>
+            <div class="row">
+              <br><div v-for="i in article" class="col-md-3">
+                  <ArticlePage :id="i"></ArticlePage><br>
+              </div>
+            </div>
+            
             </div>
         </div>
     </div>
@@ -37,7 +54,7 @@ a {
 
 <script>
 import UserService from '../services/UserService.js'
-import article from './C_article.vue'
+import article from './article.vue'
 import articleApiService from '../services/ArticleServices.js'
 import AuthService from '../services/AuthService.js'
 
@@ -71,6 +88,14 @@ export default {
         this.model1 = await UserService.getUserAsync(email);
         this.model.userId = this.model1.content.userId;
         this.model.productsId = this.model1.content.productsId;
+    },
+    ShowSearchArticle: async function(){
+      if(document.getElementById('invisible').style.display == 'none'){
+        document.getElementById('invisible').style.display = 'block';
+        }
+        else {
+        document.getElementById('invisible').style.display = 'none';
+      }      
     }
   },
   components: {
