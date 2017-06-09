@@ -51,7 +51,7 @@
                         <td>{{ u.userId }}</td>
                         <td>{{ u.email }}</td>
                         <td>12/06/2016</td>
-                        <td><a class="btn btn-xs btn-danger" @click="deleteAccount(u.userId)"><span class="glyphicon glyphicon-remove"></span></a></td>
+                        <td><a class="btn btn-xs btn-danger" @click="deleteAccount(u.userId)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
                     </tr>
                 </tbody>
             </table>
@@ -65,7 +65,6 @@
 <script>
 import AuthService from '../services/AuthService'
 import UserService from '../services/UserService'
-import Chart from 'chart.js';
 import Vue from 'vue'
 import $ from 'jquery'
 
