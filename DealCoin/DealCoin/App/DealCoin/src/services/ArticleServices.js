@@ -1,4 +1,4 @@
-import { getAsync, getArticleAsync, postAsync, postArticleAsync, putAsync, deleteAsync } from '../helper/apiUser.js';
+import { getAsync, getArticleAsync, postAsync, postArticleAsync, putArticleAsync, putAsync, deleteAsync } from '../helper/apiUser.js';
 import AuthService from './AuthService';
 
 const endpoint = "/api/article";
@@ -20,7 +20,7 @@ class ArticlesApiService {
     }
     async putArticleListAsync(model)
     {
-        return await putAsync(endpoint, model.userId, AuthService.accessToken, model);
+        return await putArticleAsync(endpoint, model.userId, AuthService.accessToken, model);
     }
     
     async deleteArticleListAsync(Id)

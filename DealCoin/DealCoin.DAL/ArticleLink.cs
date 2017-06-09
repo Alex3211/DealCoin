@@ -43,5 +43,15 @@ namespace DealCoin.DAL
                     new { UserId = userId, categorieId = categorieId, title = title, photo = photo, desc1 = desc1, price = price });
             }
         }
+
+        public IEnumerable<Article> UpdateArticlesR(int userId, int categorieId, string title, string photo, string desc1, string price, int productsId)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                return con.Query<Article>(
+                    "UPDATE [dc].[products] SET [userId] = @UserId, [categoriesId] = @categorieId, [title] = @title, [photo] = @photo, [desc1] = @desc1, [price] = @price WHERE [productsId] = @ProductsId;",
+                    new { UserId = userId, categorieId = categorieId, title = title, photo = photo, desc1 = desc1, price = price, ProductsId = productsId });
+            }
+        }
     }
 }

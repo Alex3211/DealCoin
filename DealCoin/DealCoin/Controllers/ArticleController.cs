@@ -19,7 +19,6 @@ namespace DealCoin.Controllers
     public class ArticleController : Controller
     {
         readonly ArticleService _articleService;
-        readonly ArticleViewModel _model;
         public ArticleController(ArticleService articleService)
         {
             _articleService = articleService;
@@ -43,6 +42,13 @@ namespace DealCoin.Controllers
         public IActionResult AddArticles([FromBody] ArticleViewModel _model)
         {
             Result<IEnumerable<Article>> result = _articleService.AddArticles(_model.UserId, _model.CategoriesId, _model.Title, _model.Photo, _model.Desc1, _model.Price);
+            return new JsonResult(result);
+        }
+
+        [HttpPut]
+        public IActionResult UpdateArticles([FromBody] ArticleViewModel _model)
+        {
+            Result<IEnumerable<Article>> result = _articleService.UpdateArticles(_model.UserId, _model.CategoriesId, _model.Title, _model.Photo, _model.Desc1, _model.Price, _model.productsId);
             return new JsonResult(result);
         }
     }

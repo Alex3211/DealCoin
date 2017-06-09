@@ -18,6 +18,7 @@ import cellAdmin from './vue/CellAdmin.vue'
 import articleAdmin from './vue/ArticleAdmin.vue'
 import reportAdmin from './vue/ReportAdmin.vue'
 import article from './vue/article.vue'
+import MyArticles from './vue/MyArticles.vue'
 import articleDetails from './vue/articleDetails.vue'
 import InsertArticle from './vue/InsertArticle.vue'
 import EditArticle from './vue/EditArticle.vue'
@@ -90,6 +91,11 @@ const router = new VueRouter({
       path: '/articleDetails',
       name: 'articleDetails',
       component: articleDetails, beforeEnter: requireAuth
+    },
+    {
+      path: '/MyArticles',
+      name: 'MyArticles',
+      component: MyArticles, beforeEnter: requireAuth
     },
     {
       path: '/InsertArticle',

@@ -49,6 +49,20 @@ export async function putAsync(endpoint, id, token, data) {
     });
 }
 
+export async function putArticleAsync(endpoint, id, token, data) {
+    return await $.ajax({
+        method: 'PUT',
+        url: endpoint,
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(data),
+        dataFilter: dataFilter,
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
+
 export async function getAsync(endpoint, id, token) {
     return await $.ajax({
         method: 'GET',
