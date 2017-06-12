@@ -20,8 +20,25 @@
                 </div><br>
               </div>
             </div>
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                  <li v-if="this.itemPage > 1" @click="pagDoUp(false)">
+                    <a href="#" aria-label="Previous">
+                      <span aria-hidden="true" >&laquo;</span>
+                    </a>
+                  </li>
+                  <li v-for="n in (Math.ceil(articleL.length/this.itemPerPage))" @click="pagi(n)">
+                    <a href="#" >{{n}}</a>
+                  </li>
+                  <li v-if=" this.itemPage < (Math.ceil(articleL.length/this.itemPerPage)) " @click="pagDoUp(true)">
+                    <a href="#" aria-label="Next">
+                      <span aria-hidden="true" >&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
             <div class="row">
-              <br><div v-for="i in article" class="col-md-3">
+              <br><div v-for="i in PaginatedArticlesList" :key="i.productsId" class="col-md-3">
                   <ArticlePage :id="i"></ArticlePage><br>
               </div>
             </div>
@@ -61,7 +78,10 @@ import AuthService from '../services/AuthService.js'
 export default {
   data() {
     return {
-      article: [],
+      articleL: [],
+      PaginatedArticlesList: [],
+      itemPerPage: 4,
+      itemPage: 1,
       model: {
             userId : null,
             productsId: null,
@@ -77,12 +97,28 @@ export default {
   async mounted(){
     this.email = AuthService.hisEmail();
     await this.LoadModelUser(this.email);
-    this.loadArticle();
+    await this.loadArticle();
+    this.TempTab();
   },
   methods: {
     loadArticle: async function(){
       var e = await articleApiService.GetArticleListByIdAsync(this.model1.content.userId);
-      this.article = e.content;
+      this.articleL = e.content;
+    },
+    TempTab: function(){
+      this.PaginatedArticlesList = [];
+      if(this.itemPage == 1 ) { 
+        var i = this.itemPage - 1;
+      } else { 
+        var i = (this.itemPage-1)*this.itemPerPage;
+      }
+      for(var u = i; u < (this.itemPerPage*this.itemPage); u++ ){
+          if(this.articleL[u])this.PaginatedArticlesList.push(this.articleL[u]);
+      }
+    },
+    pagi: function(page){
+      this.itemPage = page;
+      this.TempTab();
     },
     LoadModelUser: async function(email){
         this.model1 = await UserService.getUserAsync(email);
@@ -96,6 +132,16 @@ export default {
         else {
         document.getElementById('invisible').style.display = 'none';
       }      
+    },
+    pagDoUp: function(bool){
+      if(bool) {
+        this.itemPage = this.itemPage + 1;
+        this.TempTab();
+      }
+      else {
+        this.itemPage = this.itemPage - 1;
+        this.TempTab();
+      }
     }
   },
   components: {
