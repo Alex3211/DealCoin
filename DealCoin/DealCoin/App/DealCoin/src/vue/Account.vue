@@ -1,7 +1,6 @@
 <template>
 <div>
     <div class="container">
-
             <div class="col-lg-12 text-center">
             <h3>Bonjour, {{model.nom}}, vous pouvez modifier votre compte ici.</h3>
             <div class="row">
@@ -85,13 +84,17 @@
             <div class="form-group">
               <label class="col-md-3 control-label">Mot de passe:</label>
               <div class="col-md-5">
-                <input class="form-control" v-model="newCode" type="password">
+                <input class="form-control" v-model="newCode" type="password" pattern="^[a-zA-Z]\w{3,14}$" title="
+                Premier caractère doit être une lettre, 
+                Minimum 4 caractères, Max 15, 
+                Que des chiffres et lettres">
               </div>
             </div>
             <div class="form-group">
               <label class="col-md-3 control-label"> Confirmation du mot de passe:</label>
               <div class="col-md-5">
-                <input class="form-control" v-model="confirmNewCode" type="password">
+                <input class="form-control" v-model="confirmNewCode" type="password"  pattern="^[a-zA-Z]\w{3,14}$" title="Premier caractère 
+            doit être une lettre, un minumum de 6 caractères et maximum 15, que des chiffres et lettres">
               </div>
             </div>
             <div class="form-group">
@@ -133,6 +136,7 @@ export default {
               e.preventDefault();
               var result = null;  
               result = await UserService.putUserAsync(this.model);
+              confirm("Vous avez modifié votre compte.");
             },
             loadModelUser: async function(email) {
               
@@ -150,10 +154,18 @@ export default {
             },
             onSubmitPasse: async function(e) {
               e.preventDefault();
-              if(this.newCode !== this.confirmNewCode) return 
+              if(this.newCode !== this.confirmNewCode) 
+              {
+                confirm("Les mots de passe ne correspondent pas !");
+              }
+              else
+              {
               this.model.password = this.newCode
               var result = null;
               result = await UserService.putUserPassAsync(this.model);
+              confirm("Vous avez modifié votre mot de passe !");
+              }
+              
               //this.model.pass = null
             }
     }
