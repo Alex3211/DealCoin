@@ -6,6 +6,7 @@
             <div class="col-lg-12 text-center">
               <div class="row">
                   <h1>Vos articles</h1>
+                  <router-link to="/InsertArticle"><button type="button" class="btn btn-default">Ajouter un article</button></router-link> 
                   <div class="btn-group" role="group" aria-label="..." v-if="this.BoolSearch == false">
                     <button type="button" class="btn btn-default" v-on:click="ShowSearchArticle()">Rechercher un article</button>
                   </div>
@@ -21,13 +22,16 @@
                       <input type="text" v-model="searchString" placeholder="Rechercher un article..." class="form-control"  aria-describedby="sizing-addon1"/>
                     </div>
                     <br><br>
-                    <div class="row">
-                      <div v-for="article in filteredArticles" class="col-md-3">
-                        <ArticlePage :id="article"></ArticlePage><br>
-                      </div>
-                    </div>
+                    
                   </div>       
               </div>
+            <div v-if="this.BoolSearch == true">
+                <div class="row">
+                  <div v-for="article in filteredArticles" class="col-md-3">
+                    <ArticlePage :id="article"></ArticlePage><br>
+                  </div>
+                </div>
+            </div>
 
             <div v-if="this.BoolSearch == false">
                 <br>
