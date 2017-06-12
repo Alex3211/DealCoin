@@ -33,8 +33,9 @@ namespace DealCoin.Services
 
         public bool CreatePasswordUser( string email, string password )
         {
-            if(_userLink.FindByEmail( email ) != null ) return false;
-            _userLink.CreatePasswordUser( email, _passwordHasher.HashPassword( password ) );
+            DateTime Date = DateTime.Now;
+            if (_userLink.FindByEmail( email ) != null ) return false;
+            _userLink.CreatePasswordUser( email, _passwordHasher.HashPassword( password ),Date );
             return true;
         }
 

@@ -27,7 +27,8 @@ namespace DealCoin.DAL
         public string role { get; set; }
         public int status { get; set; }
         public int Visites { get; set; }
-        public int LastLogin { get; set; }
+        public DateTime LastLogin { get; set; }
+        public DateTime First_Login { get; set; }
 
     }
 }

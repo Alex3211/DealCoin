@@ -49,7 +49,7 @@ namespace DealCoin.DAL
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 return con.Query<User>(
-                        "select userId, email, Password, nom, prenom, phone, addresse,departement,city,postale,role,status,visits,last_login from dc.users;"
+                        "select userId, email, Password, nom, prenom, phone, addresse,departement,city,postale,role,status,visits,last_login,first_login from dc.users;"
                         );
             }
         }
@@ -90,14 +90,14 @@ namespace DealCoin.DAL
                     .FirstOrDefault();
             }
         }
-        public void CreatePasswordUser(string email, byte[] password)
+        public void CreatePasswordUser(string email, byte[] password,DateTime date)
         {
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
-                con.Execute(
-                   "dc.SpasswordUserCreate",
-                   new { Email = email, Password = password },
-                   commandType: CommandType.StoredProcedure);
+                con.Query<User>(
+                   "insert into dc.users(email,[Password],first_login) values(@email,@Password,@Date)",
+                   new { Email = email, Password = password, Date = date })
+                   .FirstOrDefault();
             }
         }
 

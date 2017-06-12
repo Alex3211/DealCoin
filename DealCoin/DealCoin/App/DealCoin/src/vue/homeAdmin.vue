@@ -38,7 +38,8 @@
 import AuthService from '../services/AuthService'
 import UserService from '../services/UserService'
 import ArticleServices from '../services/ArticleServices.js'
-import Chart from 'chart.js';
+import Chart from 'chart.js'
+import moment from 'moment'
 import Vue from 'vue'
 import $ from 'jquery'
 
@@ -59,6 +60,7 @@ export default {
            await this.loadArticle();
            await this.loadUser();
            await this.sortArticle();
+           await this.sortUser();
             this.displayGraph();
             this.graphBar();
             this.graphLine();
@@ -96,6 +98,18 @@ export default {
                     else
                     {
                         this.cat4.push(this.article[i].categoriesId);
+                    }
+                } 
+            },
+            sortUser: async function(){
+                var now = moment().add(this.user.content[3].first_Login);
+                console.log( now.month()+1 );
+                console.log("rentrer"+this.user.content[3].first_Login);
+                for(var i=0;i<this.user.length;i++){
+                    console.log("rentrer"+this.user[i].first_Login.getMonth().toString());
+                    if(this.user[i].first_Login.getMonth() == 6)
+                    {
+                        console.log("rentrer");
                     }
                 } 
             },
