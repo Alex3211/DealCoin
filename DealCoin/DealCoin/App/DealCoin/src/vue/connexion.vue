@@ -15,6 +15,8 @@ import UserService from '../services/UserService'
 import Vue from 'vue'
 import $ from 'jquery'
 
+import { mapGetters,mapActions } from 'vuex'
+
 export default {
         data() {
             return {
@@ -30,6 +32,7 @@ export default {
             AuthService.removeAuthenticatedCallback(() => this.onAuthenticated());
         },
         methods: {
+            ...mapActions(['setStatut']),
             login(provider) {
                 AuthService.login(provider);
             },
@@ -42,11 +45,13 @@ export default {
               this.User = this.User.content;
                 if(this.User.status == 1)
                 {
-                this.$router.replace('/homeAdmin');
+                    this.setStatut(1);
+                    this.$router.replace('/homeAdmin');
                 }
                 else
                 {
-                this.$router.replace('/homeMembers'); 
+                    this.setStatut(0);
+                    this.$router.replace('/homeMembers'); 
                 }
             }
         }
