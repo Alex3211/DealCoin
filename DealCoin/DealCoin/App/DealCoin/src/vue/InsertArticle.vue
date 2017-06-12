@@ -22,10 +22,16 @@
                     <br>
                 </div> 
 
-                <div class="form-group">
+                <div class="form-group" id="app">
                     <label class="col-lg-1 control-label">Photo:</label>
                     <div class="col-lg-11">
-                    <input class="form-control" v-model="model.photo" type="text">
+                            <div v-if="!image">
+                            <input type="file" @change="onFileChange" v.model="model.photo">
+                        </div>
+                        <div v-else>
+                            <img :src="image" />
+                            <button @click="removeImage">Remove image</button>
+                        </div>
                     </div>
                     <br>
                 </div> 
@@ -76,6 +82,16 @@ li {
 a {
   color: #42b983;
 }
+div.app {
+     text-align: center;
+
+img {
+  width: 30%;
+  margin: auto;
+  display: block;
+  margin-bottom: 10px;
+}
+}
 </style>
 <script>
 
@@ -98,7 +114,8 @@ export default {
             desc1:null,
             price : null,
         },
-        model1:{}
+        model1:{},
+        image:''
     }
   },
   async mounted(){
@@ -111,10 +128,30 @@ export default {
       var e = await CategoryApiService.getCategoryListAsync();
       this.category = e.content;
     },
+    onFileChange(e) {
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length)
+        return;
+      this.createImage(files[0]);
+    },
+    createImage(file) {
+      var image = new Image();
+      var reader = new FileReader();
+      var vm = this;
+
+      reader.onload = (e) => {
+        vm.image = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+    removeImage: function (e) {
+      this.image = '';
+    },
     onSubmit: async function(e) {
         e.preventDefault();
         var result = null;
         this.model.categoriesId = document.getElementById("test").value;
+        this.model.photo=this.image;
         if (this.model.title.length == 0)
             this.model.title = 0;   
         result = await articleApiService.postArticleListAsync(this.model);

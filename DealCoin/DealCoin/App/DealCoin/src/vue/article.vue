@@ -11,6 +11,7 @@
       <p>{{Articleid.title}}</p>
       <p>{{Articleid.price}}</p>
       <p>{{Articleid.posted_date}}</p>
+      <p><img v-bind:src="Articleid.photo" /></p>
       <div class="btn-group" role="group" aria-label="...">
         <router-link v-bind:to="{ path: 'EditArticle', query: { article: Articleid }}">
           <button type="button" class="btn btn-default">Modifier</button>

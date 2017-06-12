@@ -6,7 +6,7 @@
         <router-link to="/articles">
             <p>{{Articleid.productsId}}</p>
             <p>{{Articleid.title}}</p>
-            <p>{{Articleid.photo}}</p>
+            <p>photo</p>
             <p>Catégorie : {{Articleid.categoriesId}}</p>
             <p>Crée le {{Articleid.created}}</p>
             <p>{{Articleid.price}}</p>
