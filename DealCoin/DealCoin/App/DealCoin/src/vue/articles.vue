@@ -21,12 +21,14 @@
                       <input type="text" v-model="searchString" placeholder="Rechercher un article..." class="form-control"  aria-describedby="sizing-addon1"/>
                     </div>
                     <br><br>
-                    <div class="row">
-                      <div v-for="article in filteredArticles" :key="article.productsId" class="col-md-3">
-                        <ArticlePage :id="article"></ArticlePage><br>
-                      </div>
-                    </div>
                   </div>       
+              </div>
+              <div v-if="this.BoolSearch == true">
+                <div class="row">
+                  <div v-for="article in filteredArticles" class="col-md-3">
+                    <ArticlePage :id="article"></ArticlePage><br>
+                  </div>
+                </div>
               </div>
 
               <div v-if="this.BoolSearch == false">
