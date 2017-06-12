@@ -4,23 +4,34 @@
         <img src="../assets/logo.png">
         <div class="row">
             <div class="col-lg-12 text-center">
-            <div class="row">
-              <h1>Vos articles</h1>
-            </div>
-            <div class="row">
-              <br><div class="btn-group" role="group" aria-label="...">
-                <router-link to="/InsertArticle"><button type="button" class="btn btn-default">Ajouter un article</button></router-link>
-                <button type="button" class="btn btn-default" v-on:click="ShowSearchArticle()">Rechercher un article</button>
-              </div><br>
-              <div class="col-md-1"></div>
-              <div style='display:none;' class="col-md-10" id='invisible'>
-                <br><div class="input-group input-group-lg">
-                  <span class="input-group-addon" id="sizing-addon1">Recherche d'article</span>
-                  <input type="text" class="form-control" placeholder="Titre de l'article" aria-describedby="sizing-addon1">
-                </div><br>
+              <div class="row">
+                  <h1>Vos articles</h1>
+                  <div class="btn-group" role="group" aria-label="..." v-if="this.BoolSearch == false">
+                    <button type="button" class="btn btn-default" v-on:click="ShowSearchArticle()">Rechercher un article</button>
+                  </div>
+                  <div class="btn-group" role="group" aria-label="..." v-else-if="this.BoolSearch == true">
+                    <button type="button" class="btn btn-default" v-on:click="ShowSearchArticle()">Arrêter la recherche</button>
+                  </div>
+                  <br>
+                  <div class="col-md-1"></div>
+                  <div style='display:none;' class="col-md-10" id='invisible'>
+                    <br>
+                    <div class="input-group input-group-lg">
+                      <span class="input-group-addon" id="sizing-addon1">Recherche d'article</span>
+                      <input type="text" v-model="searchString" placeholder="Rechercher un article..." class="form-control"  aria-describedby="sizing-addon1"/>
+                    </div>
+                    <br><br>
+                    <div class="row">
+                      <div v-for="article in filteredArticles" class="col-md-3">
+                        <ArticlePage :id="article"></ArticlePage><br>
+                      </div>
+                    </div>
+                  </div>       
               </div>
-            </div>
-            <nav aria-label="Page navigation">
+
+            <div v-if="this.BoolSearch == false">
+                <br>
+              <nav aria-label="Page navigation">
                 <ul class="pagination">
                   <li v-if="this.itemPage > 1" @click="pagDoUp(false)">
                     <a href="#" aria-label="Previous">
@@ -37,13 +48,14 @@
                   </li>
                 </ul>
               </nav>
-            <div class="row">
-              <br><div v-for="i in PaginatedArticlesList" :key="i.productsId" class="col-md-3">
-                  <ArticlePage :id="i"></ArticlePage><br>
+              <div class="row">
+                <br>
+                <div v-for="i in PaginatedArticlesList" :key="i.productsId" class="col-md-3">
+                    <ArticlePage :id="i"></ArticlePage><br>
+                </div>
               </div>
             </div>
-            
-            </div>
+          </div>
         </div>
     </div>
   </div>
@@ -91,7 +103,9 @@ export default {
             price : null,
         },
         model1:{},
-        email : null
+        email : null,
+        BoolSearch: false,
+        searchString:""
     }
   },
   async mounted(){
@@ -99,6 +113,26 @@ export default {
     await this.LoadModelUser(this.email);
     await this.loadArticle();
     this.TempTab();
+  },
+  computed: {
+    // A computed property that holds only those articles that match the searchString.
+        filteredArticles: function () {
+            var articles_array = this.articleL,
+                searchString = this.searchString;
+
+            if(!searchString){
+                return articles_array;
+            }
+
+            searchString = searchString.trim().toLowerCase();
+            articles_array = articles_array.filter(function(item){
+                if(item.title.toLowerCase().indexOf(searchString) !== -1){
+                    return item;
+                }
+            })
+            // Return an array with the filtered data.
+            return articles_array;
+        }
   },
   methods: {
     loadArticle: async function(){
@@ -126,6 +160,7 @@ export default {
         this.model.productsId = this.model1.content.productsId;
     },
     ShowSearchArticle: async function(){
+      this.BoolSearch = !this.BoolSearch;
       if(document.getElementById('invisible').style.display == 'none'){
         document.getElementById('invisible').style.display = 'block';
         }
