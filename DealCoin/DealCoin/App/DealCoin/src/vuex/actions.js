@@ -2,10 +2,12 @@ import * as types from './mutation-types'
 import { INCREMENT } from './mutation-types'
 import { GETUSER } from './mutation-types'
 import { GETSTATUT } from './mutation-types'
+import { ADDARTICLE } from './mutation-types'
 
 export const increment = ({ commit }) => commit(INCREMENT)
 export const setuser = ({ commit },user) => commit(GETUSER,user)
 export const setStatut = ({ commit },status) => commit(GETSTATUT,status)
+export const setArticle = ({ commit },List) => commit(ADDARTICLE,List)
 
 /**
  * Notify when an error happens
