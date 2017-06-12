@@ -20,6 +20,11 @@ namespace DealCoin.Services
             User user = _userLink.getUser(email);
             return Result.Success(Status.Ok, user);
         }
+        public Result<User> getUserId(int id)
+        {
+            User user = _userLink.getUserId(id);
+            return Result.Success(Status.Ok, user);
+        }
 
         public Result<IEnumerable<User>> getAllUser()
         {

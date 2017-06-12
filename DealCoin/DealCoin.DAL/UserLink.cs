@@ -34,6 +34,16 @@ namespace DealCoin.DAL
                     .FirstOrDefault();
             }
         }
+        public User getUserId(int _id)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                return con.Query<User>(
+                        "select userId, email, Password, nom, prenom, phone, addresse,departement,city,postale,role,status,visits,last_login from dc.users where userId = @Id ;",
+                        new { Id = _id })
+                    .FirstOrDefault();
+            }
+        }
         public IEnumerable<User> getAllUser()
         {
             using (SqlConnection con = new SqlConnection(_connectionString))

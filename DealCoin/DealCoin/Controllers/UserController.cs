@@ -29,6 +29,12 @@ namespace DealCoin.Controllers
             Result<User> result = _userService.getUser(email);
             return new JsonResult(result);
         }
+        [HttpGet("Id/{id}")]
+        public IActionResult GetUser(int id)
+        {
+            Result<User> result = _userService.getUserId(id);
+            return new JsonResult(result);
+        }
         [HttpGet("All/")]
         public IActionResult GetAllUser()
         {
