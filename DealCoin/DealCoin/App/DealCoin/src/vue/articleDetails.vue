@@ -12,11 +12,11 @@
             <p>{{Articleid.price}}</p>
             <p>Mis a jour le {{Articleid.updated}}</p>
         </router-link>
-        <iframe
+        <iframe v-if="this.bool == true"
           width="600"
           height="450"
           frameborder="0" style="border:0"
-          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB_yRoeiBszCEHDf88Rnv0c9tX_eilmL7o&q=Space+Needle,Seattle+WA" allowfullscreen>
+          :src="url" allowfullscreen>
         </iframe>
       </div>
   <div class="col-md-4"></div>
@@ -58,7 +58,9 @@ export default {
   data() {
     return {
       Articleid: 'null',
-      user: {}
+      user: {},
+      url:'https://www.google.com/maps/embed/v1/place?key=AIzaSyB_yRoeiBszCEHDf88Rnv0c9tX_eilmL7o&q=',
+      bool: false
     }
   },
   async mounted(){
@@ -70,6 +72,8 @@ export default {
     loadModelUser: async function() {
   var Model2= await UserService.getUserByIdAsync(this.Articleid.userId);
   this.user=Model2.content;
+  this.url += this.user.city;
+  this.bool = true;
   //this.model.userId = this.model.content.userId;
   },
   components: {
