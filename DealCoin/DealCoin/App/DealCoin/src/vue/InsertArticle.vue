@@ -77,7 +77,9 @@ a {
   color: #42b983;
 }
 </style>
+<script>
 
+</script>
 <script>
 import UserService from '../services/UserService.js'
 import AuthService from '../services/AuthService.js'
