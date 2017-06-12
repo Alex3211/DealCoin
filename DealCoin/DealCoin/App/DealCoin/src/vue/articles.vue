@@ -38,7 +38,7 @@
               </nav>
               <br>
               <div class="row">
-                <div v-for="i in PaginatedArticleList" class="col-md-3">
+                <div v-for="i in PaginatedArticleList" :key="i.productsId" class="col-md-3">
                   <ArticlePage :id="i"></ArticlePage><br>
                 </div>
               </div>
@@ -103,26 +103,25 @@ export default {
       this.TempTab();
     },
     TempTab: function(){
-        this.PaginatedArticleList = [];
-      if(this.itemPage == 1 ){
-          for(var i = this.itemPage-1; i < (this.itemPerPage*this.itemPage); i++ ){
-              if(this.article[i])this.PaginatedArticleList.push(this.article[i]);
-          }
-      } else {
-          for(var i = (this.itemPage-1)*this.itemPerPage; i < (this.itemPerPage*this.itemPage); i++ ){
-              if(this.article[i])this.PaginatedArticleList.push(this.article[i]);
-          }
+        var paginatedArticleList = [];
+      if(this.itemPage == 1 ) { 
+        var i = this.itemPage - 1;
+      } else { 
+        var i = (this.itemPage-1)*this.itemPerPage;
       }
+      for(var u = i; u < (this.itemPerPage*this.itemPage); u++ ){
+          if(this.article[u]) paginatedArticleList.push(this.article[u]);
+      }
+      this.PaginatedArticleList = paginatedArticleList;
     },
     pagDoUp: function(bool){
       if(bool) {
         this.itemPage = this.itemPage + 1;
-        this.TempTab();
       }
       else {
         this.itemPage = this.itemPage - 1;
-        this.TempTab();
       }
+      this.TempTab();
     }
   },
   components: {
