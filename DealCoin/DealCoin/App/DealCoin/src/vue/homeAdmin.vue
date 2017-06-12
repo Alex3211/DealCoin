@@ -16,6 +16,9 @@
                 <canvas class="myChart"></canvas>
             </div>
             <div class="col-md-3">
+                <canvas class="graphBar"></canvas>
+            </div>
+            <div class="col-md-3">
                 <canvas class="line"></canvas>
             </div>
             <div class="col-md-3">
@@ -34,6 +37,7 @@
 <script>
 import AuthService from '../services/AuthService'
 import UserService from '../services/UserService'
+import ArticleServices from '../services/ArticleServices.js'
 import Chart from 'chart.js';
 import Vue from 'vue'
 import $ from 'jquery'
@@ -43,16 +47,25 @@ import { mapGetters,mapActions } from 'vuex'
 export default {
         data() {
             return {
-                user:{}
+                user:{},
+                article: {},
+                cat1: [],
+                cat2: [],
+                cat3: [],
+                cat4:[]
             }
         },
-        mounted() {
+       async mounted() {
+           await this.loadArticle();
+           await this.loadUser();
+           await this.sortArticle();
             this.displayGraph();
+            this.graphBar();
             this.graphLine();
             this.graphPie();
             this.graphDognut();
             this.graphPolar();
-            this.loadUser();
+            
         },
         methods: {
             ...mapGetters(['getUser']),
@@ -61,6 +74,30 @@ export default {
                 var User = await UserService.getAllUserAsync();
                 this.user = User;
                 this.setuser(User);
+            },
+            loadArticle: async function(){
+            var e = await ArticleServices.getArticleListAsync();
+            this.article = e.content;
+            },
+            sortArticle: async function(){
+                for(var i=0;i<this.article.length;i++){
+                    if(this.article[i].categoriesId == 1)
+                    {
+                        this.cat1.push(this.article[i].categoriesId);
+                    }
+                    else if(this.article[i].categoriesId == 2)
+                    {
+                        this.cat2.push(this.article[i].categoriesId);
+                    }
+                    else if(this.article[i].categoriesId == 3)
+                    {
+                        this.cat3.push(this.article[i].categoriesId);
+                    }
+                    else
+                    {
+                        this.cat4.push(this.article[i].categoriesId);
+                    }
+                } 
             },
             displayGraph() {
                 var ctx = this.$el.querySelector(".myChart");
@@ -101,6 +138,47 @@ export default {
                     }
                 });
             },
+            graphBar() {
+                var ctx = this.$el.querySelector(".graphBar");
+
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ["Janvier", "Féfrier", "Mars", "Avril", "Mais", "Juin"],
+                        datasets: [{
+                            label: 'NB of Votes',
+                            data: [this.cat1.length, 19, 3, 5, 2, 3],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }]
+                        }
+                    }
+                });
+
+            },
             graphLine(){
                 var ctx = this.$el.querySelector(".line");
                 var myLineChart = new Chart(ctx, {
@@ -140,10 +218,10 @@ export default {
                 var myDoughnutChart = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
-                        labels: ['Jeux', 'Vetement','Technologie'],
+                        labels: ['Téléphone', 'High-Tech et Informatique','Sports et Loisirs','Vêtements, Chaussures, Bijoux'],
                         datasets: [{
-                            data: [20, 50, 30],
-                            backgroundColor: ['rgba(215, 220, 44, 0.9)','rgba(215, 22, 44, 0.9)','rgba(88, 162, 5, 0.9)']
+                            data: [this.cat1.length, this.cat2.length, this.cat3.length,this.cat4.length],
+                            backgroundColor: ['rgba(215, 220, 44, 0.9)','rgba(215, 22, 44, 0.9)','rgba(88, 162, 5, 0.9)','#483D8B']
                         }]
                     },
                     options: {}

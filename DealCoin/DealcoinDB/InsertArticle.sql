@@ -5,6 +5,9 @@ USE [DealcoinDB]
 GO
 
 INSERT INTO [dc].[categories]([name],[parentId],[type],[description],[status],[position],[posted_date])VALUES('Téléphonie',0,2,'Téléphones',0,0,'2010-04-02')
+INSERT INTO [dc].[categories]([name],[parentId],[type],[description],[status],[position],[posted_date])VALUES('High-Tech et Informatique',0,2,'High-Tech et Informatique',0,0,'2010-04-02')
+INSERT INTO [dc].[categories]([name],[parentId],[type],[description],[status],[position],[posted_date])VALUES('Sports et Loisirs',0,2,'Sports et Loisirs',0,0,'2010-04-02')
+INSERT INTO [dc].[categories]([name],[parentId],[type],[description],[status],[position],[posted_date])VALUES('Vêtements, Chaussures, Bijoux',0,2,'Vêtements, Chaussures, Bijoux',0,0,'2010-04-02')
 GO
 INSERT INTO [dc].[products]([userId],[categoriesId],[title],[photo],[desc1],[price],[posted_date],[created],[created_pk],[created_ip],[updated],[updated_pk],[updated_ip])VALUES(1,1,'Premier téléphone','./maphoto.png','Super 3310 !','10€',null,null,null,null,null,null,null)
 INSERT INTO [dc].[products]([userId],[categoriesId],[title],[photo],[desc1],[price],[posted_date],[created],[created_pk],[created_ip],[updated],[updated_pk],[updated_ip])VALUES(1,1,'Second téléphone','./maphoto.png','Super 3310 !','10€',null,null,null,null,null,null,null)
@@ -22,6 +25,13 @@ INSERT INTO [dc].[products]([userId],[categoriesId],[title],[photo],[desc1],[pri
 INSERT INTO [dc].[products]([userId],[categoriesId],[title],[photo],[desc1],[price],[posted_date],[created],[created_pk],[created_ip],[updated],[updated_pk],[updated_ip])VALUES(1,1,'Ceci est un téléphone','./maphoto.png','Super 3310 !','10€',null,null,null,null,null,null,null)
 INSERT INTO [dc].[products]([userId],[categoriesId],[title],[photo],[desc1],[price],[posted_date],[created],[created_pk],[created_ip],[updated],[updated_pk],[updated_ip])VALUES(1,1,'Encore un téléphone','./maphoto.png','Super 3310 !','10€',null,null,null,null,null,null,null)
 INSERT INTO [dc].[products]([userId],[categoriesId],[title],[photo],[desc1],[price],[posted_date],[created],[created_pk],[created_ip],[updated],[updated_pk],[updated_ip])VALUES(1,1,'Ce site vent que des téléphones ?','./maphoto.png','Super 3310 !','10€',null,null,null,null,null,null,null)
+
+INSERT INTO [dc].[products]([userId],[categoriesId],[title],[photo],[desc1],[price],[posted_date],[created],[created_pk],[created_ip],[updated],[updated_pk],[updated_ip])VALUES(1,2,'MacBookPro','./maphoto.png','Super etat reconditioner a neuf','1000€',null,null,null,null,'2017-04-02',null,null)
+INSERT INTO [dc].[products]([userId],[categoriesId],[title],[photo],[desc1],[price],[posted_date],[created],[created_pk],[created_ip],[updated],[updated_pk],[updated_ip])VALUES(1,3,'Chausure de foot','./maphoto.png','Le top du son !','100€',null,null,null,null,'2017-05-02',null,null)
+INSERT INTO [dc].[products]([userId],[categoriesId],[title],[photo],[desc1],[price],[posted_date],[created],[created_pk],[created_ip],[updated],[updated_pk],[updated_ip])VALUES(1,4,'Jean','./maphoto.png','Jean desiel','100€',null,null,null,null,'2017-01-02',null,null)
+INSERT INTO [dc].[products]([userId],[categoriesId],[title],[photo],[desc1],[price],[posted_date],[created],[created_pk],[created_ip],[updated],[updated_pk],[updated_ip])VALUES(1,2,'Enceinte JBL','./maphoto.png','Le top du son !','1000€',null,null,null,null,'2017-02-02',null,null)
+INSERT INTO [dc].[products]([userId],[categoriesId],[title],[photo],[desc1],[price],[posted_date],[created],[created_pk],[created_ip],[updated],[updated_pk],[updated_ip])VALUES(1,3,'Balon de rugby','./maphoto.png','Gilbert','10€',null,null,null,null,'2017-03-02',null,null)
+INSERT INTO [dc].[products]([userId],[categoriesId],[title],[photo],[desc1],[price],[posted_date],[created],[created_pk],[created_ip],[updated],[updated_pk],[updated_ip])VALUES(1,4,'Tong','./maphoto.png','Havaiana','10€',null,null,null,null,'2017-06-02',null,null)
 GO
 
 --//orders

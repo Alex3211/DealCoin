@@ -10,6 +10,7 @@
 
 <script>
     import AuthService from '../services/AuthService'
+    import { mapGetters,mapActions } from 'vuex'
 
     export default {
         mounted() {
@@ -25,7 +26,10 @@
         },
 
         methods: {
+             ...mapActions(['setStatut']),
             onSignedOut() {
+               
+                this.setStatut(0);
                 this.$router.replace('/');
             }
         }
