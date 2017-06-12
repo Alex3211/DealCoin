@@ -34,6 +34,7 @@ export default {
     return {
            Articleid: this.id
     }
+
   }
 }
 </script>
