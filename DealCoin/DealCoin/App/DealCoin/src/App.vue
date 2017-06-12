@@ -1,9 +1,19 @@
 <template>
+
   <div id="app">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
+            <div v-if=" getStatut == 1" class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <router-link to="/homeAdmin"><a class="navbar-brand Element" href="#" >DealCoin</a></router-link>
+            </div>
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
+            <div v-if=" getStatut == 0" class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -14,7 +24,7 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
+                <ul v-if=" getStatut == 0" class="nav navbar-nav">
                     <li v-if="!services.isConnected">
                       <router-link to="/connexion"><a href="#" class="Element">Connexion</a></router-link>
                     </li>
@@ -49,7 +59,6 @@
             </div>
         </div>
     </nav>
-    
     <router-view></router-view>
   </div>
 </template>
@@ -59,7 +68,7 @@
 </style>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters,mapActions } from 'vuex'
 import AuthService from './services/AuthService.js'
 
 export default {
@@ -67,13 +76,12 @@ export default {
     data() {
         return {
             services: AuthService,
+            status: 0
         }
     },
     computed:{
-    ...mapGetters(
-      [
-        'getCount',
-    ]),
+    ...mapGetters(['getCount']),
+    ...mapGetters(['getStatut']),
     auth: () => AuthService
     }
 }

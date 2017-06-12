@@ -15,25 +15,18 @@ namespace DealCoin.Models
         public byte[] passwordb { get; set; }
 
         public int userId { get; set; }
-
         
         public string nom { get; set; }
-
        
         public string prenom { get; set; }
-
      
         public string phone { get; set; }
-
        
         public string addresse { get; set; }
-
-        
+   
         public string departement { get; set; }
-
         
         public string city { get; set; }
-
       
         public string postale { get; set; }
     }

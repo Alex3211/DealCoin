@@ -7,6 +7,7 @@ import * as getters from './getters'
 import app from './modules/app'
 import panier from './modules/panier'
 import User from './modules/User'
+import Statut from './modules/Statut'
 
 Vue.use(Vuex)
 
@@ -18,7 +19,8 @@ export default new Vuex.Store({
   modules: {
       app,
       panier,
-      User
+      User,
+      Statut
   },
   strict: debug
 })
