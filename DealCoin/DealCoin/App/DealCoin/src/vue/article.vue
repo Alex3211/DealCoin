@@ -5,7 +5,9 @@
         </router-link>
         <p>{{Articleid.price}}</p>
         <p>{{Articleid.posted_date}}</p>  
-    <Increment></Increment>
+    <div>
+      <button v-on:click="addarticle(Articleid)">Ajouter au panier</button>
+    </div>
     </div>
     <div class="articles" v-else-if="this.$route.fullPath == '/MyArticles' ">
       <p>{{Articleid.title}}</p>
@@ -24,16 +26,26 @@
 </template>
 
 <script>
-import Increment from './Increment.vue'
+import Vue from 'vue'
+import $ from 'jquery'
+import { mapGetters,mapActions } from 'vuex'
 
 export default {
-   components: {
-    Increment
-  },
   props:["id"],
   data() {
     return {
            Articleid: this.id
+    }
+  },
+  mounted() {
+            
+  },
+  methods: {
+    ...mapActions(['increment']),
+    ...mapActions(['setArticle']),
+    addarticle: function (article) {
+      this.increment()
+      this.setArticle(article)
     }
   }
 }

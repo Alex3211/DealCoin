@@ -29,6 +29,7 @@ import UserService from './services/UserService'
 import SalesService from './services/SalesService'
 import Increment from './vue/Increment.vue'
 import Account from './vue/Account.vue'
+import Panier from './vue/Panier.vue'
 
 Vue.use(VueRouter)
 
@@ -158,6 +159,11 @@ const router = new VueRouter({
       path: '/reportAdmin',
       name: 'reportAdmin',
       component: reportAdmin,beforeEnter: requireAuth
+    },
+    {
+      path: '/panier',
+      name: 'panier',
+      component: Panier,beforeEnter: requireAuth
     }
   ]
 })
