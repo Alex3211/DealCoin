@@ -30,7 +30,7 @@ INSERT INTO [dc].[orders]([usersId],[fname],[lname],[phone],[addresse],[departem
 
 --orderProduct
 
-INSERT INTO [dc].[ordersProducts]([ordersId],[productsId],[title],[photo],[desc1],[price])VALUES(4,38,'Ce site vent que des téléphones ?','./maphoto.png','Super 3310 !','10€')
+INSERT INTO [dc].[ordersProducts]([ordersId],[productsId],[title],[photo],[desc1],[price])VALUES(0,8,'Ce site vent que des téléphones ?','./maphoto.png','Super 3310 !','10€')
 
 
 
