@@ -14,7 +14,15 @@
                   <div style='display:none;' class="col-md-10" id='invisible'>
                     <br><div class="input-group input-group-lg">
                       <span class="input-group-addon" id="sizing-addon1">Recherche d'article</span>
-                      <input type="text" class="form-control" placeholder="Titre de l'article" aria-describedby="sizing-addon1">
+                      <input type="text" v-model="searchString" placeholder="Rechercher un article..." class="form-control"  aria-describedby="sizing-addon1"/>
+                     <ul>
+        <!-- Render a li element for every entry in the computed filteredArticles array. -->
+
+                    <li v-for="article in filteredArticles">
+                        <a v-bind:href="article.url"><img v-bind:src="article.image" /></a>
+                        <p>{{article.title}}</p>
+                    </li>
+                </ul>
                     </div>
                   </div>       
               </div>
@@ -78,12 +86,33 @@ export default {
       article: [],
       PaginatedArticleList: [],
       itemPerPage: 4,
-      itemPage: 1
+      itemPage: 1,
+      searchString:""
     }
   },
   async mounted(){
     await this.loadArticle();
     this.TempTab();
+  },
+  computed: {
+    // A computed property that holds only those articles that match the searchString.
+        filteredArticles: function () {
+            var articles_array = this.article,
+                searchString = this.searchString;
+
+            if(!searchString){
+                return articles_array;
+            }
+
+            searchString = searchString.trim().toLowerCase();
+            articles_array = articles_array.filter(function(item){
+                if(item.title.toLowerCase().indexOf(searchString) !== -1){
+                    return item;
+                }
+            })
+            // Return an array with the filtered data.
+            return articles_array;
+        }
   },
   methods: {
     loadArticle: async function(){
