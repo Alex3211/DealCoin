@@ -23,6 +23,7 @@ namespace DealCoin.DAL
         public string delivery_city { get; set; }
         public string delivery_postale { get; set; }
         public float shipping_cost { get; set; }
+        public DateTime sales_date { get; set; }
 
     }
 }
