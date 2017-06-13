@@ -29,7 +29,7 @@
                             <input type="file" @change="onFileChange" v.model="model.photo">
                         </div>
                         <div v-else>
-                            <img :src="image" />
+                            <img :src="image" width="150" />
                             <button @click="removeImage">Remove image</button>
                         </div>
                     </div>

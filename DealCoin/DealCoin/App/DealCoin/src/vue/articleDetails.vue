@@ -106,6 +106,7 @@ export default {
     this.bool = true;
     this.Articleid.visits++;
 
+
   //this.model.userId = this.model.content.userId;
   }
 }
