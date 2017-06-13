@@ -31,8 +31,10 @@
                 <h4 class="media-heading">{{Articleid.title}}</h4>
                     <p>{{Articleid.desc1}}</p>
                     <p>{{Articleid.price}}</p>
+                    <p>{{Articleid.visits}}</p>
                     <p>Crée le {{Articleid.created}}</p>
                     <p>Mis a jour le {{Articleid.updated}}</p>
+                    <Increment></Increment>
                                 
                 <div class="clearfix"></div>
                </div>
@@ -66,6 +68,8 @@ a {
 import Connexion from './connexion.vue'
 import AuthService from '../services/AuthService.js'
 import UserService from '../services/UserService.js'
+import Increment from './Increment.vue'
+import { mapGetters,mapActions } from 'vuex'
 
 export default {
   data() {
@@ -77,6 +81,15 @@ export default {
       bool: false
     }
   },
+  components: {
+    // <my-component> will only be available in parent's template
+    'connexion': Connexion,
+    Increment
+  },
+  computed:{
+    ...mapGetters(['getCount']),
+    auth: () => AuthService
+  },
   async mounted(){
     this.email = AuthService.hisEmail();
     var q = this.$route.query.article
@@ -84,16 +97,15 @@ export default {
     this.loadModelUser();
   }, 
   methods: {
+    ...mapActions(['increment']),
     loadModelUser: async function() {
-  var Model2= await UserService.getUserByIdAsync(this.Articleid.userId);
-  this.user=Model2.content;
-  this.url += this.user.city;
-  this.bool = true;
+    var Model2= await UserService.getUserByIdAsync(this.Articleid.userId);
+    this.user=Model2.content;
+    this.url += this.user.city;
+    this.bool = true;
+    this.Articleid.visits++;
+
   //this.model.userId = this.model.content.userId;
-  },
-  components: {
-    // <my-component> will only be available in parent's template
-    'connexion': Connexion
   }
 }
 };
