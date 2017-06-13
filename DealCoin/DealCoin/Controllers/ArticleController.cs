@@ -58,5 +58,12 @@ namespace DealCoin.Controllers
             Result<IEnumerable<Article>> result = _articleService.DeleteArticles(id);
             return new JsonResult(result);
         }
+
+        [HttpPut("NbVisits/{model}")]
+        public bool UpdateNbVisits([FromBody] ArticleViewModel _model)
+        {
+            _articleService.UpdateNbVisits(_model.productsId, _model.visits);
+            return (true);
+        }
     }
 }

@@ -10,6 +10,7 @@
             <p>Catégorie : {{Articleid.categoriesId}}</p>
             <p>Crée le {{Articleid.created}}</p>
             <p>{{Articleid.price}}</p>
+            <p>{{Articleid.visits}}</p>
             <p>Mis a jour le {{Articleid.updated}}</p>
         </router-link>
         <iframe v-if="this.bool == true"
@@ -74,6 +75,8 @@ export default {
   this.user=Model2.content;
   this.url += this.user.city;
   this.bool = true;
+  this.Articleid.visits++;
+
   //this.model.userId = this.model.content.userId;
   },
   components: {

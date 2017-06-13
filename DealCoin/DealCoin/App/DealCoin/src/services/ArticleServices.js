@@ -26,5 +26,10 @@ class ArticleServices {
     {
         return await deleteAsync(endpoint,'delete/'+Id, AuthService.accessToken);
     }
+
+    async putNbVisitsAsync(model)
+    {
+        return await putAsync(endpoint, 'NbVisits/'+model, AuthService.accessToken, model);
+    }
 }
 export default new ArticleServices()

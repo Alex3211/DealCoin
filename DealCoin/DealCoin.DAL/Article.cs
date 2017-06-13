@@ -13,6 +13,7 @@ namespace DealCoin.DAL
         public string photo { get; set; }
         public string desc1 { get; set; }
         public string price { get; set; }
+        public string visits { get; set; }
         public DateTime posted_date { get; set; }
         public DateTime created{ get; set; }
         public DateTime created_pk { get; set; }

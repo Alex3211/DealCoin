@@ -1,18 +1,20 @@
+
 <template>
     <div class="articles" v-if="this.$route.fullPath == '/articles' ">
-        <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}">
+        <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}" 
+        v-on:click.native="onVisited(Articleid)">
             <p>{{Articleid.title}}</p>
         </router-link>
         <p>{{Articleid.price}}</p>
-        <p>{{Articleid.posted_date}}</p>  
-    <div>
-      <button v-on:click="addarticle(Articleid)">Ajouter au panier</button>
-    </div>
+        <p>{{Articleid.posted_date}}</p> 
+        <p>{{Articleid.visits}}</p> 
+    <Increment></Increment>
     </div>
     <div class="articles" v-else-if="this.$route.fullPath == '/MyArticles' ">
       <p>{{Articleid.title}}</p>
       <p>{{Articleid.price}}</p>
       <p>{{Articleid.posted_date}}</p>
+      <p>{{Articleid.visits}}</p> 
       <p><img v-bind:src="Articleid.photo" /></p>
       <div class="btn-group" role="group" aria-label="...">
         <router-link v-bind:to="{ path: 'EditArticle', query: { article: Articleid }}">
@@ -26,26 +28,30 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import $ from 'jquery'
-import { mapGetters,mapActions } from 'vuex'
+import Increment from './Increment.vue'
+import { mapGetters } from 'vuex'
+import AuthService from '../services/AuthService.js'
+import ArticleServices from '../services/ArticleServices.js'
 
 export default {
+   components: {
+    Increment
+  },
   props:["id"],
   data() {
     return {
-           Articleid: this.id
+           Articleid: this.id,
+           services: AuthService
     }
   },
-  mounted() {
-            
+  computed:{
+    ...mapGetters(['getCount']),
+    auth: () => AuthService
   },
-  methods: {
-    ...mapActions(['increment']),
-    ...mapActions(['setArticle']),
-    addarticle: function (article) {
-      this.increment()
-      this.setArticle(article)
+  methods:{
+    onVisited: async function(e){
+      console.log("tesett");
+      await ArticleServices.putNbVisitsAsync(e);
     }
   }
 }
