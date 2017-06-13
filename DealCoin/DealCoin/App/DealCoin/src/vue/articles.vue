@@ -92,7 +92,7 @@ export default {
     return {
       article: [],
       PaginatedArticleList: [],
-      itemPerPage: 4,
+      itemPerPage: 8,
       itemPage: 1,
       searchString:"",
       BoolSearch : false
