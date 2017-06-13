@@ -12,22 +12,20 @@
                     </ul>   
                 </div>
             </nav>
-            <div class="col-md-3">
-                <canvas class="myChart"></canvas>
-            </div>
-            <div class="col-md-3">
+            <div class="col-md-6">
+                <span>Nouvel Utilisateur</span>
                 <canvas class="graphBar"></canvas>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-6">
+                <span>Ventes</span>
                 <canvas class="line"></canvas>
             </div>
-            <div class="col-md-3">
-                <canvas class="pie"></canvas>
-            </div>
-            <div class="col-md-3">
+            <div class="col-md-6">
+                <span>Article par Catégories</span>
                 <canvas class="dognut"></canvas>
             </div>
-            <canvas class="polar"></canvas>
+
+            tottututureihgheiuheiguhreihugreiuh
         </div>
     </div>
 </div>
@@ -37,6 +35,7 @@
 <script>
 import AuthService from '../services/AuthService'
 import UserService from '../services/UserService'
+import SalesService from '../services/SalesService'
 import ArticleServices from '../services/ArticleServices.js'
 import Chart from 'chart.js'
 import moment from 'moment'
@@ -50,23 +49,49 @@ export default {
             return {
                 user:{},
                 article: {},
+                sales:{},
                 cat1: [],
                 cat2: [],
                 cat3: [],
-                cat4:[]
+                cat4:[],
+                userjanvier:0,
+                userfevrier:0,
+                usermars:0,
+                useravril:0,
+                usermai:0,
+                userjuin:0,
+                userjuillet:0,
+                useraout:0,
+                userseptembre:0,
+                useroctobre:0,
+                usernovembre:0,
+                userdecembre:0,
+                vente:{
+                    janvier:0,
+                    fevrier:0,
+                    mars:0,
+                    avril:0,
+                    mai:0,
+                    juin:0,
+                    juillet:0,
+                    aout:0,
+                    septembre:0,
+                    octobre:0,
+                    novembre:0,
+                    decembre:0,
+                }
             }
         },
        async mounted() {
            await this.loadArticle();
            await this.loadUser();
+           await this.loadSalesProducts();
            await this.sortArticle();
            await this.sortUser();
-            this.displayGraph();
+           await this.sortVente();
             this.graphBar();
             this.graphLine();
-            this.graphPie();
             this.graphDognut();
-            this.graphPolar();
             
         },
         methods: {
@@ -80,6 +105,10 @@ export default {
             loadArticle: async function(){
             var e = await ArticleServices.getArticleListAsync();
             this.article = e.content;
+            },
+            loadSalesProducts: async function(){
+                var Sales = await SalesService.getAllSalesAsync();
+                this.sales = Sales.content;
             },
             sortArticle: async function(){
                 for(var i=0;i<this.article.length;i++){
@@ -102,48 +131,92 @@ export default {
                 } 
             },
             sortUser: async function(){
-                var now = moment().add(this.user.content[2].first_Login);
-                console.log( now.month()+1 );
-                console.log("rentrer"+this.user.content[2].first_Login);
-            },
-            displayGraph() {
-                var ctx = this.$el.querySelector(".myChart");
-                var myChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-                        datasets: [{
-                            label: 'NB of Votes',
-                            data: [12, 19, 3, 5, 2, 3],
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255,99,132,1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero:true
-                                }
-                            }]
-                        }
+                for(var i=0;i<this.user.content.length;i++){
+                    var date = moment(this.user.content[i].first_Login, moment.ISO_8601);
+                    
+                    switch(date.month()+1) {
+                        case 1:
+                            this.userjanvier++
+                            break;
+                        case 2:
+                            this.userfevrier++
+                            break;
+                        case 3:
+                            this.usermars++
+                            break;
+                        case 4:
+                            this.useravril++
+                            break;
+                        case 5:
+                            this.usermai++
+                            break;
+                        case 6:
+                            this.userjuin++
+                            break;
+                        case 7:
+                            this.userjuillet++
+                            break;
+                        case 8:
+                            this.useraout++
+                            break;
+                        case 9:
+                            this.userseptembre++
+                            break;
+                        case 10:
+                            this.useroctobre++
+                            break;
+                        case 11:
+                            this.usernovembre++
+                            break;
+                        case 12:
+                            this.userdecembre++
+                            break;
                     }
-                });
+                } 
+            },
+            sortVente: async function(){
+                for(var i=0;i<this.sales.length;i++){
+                    var date = moment(this.sales[i].sales_date, moment.ISO_8601);
+                    
+                    switch(date.month()+1) {
+                        case 1:
+                            this.vente.janvier++
+                            break;
+                        case 2:
+                            this.vente.fevrier++
+                            break;
+                        case 3:
+                            this.vente.mars++
+                            break;
+                        case 4:
+                            this.vente.avril++
+                            break;
+                        case 5:
+                            this.vente.mai++
+                            break;
+                        case 6:
+                            this.vente.juin++
+                            break;
+                        case 7:
+                            this.vente.juillet++
+                            break;
+                        case 8:
+                            this.vente.aout++
+                            break;
+                        case 9:
+                            this.vente.septembre++
+                            break;
+                        case 10:
+                            this.vente.octobre++
+                            break;
+                        case 11:
+                            this.vente.novembre++
+                            break;
+                        case 12:
+                            this.vente.decembre++
+                            break;
+                    }
+                } 
             },
             graphBar() {
                 var ctx = this.$el.querySelector(".graphBar");
@@ -151,11 +224,16 @@ export default {
                 var myChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: ["Janvier", "Féfrier", "Mars", "Avril", "Mais", "Juin"],
+                        labels: ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin","Juillet","Aout","Septembre","Octobre","Novembre","Decembre"],
                         datasets: [{
-                            label: 'NB of Votes',
-                            data: [this.cat1.length, 19, 3, 5, 2, 3],
+                            data: [this.userjanvier, this.userfevrier,this.usermars, this.useravril, this.usermai, this.userjuin,this.userjuillet,this.useraout,this.userseptembre,this.useroctobre,this.usernovembre,this.userdecembre],
                             backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
                                 'rgba(255, 206, 86, 0.2)',
@@ -169,12 +247,21 @@ export default {
                                 'rgba(255, 206, 86, 1)',
                                 'rgba(75, 192, 192, 1)',
                                 'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
                             ],
                             borderWidth: 1
                         }]
                     },
                     options: {
+                        legend: {
+                            display: false,
+                        },
                         scales: {
                             yAxes: [{
                                 ticks: {
@@ -191,33 +278,33 @@ export default {
                 var myLineChart = new Chart(ctx, {
                     type: 'line',
                     data: {
-                        labels: [10, 100, 1000, 10000, 100000, 1000000],
+                        labels: ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin","Juillet","Aout","Septembre","Octobre","Novembre","Decembre"],
                         datasets: [{
-                            label: 'Nb des Votes',
-                            data: [10, 20, 30, 1000, 50, 60],
+                            data: [this.vente.janvier, this.vente.fevrier,this.vente.mars, this.vente.avril, this.vente.mai, this.vente.juin,this.vente.juillet,this.vente.aout,this.vente.septembre,this.vente.octobre,this.vente.novembre,this.vente.decembre],
                             pointBackgroundColor:[
-                                'rgba(255,99,132,1)'
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
                             ],
                             fill : false,
                             borderColor : 'rgba(215, 220, 44, 0.9)',
                             pointStyle:'triangle'
                         }]
                     },
-                    options: {}
-                });
-            },
-            graphPie(){
-                var ctx = this.$el.querySelector(".pie");
-                var myPieChart = new Chart(ctx,{
-                    type: 'pie',
-                    data: {
-                        labels: ['Jeux', 'Vetement','Technologie'],
-                        datasets: [{
-                            data: [20, 50, 30],
-                            backgroundColor: ['rgba(215, 220, 44, 0.9)','rgba(215, 22, 44, 0.9)','rgba(88, 162, 5, 0.9)']
-                        }]
-                    },
-                    options: {}
+                    options: {
+                        legend: {
+                            display: false,
+                        }
+                    }
                 });
             },
             graphDognut(){
@@ -229,20 +316,6 @@ export default {
                         datasets: [{
                             data: [this.cat1.length, this.cat2.length, this.cat3.length,this.cat4.length],
                             backgroundColor: ['rgba(215, 220, 44, 0.9)','rgba(215, 22, 44, 0.9)','rgba(88, 162, 5, 0.9)','#483D8B']
-                        }]
-                    },
-                    options: {}
-                });
-            },
-            graphPolar(){
-                var ctx = this.$el.querySelector(".polar");
-                var myPolarChart = new Chart(ctx, {
-                    type: 'polarArea',
-                    data: {
-                        labels: ['Jeux', 'Vetement','Technologie'],
-                        datasets: [{
-                            data: [20, 50, 30],
-                            backgroundColor: ['rgba(215, 220, 44, 0.9)','rgba(215, 22, 44, 0.9)','rgba(88, 162, 5, 0.9)']
                         }]
                     },
                     options: {}
