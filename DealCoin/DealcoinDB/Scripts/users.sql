@@ -14,6 +14,7 @@ role varchar(35) ,
 status int DEFAULT '0',
 visits int DEFAULT '0',
 last_login date,
+first_login date,
 
 constraint PK_users primary key(userId),
 constraint UK_users_email unique(email)

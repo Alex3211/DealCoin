@@ -20,6 +20,11 @@ namespace DealCoin.Services
             User user = _userLink.getUser(email);
             return Result.Success(Status.Ok, user);
         }
+        public Result<User> getUserId(int id)
+        {
+            User user = _userLink.getUserId(id);
+            return Result.Success(Status.Ok, user);
+        }
 
         public Result<IEnumerable<User>> getAllUser()
         {
@@ -28,8 +33,9 @@ namespace DealCoin.Services
 
         public bool CreatePasswordUser( string email, string password )
         {
-            if(_userLink.FindByEmail( email ) != null ) return false;
-            _userLink.CreatePasswordUser( email, _passwordHasher.HashPassword( password ) );
+            DateTime Date = DateTime.Now;
+            if (_userLink.FindByEmail( email ) != null ) return false;
+            _userLink.CreatePasswordUser( email, _passwordHasher.HashPassword( password ),Date );
             return true;
         }
 

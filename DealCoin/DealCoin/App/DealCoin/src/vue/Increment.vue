@@ -9,6 +9,14 @@ import { mapActions } from 'vuex'
 
 export default {
   name: 'increment',
+  data() {
+            return {
+            
+            }
+        },
+        mounted() {
+            
+        },
   methods:{
     ...mapActions(['increment'])
 

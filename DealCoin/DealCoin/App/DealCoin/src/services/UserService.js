@@ -12,6 +12,10 @@ class UserService {
     {
         return await getAsync(endpoint, email, AuthService.accessToken);
     }
+    async getUserByIdAsync(id)
+    {
+        return await getAsync(endpoint, 'Id/'+id, AuthService.accessToken);
+    }
     async getAllUserAsync()
     {
         return await getAsync(endpoint, 'All/', AuthService.accessToken);

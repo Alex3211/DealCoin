@@ -17,6 +17,7 @@ delivery_departement varchar(255) null,
 delivery_city varchar(255) null,
 delivery_postale varchar(255) null,
 shipping_cost decimal(10,2) null,
+sales_date date,
  
 constraint PK_orders primary key(ordersId),
 constraint FK_orders_users foreign key(usersId) references dc.users(userId)

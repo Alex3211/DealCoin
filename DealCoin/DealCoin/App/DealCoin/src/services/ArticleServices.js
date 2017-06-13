@@ -3,11 +3,10 @@ import AuthService from './AuthService';
 
 const endpoint = "/api/article";
 
-class ArticlesApiService {
+class ArticleServices {
     constructor() {
 
     }
-
     async getArticleListAsync() {
         return await getArticleAsync(endpoint,AuthService.accessToken);
     }
@@ -28,5 +27,4 @@ class ArticlesApiService {
         return await deleteAsync(endpoint,'delete/'+Id, AuthService.accessToken);
     }
 }
-
-export default new ArticlesApiService()
+export default new ArticleServices()

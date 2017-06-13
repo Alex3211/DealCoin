@@ -12,6 +12,12 @@
             <p>{{Articleid.price}}</p>
             <p>Mis a jour le {{Articleid.updated}}</p>
         </router-link>
+        <iframe v-if="this.bool == true"
+          width="600"
+          height="450"
+          frameborder="0" style="border:0"
+          :src="url" allowfullscreen>
+        </iframe>
       </div>
   <div class="col-md-4"></div>
   </div>
@@ -45,20 +51,35 @@ a {
 
 <script>
 import Connexion from './connexion.vue'
+import AuthService from '../services/AuthService.js'
+import UserService from '../services/UserService.js'
 
 export default {
   data() {
     return {
-      Articleid: 'null'
+      Articleid: 'null',
+      user: {},
+      url:'https://www.google.com/maps/embed/v1/place?key=AIzaSyB_yRoeiBszCEHDf88Rnv0c9tX_eilmL7o&q=',
+      bool: false
     }
+  },
+  async mounted(){
+    var q = this.$route.query.article
+    this.Articleid = q
+    this.loadModelUser();
+  }, 
+  methods: {
+    loadModelUser: async function() {
+  var Model2= await UserService.getUserByIdAsync(this.Articleid.userId);
+  this.user=Model2.content;
+  this.url += this.user.city;
+  this.bool = true;
+  //this.model.userId = this.model.content.userId;
   },
   components: {
     // <my-component> will only be available in parent's template
     'connexion': Connexion
-  },       
-  mounted: function() {
-  var q = this.$route.query.article
-  this.Articleid = q
   }
 }
+};
 </script>

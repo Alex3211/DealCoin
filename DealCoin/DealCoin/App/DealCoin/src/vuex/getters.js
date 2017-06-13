@@ -2,3 +2,4 @@ export const isLoading = ({ app }) => app.isLoading // eq. export const isLoadin
 export const getCount = state => state.panier.count
 export const getUser = state => state.User.user
 export const getStatut = state => state.Statut.status
+export const getArticle = state => state.panier.list

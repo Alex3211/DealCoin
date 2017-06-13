@@ -38,7 +38,7 @@
                         <router-link to="/MyArticles"><a href="#" class="Element">Mes articles</a></router-link>
                     </li>
                     <li v-if="services.isConnected">
-                        <router-link to="">Panier <span class="badge">{{ getCount }}</span></router-link>
+                        <router-link to="/panier">Panier <span class="badge">{{ getCount }}</span></router-link>
                     </li>
                     <li v-if="services.isConnected">
                         <router-link to="/Account">Mon compte</router-link>
