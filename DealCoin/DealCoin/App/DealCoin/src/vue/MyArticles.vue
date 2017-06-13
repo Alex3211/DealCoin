@@ -96,7 +96,7 @@ export default {
     return {
       articleL: [],
       PaginatedArticlesList: [],
-      itemPerPage: 4,
+      itemPerPage: 8,
       itemPage: 1,
       model: {
             userId : null,

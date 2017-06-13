@@ -3,7 +3,7 @@
         <div class="container">
         <img src="../assets/logo.png">
         <div class="row">
-            <h1>Modifier votre article</h1>
+            <h1>Editer votre article</h1>
             <form @submit="onSubmit($event)" class="form-horizontal" role="form">
                 <div class="form-group">
                     <label class="col-lg-1 control-label">Catégorie:</label>
@@ -22,10 +22,16 @@
                     <br>
                 </div> 
 
-                <div class="form-group">
+                <div class="form-group" id="app">
                     <label class="col-lg-1 control-label">Photo:</label>
                     <div class="col-lg-11">
-                    <input class="form-control" v-model="model.photo" type="text">
+                            <div v-if="!image">
+                            <input type="file" @change="onFileChange" v.model="model.photo">
+                        </div>
+                        <div v-else>
+                            <img width="300" :src="image" />
+                            <button @click="removeImage">Remove image</button>
+                        </div>
                     </div>
                     <br>
                 </div> 
@@ -76,8 +82,20 @@ li {
 a {
   color: #42b983;
 }
-</style>
+div.app {
+     text-align: center;
 
+img {
+  width: 30%;
+  margin: auto;
+  display: block;
+  margin-bottom: 10px;
+}
+}
+</style>
+<script>
+
+</script>
 <script>
 import UserService from '../services/UserService.js'
 import AuthService from '../services/AuthService.js'
@@ -97,7 +115,8 @@ export default {
             desc1:this.$route.query.article.desc1,
             price : this.$route.query.article.price,
         },
-        model1:{}
+        model1:{},
+        image:this.$route.query.article.photo
     }
   },
   async mounted(){
@@ -110,10 +129,30 @@ export default {
       var e = await CategoryApiService.getCategoryListAsync();
       this.category = e.content;
     },
+    onFileChange(e) {
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length)
+        return;
+      this.createImage(files[0]);
+    },
+    createImage(file) {
+      var image = new Image();
+      var reader = new FileReader();
+      var vm = this;
+
+      reader.onload = (e) => {
+        vm.image = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+    removeImage: function (e) {
+      this.image = '';
+    },
     onSubmit: async function(e) {
         e.preventDefault();
         var result = null;
         this.model.categoriesId = document.getElementById("test").value;
+        this.model.photo = this.image;
         if (this.model.title.length == 0)
             this.model.title = 0;   
         if(this.model.userId == this.$route.query.article.userId)result = await articleApiService.putArticleListAsync(this.model);

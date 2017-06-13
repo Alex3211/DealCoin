@@ -1,26 +1,12 @@
 <template>
-    <div class="articles" v-if="this.$route.fullPath == '/articles' ">
-        <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}">
-            <p>{{Articleid.title}}</p>
-        </router-link>
+    <div class="thumbnail">
+      <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}">
+        <img width="150" v-bind:src="Articleid.photo" />
+      </router-link>
+      <div class="caption">
+        <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}"><h3>{{Articleid.title}}</h3></router-link>
+        <p>{{Articleid.desc1}}</p>
         <p>{{Articleid.price}}</p>
-        <p>{{Articleid.posted_date}}</p>  
-    <div>
-      <button v-on:click="addarticle(Articleid)">Ajouter au panier</button>
-    </div>
-    </div>
-    <div class="articles" v-else-if="this.$route.fullPath == '/MyArticles' ">
-      <p>{{Articleid.title}}</p>
-      <p>{{Articleid.price}}</p>
-      <p>{{Articleid.posted_date}}</p>
-      <p><img v-bind:src="Articleid.photo" /></p>
-      <div class="btn-group" role="group" aria-label="...">
-        <router-link v-bind:to="{ path: 'EditArticle', query: { article: Articleid }}">
-          <button type="button" class="btn btn-default">Modifier</button>
-        </router-link>
-        <router-link v-bind:to="{ path: 'DelArticle', query: { article: Articleid }}">
-          <button type="button" class="btn btn-default">Supprimer</button>
-        </router-link>
       </div>
     </div>
 </template>
