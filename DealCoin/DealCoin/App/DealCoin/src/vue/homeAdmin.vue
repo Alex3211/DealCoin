@@ -13,9 +13,6 @@
                 </div>
             </nav>
             <div class="col-md-3">
-                <canvas class="myChart"></canvas>
-            </div>
-            <div class="col-md-3">
                 <canvas class="graphBar"></canvas>
             </div>
             <div class="col-md-3">
@@ -53,7 +50,19 @@ export default {
                 cat1: [],
                 cat2: [],
                 cat3: [],
-                cat4:[]
+                cat4:[],
+                userjanvier:0,
+                userfevrier:0,
+                usermars:0,
+                useravril:0,
+                usermai:0,
+                userjuin:0,
+                userjuillet:0,
+                useraout:0,
+                userseptembre:0,
+                useroctobre:0,
+                usernovembre:0,
+                userdecembre:0,
             }
         },
        async mounted() {
@@ -61,7 +70,6 @@ export default {
            await this.loadUser();
            await this.sortArticle();
            await this.sortUser();
-            this.displayGraph();
             this.graphBar();
             this.graphLine();
             this.graphPie();
@@ -102,55 +110,48 @@ export default {
                 } 
             },
             sortUser: async function(){
-                var now = moment().add(this.user.content[3].first_Login);
-                console.log( now.month()+1 );
-                console.log("rentrer"+this.user.content[3].first_Login);
-                for(var i=0;i<this.user.length;i++){
-                    console.log("rentrer"+this.user[i].first_Login.getMonth().toString());
-                    if(this.user[i].first_Login.getMonth() == 6)
-                    {
-                        console.log("rentrer");
+                for(var i=0;i<this.user.content.length;i++){
+                    var date = moment(this.user.content[i].first_Login, moment.ISO_8601);
+                    
+                    switch(date.month()+1) {
+                        case 1:
+                            this.userjanvier++
+                            break;
+                        case 2:
+                            this.userfevrier++
+                            break;
+                        case 3:
+                            this.usermars++
+                            break;
+                        case 4:
+                            this.useravril++
+                            break;
+                        case 5:
+                            this.usermai++
+                            break;
+                        case 6:
+                            this.userjuin++
+                            break;
+                        case 7:
+                            this.userjuillet++
+                            break;
+                        case 8:
+                            this.useraout++
+                            break;
+                        case 9:
+                            this.userseptembre++
+                            break;
+                        case 10:
+                            this.useroctobre++
+                            break;
+                        case 11:
+                            this.usernovembre++
+                            break;
+                        case 12:
+                            this.userdecembre++
+                            break;
                     }
                 } 
-            },
-            displayGraph() {
-                var ctx = this.$el.querySelector(".myChart");
-                var myChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-                        datasets: [{
-                            label: 'NB of Votes',
-                            data: [12, 19, 3, 5, 2, 3],
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255,99,132,1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero:true
-                                }
-                            }]
-                        }
-                    }
-                });
             },
             graphBar() {
                 var ctx = this.$el.querySelector(".graphBar");
@@ -158,10 +159,10 @@ export default {
                 var myChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: ["Janvier", "Féfrier", "Mars", "Avril", "Mais", "Juin"],
+                        labels: ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin","Juillet","Aout","Septembre","Octobre","Novembre","Decembre"],
                         datasets: [{
-                            label: 'NB of Votes',
-                            data: [this.cat1.length, 19, 3, 5, 2, 3],
+                            label: 'Nombre Crétion User/Mois',
+                            data: [this.userjanvier, this.userfevrier,this.usermars, this.useravril, this.usermai, this.userjuin,this.userjuillet,this.useraout,this.userseptembre,this.useroctobre,this.usernovembre,this.userdecembre],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
