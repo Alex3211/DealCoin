@@ -63,7 +63,7 @@ function requireAuth (to, from, next)  {
  */
 const router = new VueRouter({
   mode: 'history',
-  base: '/',
+  base: '/Home',
   routes: [
     {
       path: '/',
@@ -128,7 +128,7 @@ const router = new VueRouter({
     {
       path: '/Account',
       name: 'Account',
-      component: Account
+      component: Account,beforeEnter: requireAuth
     },
     {
       path: '/homeMembers',

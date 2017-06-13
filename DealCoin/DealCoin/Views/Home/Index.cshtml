@@ -1,4 +1,10 @@
-﻿﻿
+﻿@using DealCoin.Services;
+@{
+    Token token = (Token)ViewData["Token"];
+    string email = (string)ViewData["Email"];
+    IEnumerable<string> providers = (IEnumerable<string>)ViewData["Providers"];
+    string providerNames = providers == null ? string.Empty : string.Join(",", providers.Select(p => string.Format("'{0}'", p)));
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +13,44 @@
 </head>
 <body>
     <div id="app"></div>
+    <script>
+        (function () {
+            var dealCoin = (function () {
+                var identity = null;
+
+                var getIdentity = function () {
+                    return identity;
+                };
+
+                var setIdentity = function (i) {
+                    identity = i;
+                };
+
+                return {
+                    getIdentity: getIdentity,
+                    setIdentity: setIdentity
+                };
+            })();
+
+            this.DealCoin = this.DealCoin || {};
+            this.DealCoin = dealCoin;
+        })();
+    </script>
+    @if (token != null && email != null)
+    {
+        <script>
+            (function () {
+                DealCoin.setIdentity({
+                    bearer: {
+                        access_token: '@token.AccessToken',
+                        expires_in: @token.ExpiresIn
+                    },
+                    email: '@email',
+                    boundProviders: [@Html.Raw( providerNames )]
+                });
+            })();
+        </script>
+    }
     <environment names="Development">
         <script type="text/javascript" src="http://localhost:8080/dist/build.js"></script>
     </environment>
