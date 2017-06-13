@@ -86,6 +86,7 @@ export default {
     'connexion': Connexion,
     Increment
   },
+  
   computed:{
     ...mapGetters(['getCount']),
     auth: () => AuthService
