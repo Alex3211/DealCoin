@@ -28,6 +28,9 @@ namespace DealCoin.Models.AccountView
         [Required]
         public string Price { get; set; }
 
+        [Required]
+        public int visits { get; set; }
+
         public DateTime posted_date { get; set; }
         public DateTime created { get; set; }
         public DateTime created_pk { get; set; }

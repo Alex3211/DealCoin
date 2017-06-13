@@ -102,16 +102,9 @@ export default {
                 } 
             },
             sortUser: async function(){
-                var now = moment().add(this.user.content[3].first_Login);
+                var now = moment().add(this.user.content[2].first_Login);
                 console.log( now.month()+1 );
-                console.log("rentrer"+this.user.content[3].first_Login);
-                for(var i=0;i<this.user.length;i++){
-                    console.log("rentrer"+this.user[i].first_Login.getMonth().toString());
-                    if(this.user[i].first_Login.getMonth() == 6)
-                    {
-                        console.log("rentrer");
-                    }
-                } 
+                console.log("rentrer"+this.user.content[2].first_Login);
             },
             displayGraph() {
                 var ctx = this.$el.querySelector(".myChart");

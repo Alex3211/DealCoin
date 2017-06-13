@@ -1,48 +1,36 @@
 <template>
-
-<div class="container">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <router-link to="/articles"><a href="#" class="MakaleYazariAdi">Retour aux articles</a></router-link>
-            <div class="btn-group" style="float:right;" v-if="this.email == user.email">
-            	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            		<span class="glyphicon glyphicon-cog"></span>
-            		<span class="sr-only">Toggle Dropdown</span>
-            	</button>
-            	<ul class="dropdown-menu">
-            		<li><router-link v-bind:to="{ path: 'EditArticle', query: { article: Articleid }}"><a href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit</a></router-link></li>
-            		<li role="separator" class="divider"></li>
-            		<li><router-link v-bind:to="{ path: 'DelArticle', query: { article: Articleid }}"><a href="#"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> Delete</a></router-link></li>
-            	</ul>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-        <div class="panel-body">
-            <div class="media">
-                <div class="media-left">
-                    <img class="media-object" width="300" v-bind:src="Articleid.photo" />
-                    <iframe v-if="this.bool == true"
-                      width="300" height="150"
-                      frameborder="0" style="border:0"
-                      :src="url" allowfullscreen>
-                    </iframe>
-                </div>
-                <div class="media-body">
-                <h4 class="media-heading">{{Articleid.title}}</h4>
-                    <p>{{Articleid.desc1}}</p>
-                    <p>{{Articleid.price}}</p>
-                    <p>Crée le {{Articleid.created}}</p>
-                    <p>Mis a jour le {{Articleid.updated}}</p>
-                                
-                <div class="clearfix"></div>
-               </div>
-            </div>
-        </div>
-    </div>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+      <div class="articles">
+        <router-link to="/articles">
+            <p>{{Articleid.productsId}}</p>
+            <p>{{Articleid.title}}</p>
+            <p>photo</p>
+            <p>Catégorie : {{Articleid.categoriesId}}</p>
+            <p>Crée le {{Articleid.created}}</p>
+            <p>{{Articleid.price}}</p>
+            <p>{{Articleid.visits}}</p>
+            <p>Mis a jour le {{Articleid.updated}}</p>
+        </router-link>
+        <iframe v-if="this.bool == true"
+          width="600"
+          height="450"
+          frameborder="0" style="border:0"
+          :src="url" allowfullscreen>
+        </iframe>
+      </div>
+  <div class="col-md-4"></div>
+  </div>
 </div>
 </template>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.articles{
+    width: 250px;
+    height: 250px;
+  border: 1px solid black;
+}
 h1, h2 {
   font-weight: normal;
 }
@@ -72,13 +60,11 @@ export default {
     return {
       Articleid: 'null',
       user: {},
-      email:'',
       url:'https://www.google.com/maps/embed/v1/place?key=AIzaSyB_yRoeiBszCEHDf88Rnv0c9tX_eilmL7o&q=',
       bool: false
     }
   },
   async mounted(){
-    this.email = AuthService.hisEmail();
     var q = this.$route.query.article
     this.Articleid = q
     this.loadModelUser();
@@ -89,6 +75,8 @@ export default {
   this.user=Model2.content;
   this.url += this.user.city;
   this.bool = true;
+  this.Articleid.visits++;
+
   //this.model.userId = this.model.content.userId;
   },
   components: {
