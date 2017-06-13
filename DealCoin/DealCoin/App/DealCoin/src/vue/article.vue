@@ -1,12 +1,24 @@
 <template>
-    <div class="thumbnail">
+    <div v-if="this.$route.path !== '/MyArticles'" class="thumbnail">
       <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}"
-      v-on:click.native="onVisited(Articleid)">
+       v-on:click.native="onVisited(Articleid)">
         <img width="150" v-bind:src="Articleid.photo" />
       </router-link>
       <div class="caption">
         <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}"
         v-on:click.native="onVisited(Articleid)"><h3>{{Articleid.title}}</h3></router-link>
+        <p>{{Articleid.desc1}}</p>
+        <p>{{Articleid.price}}</p>
+        <p>{{Articleid.visits}}</p> 
+        <Increment></Increment>
+      </div>
+    </div>
+      <div v-else class="thumbnail">
+      <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}">
+        <img width="150" v-bind:src="Articleid.photo" />
+      </router-link>
+      <div class="caption">
+        <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}"><h3>{{Articleid.title}}</h3></router-link>
         <p>{{Articleid.desc1}}</p>
         <p>{{Articleid.price}}</p>
         <p>{{Articleid.visits}}</p> 
@@ -46,8 +58,7 @@ export default {
       this.setArticle(article)
     },
     onVisited: async function(e){
-      console.log("tesett");
-      await ArticleServices.putNbVisitsAsync(e);
+        await ArticleServices.putNbVisitsAsync(e);
     }
   }
 }
