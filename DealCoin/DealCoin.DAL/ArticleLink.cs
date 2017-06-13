@@ -63,5 +63,15 @@ namespace DealCoin.DAL
                     new { ID = id });
             }
         }
+
+        public void UpdateNbVisits(int _productsId, int _visits)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                con.Query<User>(
+                   "update dc.products set  visits=(@visits+1) where productsId=@productsId;",
+               new { productsId = _productsId, visits = _visits });
+            }
+        }
     }
 }

@@ -35,5 +35,11 @@ namespace DealCoin.Services
         {
             return Result.Success(Status.Ok, _articleLink.DeleteArticlesR(id));
         }
+
+        public bool UpdateNbVisits(int _userId, int _visits)
+        {
+            _articleLink.UpdateNbVisits(_userId, _visits);
+            return (true);
+        }
     }
 }
