@@ -70,10 +70,12 @@ import AuthService from '../services/AuthService.js'
 import UserService from '../services/UserService.js'
 import Increment from './Increment.vue'
 import { mapGetters,mapActions } from 'vuex'
+import CategoryApiService from '../services/CategoryService.js'
 
 export default {
   data() {
     return {
+      category: [],
       Articleid: 'null',
       user: {},
       email:'',
@@ -96,7 +98,8 @@ export default {
     var q = this.$route.query.article
     this.Articleid = q
     this.loadModelUser();
-  }, 
+    await this.loadCategory();
+}, 
   methods: {
     ...mapActions(['increment']),
     loadModelUser: async function() {
@@ -105,10 +108,11 @@ export default {
     this.url += this.user.city;
     this.bool = true;
     this.Articleid.visits++;
-
-
-  //this.model.userId = this.model.content.userId;
-  }
+  },
+  loadCategory: async function(){
+    var e = await CategoryApiService.getCategoryListAsync();
+    this.category = e.content;
+  },
 }
 };
 </script>

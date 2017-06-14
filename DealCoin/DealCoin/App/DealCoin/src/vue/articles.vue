@@ -52,7 +52,7 @@
                 </nav>
                 <br>
                 <div class="row">
-                  <div v-for="i in PaginatedArticleList" :key="i.productsId" class="col-md-3">
+                  <div v-for="i in PaginatedArticleList" :key="i.productsId"  class="col-md-3 ">
                     <ArticlePage :id="i"></ArticlePage><br>
                   </div>
                 </div>
@@ -64,6 +64,10 @@
 </template>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.thumbnail{
+  width:250px;
+  height:300px;
+}
 h1, h2 {
   font-weight: normal;
 }
@@ -107,11 +111,9 @@ export default {
         filteredArticles: function () {
             var articles_array = this.article,
                 searchString = this.searchString;
-
             if(!searchString){
-                return articles_array;
+                return articles_array.slice(1,9);
             }
-
             searchString = searchString.trim().toLowerCase();
             articles_array = articles_array.filter(function(item){
                 if(item.title.toLowerCase().indexOf(searchString) !== -1){
@@ -119,7 +121,7 @@ export default {
                 }
             })
             // Return an array with the filtered data.
-            return articles_array;
+            return articles_array.slice(1,9);
         }
   },
   methods: {
