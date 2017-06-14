@@ -6,6 +6,26 @@
             <div class="col-lg-12 text-center">
               <div class="row">
                   <h1>DealCoin</h1>
+
+                  <ul class="navbar navbar-default">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" 
+                        aria-haspopup="true" aria-expanded="false">test <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><router-link to="">Se déconnecter</router-link></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" 
+                        aria-haspopup="true" aria-expanded="false">test <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><router-link to="">Se déconnecter</router-link></li>
+                        </ul>
+                    </li>
+                  </ul>
+
                   <div class="btn-group" role="group" aria-label="..." v-if="this.BoolSearch == false">
                     <button type="button" class="btn btn-default" v-on:click="ShowSearchArticle()">Rechercher un article</button>
                   </div>
@@ -166,7 +186,7 @@ export default {
   },
   components: {
     // <my-component> will only be available in parent's template
-    'ArticlePage': article
+    'ArticlePage': article,
   }
 }
 </script>
