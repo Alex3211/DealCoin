@@ -8,22 +8,23 @@
                   <h1>DealCoin</h1>
 
                   <ul class="navbar navbar-default">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" 
-                        aria-haspopup="true" aria-expanded="false">test <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><router-link to="">Se déconnecter </router-link></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" 
-                        aria-haspopup="true" aria-expanded="false">test <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><router-link to="">Se déconnecter</router-link></li>
-                        </ul>
-                    </li>
+                    <li class="row">  
+                      <div  v-for="category in parentCategory" :key="category.categoriesId" class="col-md-1">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" 
+                            aria-haspopup="true" aria-expanded="false">{{category.title}}<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li v-for="children in category.children" >{{children.name}}</li>
+                            </ul>
+                        </li>
+                      </div>
+                    
+                
+                  </li>
+                    
+
+                    
                   </ul>
 
                   <div class="btn-group" role="group" aria-label="..." v-if="this.BoolSearch == false">
@@ -110,11 +111,15 @@ a {
 <script>
 import article from './article.vue'
 import articleApiService from '../services/ArticleServices.js'
+import CategoryApiService from '../services/CategoryService.js'
 
 export default {
   data() {
     return {
       article: [],
+      category: [],
+    parentCategory:[],
+      childCategory:[],
       PaginatedArticleList: [],
       itemPerPage: 8,
       itemPage: 1,
@@ -125,14 +130,21 @@ export default {
   async mounted(){
     await this.loadArticle();
     this.TempTab();
+    await this.loadCategory();
+    this.filteredArticles();
+    //this.afficheParentCategory();
+    this.afficheChildCategory();
   },
   computed: {
     // A computed property that holds only those articles that match the searchString.
-        filteredArticles: function () {
+        
+  },
+  methods: {
+    filteredArticles: function () {
             var articles_array = this.article,
                 searchString = this.searchString;
             if(!searchString){
-                return articles_array.slice(1,9);
+                return articles_array
             }
             searchString = searchString.trim().toLowerCase();
             articles_array = articles_array.filter(function(item){
@@ -142,12 +154,47 @@ export default {
             })
             // Return an array with the filtered data.
             return articles_array.slice(1,9);
-        }
-  },
-  methods: {
+        },
     loadArticle: async function(){
       var e = await articleApiService.getArticleListAsync();
       this.article = e.content;
+    },
+    loadCategory: async function(){
+      var e = await CategoryApiService.getCategoryListAsync();
+      this.category = e.content;
+  },
+    afficheParentCategory: async function(){
+      var category = this.category;
+
+      for(var i=0; i<category.length;i++)
+      {
+        if(category[i].parentId==0)
+              {
+                this.parentCategory.push(category[i]);
+              }
+      }
+    },
+    afficheChildCategory: async function(){
+      var category = this.category;
+
+      for(var i=0; i<category.length;i++)
+      {
+        if(category[i].parentId==0)
+              {
+                var parentCategory = {};
+                parentCategory.title = category[i].name;
+                parentCategory.children = [];
+                for(var j=0;j<category.length;j++)
+                {
+                  if(category[j].parentId==category[i].categoriesId && category[j].parentId!==0)
+                  {
+                    parentCategory.children.push(category[j]);
+                  }
+                }
+                this.parentCategory.push(parentCategory);
+              }
+      }
+      console.log(this.parentCategory);
     },
     ShowSearchArticle: async function(){
       this.BoolSearch = !this.BoolSearch;
