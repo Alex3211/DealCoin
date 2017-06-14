@@ -1,5 +1,5 @@
 <template>
-    <div v-if="this.$route.path !== '/MyArticles'" class="thumbnail">
+    <div v-if="this.$route.path !== '/MyArticles'" class="thumbnail" >
       <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}"
        v-on:click.native="onVisited(Articleid)">
         <img width="150" v-bind:src="Articleid.photo" />
@@ -13,7 +13,7 @@
         <Increment></Increment>
       </div>
     </div>
-      <div v-else class="thumbnail">
+      <div v-else class="thumbnail" >
       <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}">
         <img width="150" v-bind:src="Articleid.photo" />
       </router-link>
@@ -42,8 +42,8 @@ export default {
   props:["id"],
   data() {
     return {
-           Articleid: this.id,
-           services: AuthService
+      Articleid: this.id,
+      services: AuthService
     }
   },
   computed:{
