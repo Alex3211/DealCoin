@@ -34,7 +34,9 @@
                     <p>{{Articleid.visits}}</p>
                     <p>Crée le {{Articleid.created}}</p>
                     <p>Mis a jour le {{Articleid.updated}}</p>
-                    <Increment></Increment>
+                    <div>
+                      <button v-on:click="addarticle(Articleid)">Ajouter au panier</button>
+                    </div>
                                 
                 <div class="clearfix"></div>
                </div>
@@ -102,6 +104,7 @@ export default {
 }, 
   methods: {
     ...mapActions(['increment']),
+    ...mapActions(['setArticle']),
     loadModelUser: async function() {
     var Model2= await UserService.getUserByIdAsync(this.Articleid.userId);
     this.user=Model2.content;
@@ -112,7 +115,13 @@ export default {
   loadCategory: async function(){
     var e = await CategoryApiService.getCategoryListAsync();
     this.category = e.content;
+
+  //this.model.userId = this.model.content.userId;
   },
+  addarticle: function (article) {
+      this.increment()
+      this.setArticle(article)
+  }
 }
 };
 </script>
