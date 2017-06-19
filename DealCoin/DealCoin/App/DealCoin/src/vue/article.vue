@@ -10,7 +10,7 @@
         <p>{{Articleid.desc1}}</p>
         <p>{{Articleid.price}}</p>
         <p>{{Articleid.visits}}</p> 
-        <Increment></Increment>
+        <button v-on:click="addarticle(Articleid)">Ajouter au panier</button>
       </div>
     </div>
       <div v-else class="thumbnail">
@@ -22,7 +22,8 @@
         <p>{{Articleid.desc1}}</p>
         <p>{{Articleid.price}}</p>
         <p>{{Articleid.visits}}</p> 
-        <Increment></Increment>
+        <button v-on:click="addarticle(Articleid)">Ajouter au panier</button>
+        
       </div>
     </div>
 </template>
@@ -54,8 +55,8 @@ export default {
     ...mapActions(['increment']),
     ...mapActions(['setArticle']),
     addarticle: function (article) {
-      this.increment()
       this.setArticle(article)
+      this.increment()
     },
     onVisited: async function(e){
         await ArticleServices.putNbVisitsAsync(e);

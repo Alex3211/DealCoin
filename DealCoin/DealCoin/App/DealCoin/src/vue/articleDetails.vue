@@ -34,7 +34,9 @@
                     <p>{{Articleid.visits}}</p>
                     <p>Crée le {{Articleid.created}}</p>
                     <p>Mis a jour le {{Articleid.updated}}</p>
-                    <Increment></Increment>
+                    <div>
+                      <button v-on:click="addarticle(Articleid)">Ajouter au panier</button>
+                    </div>
                                 
                 <div class="clearfix"></div>
                </div>
@@ -99,16 +101,19 @@ export default {
   }, 
   methods: {
     ...mapActions(['increment']),
+    ...mapActions(['setArticle']),
     loadModelUser: async function() {
     var Model2= await UserService.getUserByIdAsync(this.Articleid.userId);
     this.user=Model2.content;
     this.url += this.user.city;
     this.bool = true;
     this.Articleid.visits++;
-
-
   //this.model.userId = this.model.content.userId;
-  }
+  },
+  addarticle: function (article) {
+      this.increment()
+      this.setArticle(article)
+  },
 }
 };
 </script>
