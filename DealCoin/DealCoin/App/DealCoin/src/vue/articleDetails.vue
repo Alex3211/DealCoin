@@ -70,7 +70,6 @@ a {
 import Connexion from './connexion.vue'
 import AuthService from '../services/AuthService.js'
 import UserService from '../services/UserService.js'
-import Increment from './Increment.vue'
 import { mapGetters,mapActions } from 'vuex'
 import CategoryApiService from '../services/CategoryService.js'
 
@@ -88,7 +87,6 @@ export default {
   components: {
     // <my-component> will only be available in parent's template
     'connexion': Connexion,
-    Increment
   },
   
   computed:{

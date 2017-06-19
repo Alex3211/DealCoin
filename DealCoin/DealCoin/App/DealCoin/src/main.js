@@ -27,7 +27,6 @@ import AuthService from './services/AuthService'
 import ArticleServices from './services/ArticleServices'
 import UserService from './services/UserService'
 import SalesService from './services/SalesService'
-import Increment from './vue/Increment.vue'
 import Account from './vue/Account.vue'
 import Panier from './vue/Panier.vue'
 
@@ -119,11 +118,6 @@ const router = new VueRouter({
       path: '/article',
       name: 'article',
       component: article, beforeEnter: requireAuth
-    },
-    {
-      path: '/Increment',
-      name: 'Increment',
-      component: Increment, beforeEnter: requireAuth
     },
     {
       path: '/Account',

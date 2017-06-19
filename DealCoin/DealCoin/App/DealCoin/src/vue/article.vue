@@ -34,11 +34,9 @@ import $ from 'jquery'
 import { mapGetters,mapActions } from 'vuex'
 import AuthService from '../services/AuthService.js'
 import ArticleServices from '../services/ArticleServices.js'
-import Increment from './Increment.vue'
 
 export default {
   components: {
-    Increment
   },
   props:["id"],
   data() {
