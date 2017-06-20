@@ -1,6 +1,9 @@
 <template>
     <div class="container">
-        <div class="row">
+    <div v-if="article == 0">
+        Vous n'avez actuellement aucun article dans votre panier !
+    </div>
+        <div class="row" v-else>
             <div class="col-sm-12 col-md-10 col-md-offset-1">
                 <table class="table table-hover">
                     <thead>
@@ -11,7 +14,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="a of article" >
+                        <tr v-for="(a, index) of article" >
                             <td class="col-sm-8 col-md-6">
                             <a class="thumbnail pull-left"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
                                 <h4>{{a.title}}</h4>
@@ -19,7 +22,7 @@
                             </td>
                             <td class="col-sm-1 col-md-1 text-center"><strong>{{a.price}}</strong></td>
                             <td class="col-sm-1 col-md-1">
-                            <button type="button" class="btn btn-danger">
+                            <button type="button" class="btn btn-danger" v-on:click="Delarticle(index)">
                                 <span class="glyphicon glyphicon-remove"></span> Remove
                             </button></td>
                         </tr>
@@ -41,8 +44,9 @@
                         <tr>
                             <td>   </td>
                             <td>
+                            <button type="button" class="btn btn-info">
                             <router-link to="/articles"><i class="fa fa-list-alt fa-fw"></i>Continue Shopping</router-link>
-                            </td>
+                            </button></td>
                             <td>
                             <button type="button" class="btn btn-success">
                                 Checkout <span class="glyphicon glyphicon-play"></span>
@@ -66,7 +70,6 @@ export default {
                 totaleprix:0,
                 tva:1.9,
                 livraison:0,
-                limitlivraison:49,
                 totaletopay:0
             }
         },
@@ -75,6 +78,8 @@ export default {
         },
         methods: {
             ...mapGetters(['getArticle']),
+            ...mapActions(['delArticle']),
+            ...mapActions(['decrement']),
             loadArticle: async function(){
                 this.article = this.getArticle();
                 
@@ -89,8 +94,11 @@ export default {
                  
                 this.totaletopay = this.livraison+this.totaleprix
             },
-            addprice(value){
-                this.totaleprix += value;
+            Delarticle(i){
+                this.delArticle(i)
+                this.totaleprix = 0
+                this.loadArticle()
+                this.decrement()
             }
         }
     }

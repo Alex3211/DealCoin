@@ -2,6 +2,8 @@
 export const SET_IS_LOADING = 'SET_IS_LOADING'
 export const ERROR_HAPPENED = 'ERROR_HAPPENED'
 export const INCREMENT = 'INCREMENT'
+export const DECREMENT = 'DECREMENT'
 export const GETUSER ='GETUSER'
 export const GETSTATUT ='GETSTATUT'
 export const ADDARTICLE ='ADDARTICLE'
+export const DELLARTICLE ='DELARTICLE'
