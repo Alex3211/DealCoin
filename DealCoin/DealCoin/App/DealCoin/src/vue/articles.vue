@@ -15,7 +15,7 @@
                       <li v-for="children in category.children" v-on:click="DoCategory(children.categoriesId)"><a href="#" class="categ">{{children.name}}</a></li>
                     </ul>
                   </div>
-                  <button class="btn btn-default dropdown-toggle" v-on:click="DoCategory('')" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  <button class="btn btn-default dropdown-toggle" v-if="this.categorySearched != '' " v-on:click="DoCategory('')" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                       Rechercher sur toute les catégories
                   </button>
                 <div class="row">
@@ -27,7 +27,7 @@
                   </div>
                 </div>
 
-                  <br>
+                  
                   <div class="col-md-1"></div>
                   <div style='display:none;' class="col-md-10" id='invisible'>
                     <br>
@@ -47,7 +47,6 @@
               </div>
 
               <div v-if="this.BoolSearch == false">
-                <br>
                 <nav aria-label="Page navigation">
                   <ul class="pagination">
                     <li v-if="this.itemPage > 1" @click="pagDoUp(false)">
@@ -116,20 +115,15 @@ export default {
     await this.loadArticle();
     await this.TempTab();
     await this.loadCategory();
-    this.filteredArticles();
-    //this.afficheParentCategory();
     this.afficheChildCategory();
   },
   computed: {
     // A computed property that holds only those articles that match the searchString.
-        
-  },
-  methods: {
-    filteredArticles: function () {
+            filteredArticles: function () {
             var articles_array = this.article,
                 searchString = this.searchString;
             if(!searchString){
-                return articles_array
+                return articles_array;
             }
             searchString = searchString.trim().toLowerCase();
             articles_array = articles_array.filter(function(item){
@@ -138,8 +132,12 @@ export default {
                 }
             })
             // Return an array with the filtered data.
+            console.log(articles_array);
             return articles_array.slice(1,9);
         },
+  },
+  methods: {
+
     loadArticle: async function(){
       var e = await articleApiService.getArticleListAsync();
       this.article = e.content;
@@ -148,18 +146,7 @@ export default {
       var e = await CategoryApiService.getCategoryListAsync();
       this.category = e.content;
   },
-    afficheParentCategory: async function(){
-      var category = this.category;
-
-      for(var i=0; i<category.length;i++)
-      {
-        if(category[i].parentId==0)
-              {
-                this.parentCategory.push(category[i]);
-              }
-      }
-    },
-    afficheChildCategory: async function(){
+  afficheChildCategory: async function(){
       var category = this.category;
 
       for(var i=0; i<category.length;i++)
@@ -179,7 +166,6 @@ export default {
                 this.parentCategory.push(parentCategory);
               }
       }
-      console.log(this.parentCategory);
     },
     ShowSearchArticle: async function(){
       this.BoolSearch = !this.BoolSearch;
