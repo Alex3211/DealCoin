@@ -4,35 +4,29 @@
         <img src="../assets/logo.png">
         <div class="row">
             <div class="col-lg-12 text-center">
-              <div class="row">
+              <div class="container">
                   <h1>DealCoin</h1>
-
-                  <ul class="navbar navbar-default">
-                    <li class="row">  
-                      <div  v-for="category in parentCategory" :key="category.categoriesId" class="col-md-1">
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" 
-                            aria-haspopup="true" aria-expanded="false">{{category.title}}<span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li v-for="children in category.children" >{{children.name}}</li>
-                            </ul>
-                        </li>
-                      </div>
-                    
-                
-                  </li>
-                    
-
-                    
-                  </ul>
-
+                  <div class="dropdown " v-for="category in parentCategory" :key="category.categoriesId">
+                    <button class="btn btn-default dropdown-toggle col-md-3" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                      {{category.title}}
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                      <li v-for="children in category.children" v-on:click="DoCategory(children.categoriesId)"><a href="#" class="categ">{{children.name}}</a></li>
+                    </ul>
+                  </div>
+                  <button class="btn btn-default dropdown-toggle" v-on:click="DoCategory('')" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                      Rechercher sur toute les catégories
+                  </button>
+                <div class="row">
                   <div class="btn-group" role="group" aria-label="..." v-if="this.BoolSearch == false">
                     <button type="button" class="btn btn-default" v-on:click="ShowSearchArticle()">Rechercher un article</button>
                   </div>
                   <div class="btn-group" role="group" aria-label="..." v-else-if="this.BoolSearch == true">
                     <button type="button" class="btn btn-default" v-on:click="ShowSearchArticle()">Arrêter la recherche</button>
                   </div>
+                </div>
+
                   <br>
                   <div class="col-md-1"></div>
                   <div style='display:none;' class="col-md-10" id='invisible'>
@@ -76,6 +70,7 @@
                   <div v-for="i in PaginatedArticleList" :key="i.productsId"  class="col-md-3 ">
                     <ArticlePage :id="i"></ArticlePage><br>
                   </div>
+                  <div v-if="PaginatedArticleList == 0"> Pas d'article pour le moment </div>
                 </div>
                 </div>
             </div>
@@ -85,24 +80,13 @@
 </template>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.categ:hover{
+  background-color:black;
+}
 .thumbnail{
   width:250px;
   height:300px;
 }
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
 a {
   color: #42b983;
 }
@@ -118,18 +102,19 @@ export default {
     return {
       article: [],
       category: [],
-    parentCategory:[],
+      parentCategory:[],
       childCategory:[],
       PaginatedArticleList: [],
       itemPerPage: 8,
       itemPage: 1,
       searchString:"",
-      BoolSearch : false
+      BoolSearch : false,
+      categorySearched: ""
     }
   },
   async mounted(){
     await this.loadArticle();
-    this.TempTab();
+    await this.TempTab();
     await this.loadCategory();
     this.filteredArticles();
     //this.afficheParentCategory();
@@ -209,6 +194,7 @@ export default {
       this.itemPage = page;
       this.TempTab();
     },
+
     TempTab: function(){
         var paginatedArticleList = [];
       if(this.itemPage == 1 ) { 
@@ -216,9 +202,16 @@ export default {
       } else { 
         var i = (this.itemPage-1)*this.itemPerPage;
       }
-      for(var u = i; u < (this.itemPerPage*this.itemPage); u++ ){
+      if(this.categorySearched == "") {
+        for(var u = i; u < (this.itemPerPage*this.itemPage); u++ ){
           if(this.article[u]) paginatedArticleList.push(this.article[u]);
+        }
+      } else {
+        for(var u = i; u < (this.itemPerPage*this.itemPage); u++ ){
+          if(this.article[u] && this.article[u].categoriesId == this.categorySearched) paginatedArticleList.push(this.article[u]);
+        }
       }
+
       this.PaginatedArticleList = paginatedArticleList;
     },
     pagDoUp: function(bool){
@@ -229,6 +222,11 @@ export default {
         this.itemPage = this.itemPage - 1;
       }
       this.TempTab();
+    },
+    DoCategory: function(categ){
+        this.pagi(1);
+        this.categorySearched = categ;
+        this.TempTab();
     }
   },
   components: {
