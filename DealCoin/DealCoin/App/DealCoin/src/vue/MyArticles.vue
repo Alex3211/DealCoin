@@ -1,66 +1,60 @@
 <template>
-  <div class="hello">
-        <div class="container">
-        <img src="../assets/logo.png">
+  <div class="container">
+      <div class="container">
         <div class="row">
-            <div class="col-lg-12 text-center">
-              <div class="row">
-                  <h1>Vos articles</h1>
-                  <router-link to="/InsertArticle"><button type="button" class="btn btn-default">Ajouter un article</button></router-link> 
-                  <div class="btn-group" role="group" aria-label="..." v-if="this.BoolSearch == false">
-                    <button type="button" class="btn btn-default" v-on:click="ShowSearchArticle()">Rechercher un article</button>
-                  </div>
-                  <div class="btn-group" role="group" aria-label="..." v-else-if="this.BoolSearch == true">
-                    <button type="button" class="btn btn-default" v-on:click="ShowSearchArticle()">Arrêter la recherche</button>
-                  </div>
-                  <br>
-                  <div class="col-md-1"></div>
-                  <div style='display:none;' class="col-md-10" id='invisible'>
-                    <br>
-                    <div class="input-group input-group-lg">
-                      <span class="input-group-addon" id="sizing-addon1">Recherche d'article</span>
-                      <input type="text" v-model="searchString" placeholder="Rechercher un article..." class="form-control"  aria-describedby="sizing-addon1"/>
-                    </div>
-                    <br><br>
-                    
-                  </div>       
-              </div>
-            <div v-if="this.BoolSearch == true">
-                <div class="row">
-                  <div v-for="article in filteredArticles" :key="article.productsId" class="col-md-3">
-                    <ArticlePage :id="article"></ArticlePage><br>
-                  </div>
-                </div>
+            <router-link to="/InsertArticle"><button type="button" class="btn btn-default">Ajouter un article</button></router-link> 
+            <div class="btn-group" role="group" aria-label="..." v-if="this.BoolSearch == false">
+              <button type="button" class="btn btn-default" v-on:click="ShowSearchArticle()">Rechercher un article</button>
             </div>
-
-            <div v-if="this.BoolSearch == false">
-                <br>
-              <nav aria-label="Page navigation">
-                <ul class="pagination">
-                  <li v-if="this.itemPage > 1" @click="pagDoUp(false)">
-                    <a href="#" aria-label="Previous">
-                      <span aria-hidden="true" >&laquo;</span>
-                    </a>
-                  </li>
-                  <li v-for="n in (Math.ceil(articleL.length/this.itemPerPage))" @click="pagi(n)">
-                    <a href="#" >{{n}}</a>
-                  </li>
-                  <li v-if=" this.itemPage < (Math.ceil(articleL.length/this.itemPerPage)) " @click="pagDoUp(true)">
-                    <a href="#" aria-label="Next">
-                      <span aria-hidden="true" >&raquo;</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-              <div class="row">
-                <br>
-                <div v-for="i in PaginatedArticlesList" :key="i.productsId" class="col-md-3">
-                    <ArticlePage :id="i"></ArticlePage><br>
-                </div>
+            <div class="btn-group" role="group" aria-label="..." v-else-if="this.BoolSearch == true">
+              <button type="button" class="btn btn-default" v-on:click="ShowSearchArticle()">Arrêter la recherche</button>
+            </div>
+            <br>
+            <div class="col-md-1"></div>
+            <div style='display:none;' class="col-md-10" id='invisible'>
+              <br>
+              <div class="input-group input-group-lg">
+                <span class="input-group-addon" id="sizing-addon1">Recherche d'article</span>
+                <input type="text" v-model="searchString" placeholder="Rechercher un article..." class="form-control"  aria-describedby="sizing-addon1"/>
               </div>
+              <br><br>
+              
+            </div>       
+        </div>
+      <div v-if="this.BoolSearch == true">
+          <div class="row">
+            <div v-for="article in filteredArticles" :key="article.productsId" class="col-md-3">
+              <ArticlePage :id="article"></ArticlePage><br>
             </div>
           </div>
+      </div>
+
+      <div v-if="this.BoolSearch == false">
+          <br>
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            <li v-if="this.itemPage > 1" @click="pagDoUp(false)">
+              <a href="#" aria-label="Previous">
+                <span aria-hidden="true" >&laquo;</span>
+              </a>
+            </li>
+            <li v-for="n in (Math.ceil(articleL.length/this.itemPerPage))" @click="pagi(n)">
+              <a href="#" >{{n}}</a>
+            </li>
+            <li v-if=" this.itemPage < (Math.ceil(articleL.length/this.itemPerPage)) " @click="pagDoUp(true)">
+              <a href="#" aria-label="Next">
+                <span aria-hidden="true" >&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="row">
+          <br>
+          <div v-for="i in PaginatedArticlesList" :key="i.productsId" class="col-md-3">
+              <ArticlePage :id="i"></ArticlePage><br>
+          </div>
         </div>
+      </div>
     </div>
   </div>
 </template>
