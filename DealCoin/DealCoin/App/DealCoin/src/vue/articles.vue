@@ -125,7 +125,7 @@ export default {
             })
             // Return an array with the filtered data.
             console.log(articles_array);
-            return articles_array.slice(1,9);
+            return articles_array.slice(0,8);
         },
   },
   methods: {
@@ -140,23 +140,22 @@ export default {
   },
   afficheChildCategory: async function(){
       var category = this.category;
-
       for(var i=0; i<category.length;i++)
       {
         if(category[i].parentId==0)
-              {
-                var parentCategory = {};
-                parentCategory.title = category[i].name;
-                parentCategory.children = [];
-                for(var j=0;j<category.length;j++)
-                {
-                  if(category[j].parentId==category[i].categoriesId && category[j].parentId!==0)
-                  {
-                    parentCategory.children.push(category[j]);
-                  }
-                }
-                this.parentCategory.push(parentCategory);
-              }
+        {
+          var parentCategory = {};
+          parentCategory.title = category[i].name;
+          parentCategory.children = [];
+          for(var j=0;j<category.length;j++)
+          {
+            if(category[j].parentId==category[i].categoriesId && category[j].parentId!==0)
+            {
+              parentCategory.children.push(category[j]);
+            }
+          }
+          this.parentCategory.push(parentCategory);
+        }
       }
     },
     ShowSearchArticle: async function(){
