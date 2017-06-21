@@ -1,19 +1,21 @@
 <template>
   <div class="container">
         <div class="container">
-            <div class="dropdown " v-for="category in parentCategory" :key="category.categoriesId">
-              <button class="btn btn-default dropdown-toggle col-md-3" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <div class="btn-group " v-for="category in parentCategory" :key="category.categoriesId">
+              <button class="btn btn-default" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{category.title}}
                 <span class="caret"></span>
               </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <ul class="dropdown-menu" >
+                <li v-on:click="DoCategory(category.categoriesId)"><a href="#" class="categ">{{category.title}}</a></li>
                 <li v-for="children in category.children" v-on:click="DoCategory(children.categoriesId)"><a href="#" class="categ">{{children.name}}</a></li>
               </ul>
             </div>
-            <button class="btn btn-default dropdown-toggle" v-if="this.categorySearched != '' " v-on:click="DoCategory('')" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Rechercher sur toute les catégories
-            </button>
+
           <div class="row">
+            <button class="btn btn-default dropdown-toggle" v-if="this.categorySearched != '' " v-on:click="DoCategory('')" type="button">
+              Rechercher sur toute les catégories
+            </button>
             <div class="btn-group" role="group" aria-label="..." v-if="this.BoolSearch == false">
               <button type="button" class="btn btn-default" v-on:click="ShowSearchArticle()">Rechercher un article</button>
             </div>
@@ -146,6 +148,8 @@ export default {
         {
           var parentCategory = {};
           parentCategory.title = category[i].name;
+          console.log(category[i]);
+          parentCategory.id = category[i].categoriesId;
           parentCategory.children = [];
           for(var j=0;j<category.length;j++)
           {
