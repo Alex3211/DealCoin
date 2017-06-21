@@ -7,7 +7,7 @@
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" >
-                <li v-on:click="DoCategory(category.categoriesId)"><a href="#" class="categ">{{category.title}}</a></li>
+                <!--<li v-on:click="DoCategory(category.categoriesId)"><a href="#" class="categ">{{category.title}}</a></li>-->
                 <li v-for="children in category.children" v-on:click="DoCategory(children.categoriesId)"><a href="#" class="categ">{{children.name}}</a></li>
               </ul>
             </div>
@@ -103,7 +103,8 @@ export default {
       itemPage: 1,
       searchString:"",
       BoolSearch : false,
-      categorySearched: ""
+      categorySearched: "",
+      categoryBool :false
     }
   },
   async mounted(){
@@ -134,13 +135,14 @@ export default {
   methods: {
     menuHover: function(event) {
       if (!(event.target.parentElement.classList.contains('open'))) {
+        this.categoryBool = !this.categoryBool;
         event.target.click();
       }
     },
     menuOut: function(event) {
       console.log(event);
 
-      if (event.target.parentElement.classList.contains('open')) {
+      if (event.target.parentElement.classList.contains('open') && this.categoryBool) {
         event.target.click();
       }
     },
