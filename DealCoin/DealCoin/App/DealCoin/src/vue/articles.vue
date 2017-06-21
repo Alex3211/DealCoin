@@ -1,8 +1,8 @@
 <template>
   <div class="container">
         <div class="container">
-            <div class="btn-group " v-for="category in parentCategory" :key="category.categoriesId">
-              <button class="btn btn-default" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="btn-group drop" v-for="category in parentCategory" :key="category.categoriesId">
+              <button class="btn btn-default  dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-on:mouseover="menuHover" v-on:mouseout="menuOut">
                 {{category.title}}
                 <span class="caret"></span>
               </button>
@@ -89,6 +89,7 @@ a {
 import article from './article.vue'
 import articleApiService from '../services/ArticleServices.js'
 import CategoryApiService from '../services/CategoryService.js'
+import $ from 'jquery'
 
 export default {
   data() {
@@ -113,25 +114,36 @@ export default {
   },
   computed: {
     // A computed property that holds only those articles that match the searchString.
-            filteredArticles: function () {
-            var articles_array = this.article,
-                searchString = this.searchString;
-            if(!searchString){
-                return articles_array;
-            }
-            searchString = searchString.trim().toLowerCase();
-            articles_array = articles_array.filter(function(item){
-                if(item.title.toLowerCase().indexOf(searchString) !== -1){
-                    return item;
-                }
-            })
-            // Return an array with the filtered data.
-            console.log(articles_array);
-            return articles_array.slice(0,8);
-        },
+    filteredArticles: function () {
+      var articles_array = this.article,
+          searchString = this.searchString;
+      if(!searchString){
+          return articles_array;
+      }
+      searchString = searchString.trim().toLowerCase();
+      articles_array = articles_array.filter(function(item){
+          if(item.title.toLowerCase().indexOf(searchString) !== -1){
+              return item;
+          }
+      })
+      // Return an array with the filtered data.
+      console.log(articles_array);
+      return articles_array.slice(0,8);
+    },
   },
   methods: {
+    menuHover: function(event) {
+      if (!(event.target.parentElement.classList.contains('open'))) {
+        event.target.click();
+      }
+    },
+    menuOut: function(event) {
+      console.log(event);
 
+      if (event.target.parentElement.classList.contains('open')) {
+        event.target.click();
+      }
+    },
     loadArticle: async function(){
       var e = await articleApiService.getArticleListAsync();
       this.article = e.content;
@@ -140,28 +152,28 @@ export default {
       var e = await CategoryApiService.getCategoryListAsync();
       this.category = e.content;
   },
-  afficheChildCategory: async function(){
-      var category = this.category;
-      for(var i=0; i<category.length;i++)
+  afficheChildCategory: function(){
+    var category = this.category;
+    for(var i=0; i<category.length;i++)
+    {
+      if(category[i].parentId==0)
       {
-        if(category[i].parentId==0)
+        var parentCategory = {};
+        parentCategory.title = category[i].name;
+        console.log(category[i]);
+        parentCategory.id = category[i].categoriesId;
+        parentCategory.children = [];
+        for(var j=0;j<category.length;j++)
         {
-          var parentCategory = {};
-          parentCategory.title = category[i].name;
-          console.log(category[i]);
-          parentCategory.id = category[i].categoriesId;
-          parentCategory.children = [];
-          for(var j=0;j<category.length;j++)
+          if(category[j].parentId==category[i].categoriesId && category[j].parentId!==0)
           {
-            if(category[j].parentId==category[i].categoriesId && category[j].parentId!==0)
-            {
-              parentCategory.children.push(category[j]);
-            }
+            parentCategory.children.push(category[j]);
           }
-          this.parentCategory.push(parentCategory);
         }
+        this.parentCategory.push(parentCategory);
       }
-    },
+    }
+  },
     ShowSearchArticle: async function(){
       this.BoolSearch = !this.BoolSearch;
       if(document.getElementById('invisible').style.display == 'none'){
@@ -175,7 +187,6 @@ export default {
       this.itemPage = page;
       this.TempTab();
     },
-
     TempTab: function(){
         var paginatedArticleList = [];
       if(this.itemPage == 1 ) { 
