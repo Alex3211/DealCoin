@@ -32,26 +32,30 @@
                         <router-link to="/apropos"><a href="#" class="Element">À propos</a></router-link>
                     </li> 
                     <li v-if="services.isConnected">
-                        <router-link to="/articles"><a href="#" class="Element">Articles</a></router-link>
+                        <router-link to="/articles"><a href="#" class="Element">Boutique</a></router-link>
                     </li>
-                    <li v-if="services.isConnected">
-                        <router-link to="/MyArticles"><a href="#" class="Element">Mes articles</a></router-link>
-                    </li>
+                    
+                    
+                </ul>
+
+                <ul v-if="services.isConnected" class="nav navbar-nav navbar-right">
                     <li v-if="services.isConnected">
                         <router-link to="/panier">Panier <span class="badge">{{ getCount }}</span></router-link>
                     </li>
                     <li v-if="services.isConnected">
-                        <router-link to="/Account">Mon compte</router-link>
-                    </li> 
-                </ul>
-
-                <ul v-if="services.isConnected" class="nav navbar-nav navbar-right">
+                        <router-link to="/MyArticles"><a href="#" class="Element">Mes articles</a></router-link>
+                    </li>
                     <li class="dropdown">
                         <a v-if="services.isConnected" class="dropdown-toggle" data-toggle="dropdown" role="button" 
                         aria-haspopup="true" aria-expanded="false">{{ auth.email }} <span class="caret"></span></a>
                         
                         <ul class="dropdown-menu">
-                            <li><router-link to="/Logout">Se déconnecter</router-link></li>
+                            <li v-if="services.isConnected">
+                                <router-link to="/Account">Mon compte</router-link>
+                            </li> 
+                            <li>
+                                <router-link to="/Logout">Se déconnecter</router-link>
+                            </li>
                         </ul>
                     </li>
                 </ul>

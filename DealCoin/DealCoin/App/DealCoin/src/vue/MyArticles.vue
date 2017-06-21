@@ -31,6 +31,13 @@
 
       <div v-if="this.BoolSearch == false">
           <br>
+        
+        <div class="row">
+          <br>
+          <div v-for="i in PaginatedArticlesList" :key="i.productsId" class="col-md-3">
+              <ArticlePage :id="i"></ArticlePage><br>
+          </div>
+        </div>
         <nav aria-label="Page navigation">
           <ul class="pagination">
             <li v-if="this.itemPage > 1" @click="pagDoUp(false)">
@@ -48,12 +55,6 @@
             </li>
           </ul>
         </nav>
-        <div class="row">
-          <br>
-          <div v-for="i in PaginatedArticlesList" :key="i.productsId" class="col-md-3">
-              <ArticlePage :id="i"></ArticlePage><br>
-          </div>
-        </div>
       </div>
     </div>
   </div>

@@ -2,7 +2,7 @@
     <div v-if="this.$route.path !== '/MyArticles'" class="thumbnail" >
       <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}"
        v-on:click.native="onVisited(Articleid)">
-        <img width="150" v-bind:src="Articleid.photo" />
+        <img width="150" height="100"  v-bind:src="Articleid.photo" />
       </router-link>
       <div class="caption">
         <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}"
@@ -15,7 +15,7 @@
     </div>
       <div v-else class="thumbnail" >
       <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}">
-        <img width="150" v-bind:src="Articleid.photo" />
+        <img width="150" height="150" v-bind:src="Articleid.photo" />
       </router-link>
       <div class="caption">
         <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}"><h3>{{Articleid.title}}</h3></router-link>
