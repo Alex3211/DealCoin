@@ -4,8 +4,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><router-link to="/homeAdmin"><i class="fa fa-home fa-fw"></i>Home</router-link></li>
-                <li><router-link to="/userAdmin"><i class="fa fa-list-alt fa-fw"></i>Users</router-link></li>
-                <li><router-link to="/cellAdmin"><i class="fa fa-list-alt fa-fw"></i>Cell</router-link></li>
+                <li><router-link to="/userAdmin"><i class="fa fa-list-alt fa-fw"></i>Utilisateurs</router-link></li>
+                <li><router-link to="/cellAdmin"><i class="fa fa-list-alt fa-fw"></i>Vente</router-link></li>
                 <li><router-link to="/articleAdmin"><i class="fa fa-list-alt fa-fw"></i>Articles</router-link></li>
                 <li><router-link to="/reportAdmin"><i class="fa fa-list-alt fa-fw"></i>Report</router-link></li>
             </ul>   
@@ -23,7 +23,10 @@
         <div class="form-group">
           <label class="col-lg-3 control-label">Mots de passe:</label>
           <div class="col-lg-8">
-            <input class="form-control" v-model="newuser.password" type="text">
+            <input type="password" pattern="^[a-zA-Z]\w{3,14}$" title="
+                Premier caractère doit être une lettre, 
+                Minimum 4 caractères, Max 15, 
+                Que des chiffres et lettres" class="form-control" v-model="newuser.password" type="text">
           </div>
         </div>
         

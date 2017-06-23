@@ -30,7 +30,7 @@
                         </div>
                         <div v-else>
                             <img width="300" :src="image" />
-                            <button @click="removeImage">Remove image</button>
+                            <button @click="removeImage">Supprimer l'image</button>
                         </div>
                     </div>
                     <br>

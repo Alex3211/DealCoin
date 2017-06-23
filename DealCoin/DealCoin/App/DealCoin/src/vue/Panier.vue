@@ -8,8 +8,8 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Product</th>
-                            <th class="text-center">Total</th>
+                            <th>article</th>
+                            <th class="text-center">Total : </th>
                             <th> </th>
                         </tr>
                     </thead>
@@ -23,17 +23,17 @@
                             <td class="col-sm-1 col-md-1 text-center"><strong>{{a.price}}</strong></td>
                             <td class="col-sm-1 col-md-1">
                             <button type="button" class="btn btn-danger" v-on:click="Delarticle(index)">
-                                <span class="glyphicon glyphicon-remove"></span> Remove
+                                <span></span> Supprimer l'article
                             </button></td>
                         </tr>
                         <tr>
                             <td>   </td>
-                            <td><h5>Total Hors Tax</h5></td>
+                            <td><h5>Total Hors Taxe</h5></td>
                             <td class="text-right"><h5><strong>{{totaleprix}} €</strong></h5></td>
                         </tr>
                         <tr>
                             <td>   </td>
-                            <td><h5>Cout de livraison</h5></td>
+                            <td><h5>Coût de livraison</h5></td>
                             <td class="text-right"><h5><strong>{{livraison.toFixed(2)}} €</strong></h5></td>
                         </tr>
                         <tr>
@@ -45,11 +45,11 @@
                             <td>   </td>
                             <td>
                             <button type="button" class="btn btn-info">
-                            <router-link to="/articles"><i class="fa fa-list-alt fa-fw"></i>Continue Shopping</router-link>
+                            <router-link to="/articles"><i class="fa fa-list-alt fa-fw"></i>Continuer mes achats</router-link>
                             </button></td>
                             <td>
                             <button type="button" class="btn btn-success">
-                                Checkout <span class="glyphicon glyphicon-play"></span>
+                                Procéder au paiement <span></span>
                             </button></td>
                         </tr>
                     </tbody>

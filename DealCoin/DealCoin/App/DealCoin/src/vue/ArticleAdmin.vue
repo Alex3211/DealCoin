@@ -5,8 +5,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><router-link to="/homeAdmin"><i class="fa fa-home fa-fw"></i>Home</router-link></li>
-                <li><router-link to="/userAdmin"><i class="fa fa-list-alt fa-fw"></i>Users</router-link></li>
-                <li><router-link to="/cellAdmin"><i class="fa fa-list-alt fa-fw"></i>Cell</router-link></li>
+                <li><router-link to="/userAdmin"><i class="fa fa-list-alt fa-fw"></i>Utilisateurs</router-link></li>
+                <li><router-link to="/cellAdmin"><i class="fa fa-list-alt fa-fw"></i>Ventes</router-link></li>
                 <li><router-link to="/articleAdmin"><i class="fa fa-list-alt fa-fw"></i>Articles</router-link></li>
                 <li><router-link to="/reportAdmin"><i class="fa fa-list-alt fa-fw"></i>Report</router-link></li>
             </ul>   
@@ -69,7 +69,7 @@ export default {
 <style scoped>
 body{margin-top:20px;}
 .fa-fw {width: 2em;
-.btn-glyphicon { padding:8px; background:#ffffff; margin-right:4px; }
+.btn-glyphicon { padding:8px; background:#ffffff; margin-right:4px;}
 .icon-btn { padding: 1px 15px 3px 2px; border-radius:50px;}
 }
 </style>

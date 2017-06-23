@@ -4,8 +4,8 @@
             <div class="page-header">
                 <h1>Bienvenue sur DealCoin!</h1>
             </div>
-            <button type="button" @click="login('Google')" class="btn btn-lg btn-block btn-primary"><i class="fa fa-google" aria-hidden="true"></i> Se connecter via Google</button>
-            <button type="button" @click="login('Base')" class="btn btn-lg btn-block btn-default">Se connecter sur notre site</button>
+            <button type="button" @click="login('Google')" class="btn btn-lg btn-block btn-primary"><i class="fa fa-google" aria-hidden="true"></i> Se connecter grâce à Google</button>
+            <button type="button" @click="login('Base')" class="btn btn-lg btn-block btn-default">Se connecter grâce à notre site</button>
         </div>
     </div>
 </template>

@@ -49,7 +49,7 @@
             <div v-for="i in PaginatedArticleList" :key="i.productsId"  class="col-md-3 ">
               <ArticlePage :id="i"></ArticlePage><br>
             </div>
-            <div v-if="PaginatedArticleList == 0"> Pas d'article pour le moment </div>
+            <div v-if="PaginatedArticleList == 0"> Aucun article pour le moment </div>
           </div>
           <nav aria-label="Page navigation">
             <ul class="pagination">

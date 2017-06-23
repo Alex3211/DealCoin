@@ -5,17 +5,17 @@
             <h3>Bonjour, {{model.nom}}, vous pouvez modifier votre compte ici.</h3>
             <div class="row">
             <div class="col-md-12">
-            <h1 class="display-1">Votre Solde Bitcoin</h1>
+            <h1 class="display-1">Votre solde BitCoin</h1>
             <h1 class="display-1">{{solde.toFixed(8)}}</h1>
             </br>
             </div>
             <div class="col-md-6">
               <li class="dropdown">
-                <button type="button" class="btn-lg btn-primary dropdown-toggle" data-toggle="dropdown">Send</button>
+                <button type="button" class="btn-lg btn-primary dropdown-toggle" data-toggle="dropdown">Envoyer</button>
                 <ul style="margin-left: -95%;" class="dropdown-menu" role="menu">
                   <div class="input-group">
                     <input style="width:225px;" type="text" class="form-control col-lg-8">
-                    <span class="input-group-btn"><button class="btn btn-default" type="button">Go!</button></span>
+                    <span class="input-group-btn"><button class="btn btn-default" type="button">Envoyer</button></span>
                   </div>
                 </ul>
               </li>
@@ -24,11 +24,11 @@
             </br>
             <div class="col-md-6">
               <li class="dropdown">
-                <button type="button" class="btn-lg btn-info dropdown-toggle" data-toggle="dropdown">Receive</button>
+                <button type="button" class="btn-lg btn-info dropdown-toggle" data-toggle="dropdown">Recevoir</button>
                 <ul style="margin-left: -95%;"class="dropdown-menu" role="menu">
                   <div  class="input-group">
                     <input style="width:225px;" type="text" class="form-control">
-                    <span class="input-group-btn"><button class="btn btn-default" type="button">Go!</button></span>
+                    <span class="input-group-btn"><button class="btn btn-default" type="button">Recevoir</button></span>
                   </div>
                 </ul>
               </li>
@@ -111,6 +111,15 @@
               <label class="col-lg-5 control-label"><h4>{{model.email}}</h4></label>
             </div>
             <div class="form-group">
+              <label class="col-md-3 control-label">Acien mot de passe:</label>
+              <div class="col-md-5">
+                <input class="form-control" v-model="PastCode" type="password" pattern="^[a-zA-Z]\w{3,14}$" title="
+                Premier caractère doit être une lettre, 
+                Minimum 4 caractères, Max 15, 
+                Que des chiffres et lettres">
+              </div>
+            </div>
+            <div class="form-group">
               <label class="col-md-3 control-label">Mot de passe:</label>
               <div class="col-md-5">
                 <input class="form-control" v-model="newCode" type="password" pattern="^[a-zA-Z]\w{3,14}$" title="
@@ -152,6 +161,7 @@ export default {
       return {
         model: {},
         email: "",
+        PastCode: null,
         newCode: null,
         confirmNewCode: null,
         solde: 0.00000000

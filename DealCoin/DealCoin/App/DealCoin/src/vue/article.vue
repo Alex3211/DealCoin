@@ -8,8 +8,8 @@
         <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}"
         v-on:click.native="onVisited(Articleid)"><h3>{{Articleid.title}}</h3></router-link>
         <p>{{Articleid.desc1}}</p>
-        <p>{{Articleid.price}}</p>
-        <p>{{Articleid.visits}}</p> 
+        <p>Prix : {{Articleid.price}}</p>
+        <p> Article vu <b>{{Articleid.visits}}</b> fois.</p> 
         <button v-on:click="addarticle(Articleid)">Ajouter au panier</button>
       </div>
     </div>
@@ -88,4 +88,5 @@ li {
 a {
   color: #42b983;
 }
+
 </style>

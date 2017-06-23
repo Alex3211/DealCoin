@@ -6,13 +6,13 @@
             <router-link to="/articles"><a href="#" class="MakaleYazariAdi">Retour aux articles</a></router-link>
             <div class="btn-group" style="float:right;" v-if="this.email == user.email">
             	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            		<span class="glyphicon glyphicon-cog"></span>
+            		<span>Modifier</span>
             		<span class="sr-only">Toggle Dropdown</span>
             	</button>
             	<ul class="dropdown-menu">
-            		<li><router-link v-bind:to="{ path: 'EditArticle', query: { article: Articleid }}"><a href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit</a></router-link></li>
+            		<li><router-link v-bind:to="{ path: 'EditArticle', query: { article: Articleid }}"><a href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Modifier</a></router-link></li>
             		<li role="separator" class="divider"></li>
-            		<li><router-link v-bind:to="{ path: 'DelArticle', query: { article: Articleid }}"><a href="#"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> Delete</a></router-link></li>
+            		<li><router-link v-bind:to="{ path: 'DelArticle', query: { article: Articleid }}"><a href="#"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>Supprimer</a></router-link></li>
             	</ul>
             </div>
             <div class="clearfix"></div>

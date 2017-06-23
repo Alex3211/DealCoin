@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h1>DealCoin</h1>
-                <p class="lead">bienvenu!</p>
+                <p class="lead">Welcome</p>
             </div>
         </div>
     </div>
