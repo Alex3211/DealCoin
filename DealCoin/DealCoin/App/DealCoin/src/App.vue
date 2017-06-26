@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <router-link to="/homeAdmin"><a class="navbar-brand Element" href="#" >DealCoin</a></router-link>
+                <router-link to="/homeAdmin"><a class="navbar-brand Element" style="color:#f7931b!important;" href="#" >DealCoin</a></router-link>
             </div>
             <!-- Brand and toggle get grouped for better mobile display -->
             <div v-if=" getStatut == 0" class="navbar-header">
@@ -19,7 +19,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <router-link to="/"><a class="navbar-brand Element" href="#" >DealCoin</a></router-link>
+                <router-link to="/"><a class="navbar-brand Element" style="color:#f7931b!important;"  href="#" >DealCoin</a></router-link>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
