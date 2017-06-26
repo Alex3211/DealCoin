@@ -38,13 +38,29 @@
                     
                 </ul>
 
-                <ul v-if="services.isConnected" class="nav navbar-nav navbar-right">
+                <ul v-if="services.isConnected && getStatut!=1" class="nav navbar-nav navbar-right">
                     <li v-if="services.isConnected">
                         <router-link to="/panier">Panier <span class="badge">{{ getCount }}</span></router-link>
                     </li>
                     <li v-if="services.isConnected">
                         <router-link to="/MyArticles"><a href="#" class="Element">Mes articles</a></router-link>
                     </li>
+                    <li class="dropdown">
+                        <a v-if="services.isConnected" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+                        aria-haspopup="true" aria-expanded="false">{{ auth.email }} <span class="caret"></span></a>
+                        
+                        <ul class="dropdown-menu">
+                            <li v-if="services.isConnected">
+                                <router-link to="/Account">Mon compte</router-link>
+                            </li> 
+                            <li>
+                                <router-link to="/Logout">Se déconnecter</router-link>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul v-else class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a v-if="services.isConnected" class="dropdown-toggle" data-toggle="dropdown" role="button" 
                         aria-haspopup="true" aria-expanded="false">{{ auth.email }} <span class="caret"></span></a>

@@ -16,11 +16,11 @@
                     <tbody>
                         <tr v-for="(a, index) of article" >
                             <td class="col-sm-8 col-md-6">
-                            <a class="thumbnail pull-left"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
+                            <a class="thumbnail pull-left"> <img class="media-object"  v-bind:src="a.photo" style="width: 72px; height: 72px;"> </a>
                                 <h4>{{a.title}}</h4>
                                 <h5>{{a.desc1}}</h5>
                             </td>
-                            <td class="col-sm-1 col-md-1 text-center"><strong>{{a.price}}</strong></td>
+                            <td class="col-sm-1 col-md-1 text-center"><strong><h4>{{a.price}} €</h4></strong></td>
                             <td class="col-sm-1 col-md-1">
                             <button type="button" class="btn btn-danger" v-on:click="Delarticle(index)">
                                 <span></span> Supprimer l'article
@@ -28,13 +28,13 @@
                         </tr>
                         <tr>
                             <td>   </td>
-                            <td><h5>Total Hors Taxe</h5></td>
-                            <td class="text-right"><h5><strong>{{totaleprix}} €</strong></h5></td>
+                            <td><h4>Total Hors Taxe</h4></td>
+                            <td class="text-right"><h4><strong>{{totaleprix}} €</strong></h4></td>
                         </tr>
                         <tr>
                             <td>   </td>
-                            <td><h5>Coût de livraison</h5></td>
-                            <td class="text-right"><h5><strong>{{livraison.toFixed(2)}} €</strong></h5></td>
+                            <td><h4>Coût de livraison</h4><h5>(Gratuit à partir de 50 €)</h5></td>
+                            <td class="text-right"><h4><strong>{{livraison.toFixed(2)}} €</strong></h4></td>
                         </tr>
                         <tr>
                             <td>   </td>

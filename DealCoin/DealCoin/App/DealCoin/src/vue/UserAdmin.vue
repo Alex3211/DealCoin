@@ -26,7 +26,7 @@
             <input type="password" pattern="^[a-zA-Z]\w{3,14}$" title="
                 Premier caractère doit être une lettre, 
                 Minimum 4 caractères, Max 15, 
-                Que des chiffres et lettres" class="form-control" v-model="newuser.password" type="text">
+                Que des chiffres et lettres" class="form-control" v-model="newuser.password">
           </div>
         </div>
         

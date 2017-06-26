@@ -3,7 +3,7 @@
         <div class="container">
         <img src="../assets/logo.png">
         <div class="row">
-            <h1>Editer votre article</h1>
+            <h1>Editez votre article</h1>
             <form @submit="onSubmit($event)" class="form-horizontal" role="form">
                 <div class="form-group">
                     <label class="col-lg-1 control-label">Catégorie:</label>
