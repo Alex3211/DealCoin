@@ -95,21 +95,18 @@
   background-color:black;
 }
 .thumbnail{
-  background-color: #FFFFFF;
+  background-color: #BFA077;
   border:none;
   width:250px;
   height:350px;
--moz-box-shadow: 5px 5px 15px 1px #656565;
--webkit-box-shadow: 5px 5px 15px 1px #656565;
--o-box-shadow: 5px 5px 15px 1px #656565;
-box-shadow: 5px 5px 15px 1px #656565;
-filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=15);
--moz-border-radius: 7px;
--webkit-border-radius: 7px;
-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
 }
-a {
-  color: #42b983;
+li a {
+  color: white;
+  background-color:#BFA077;
+  border:none;
 }
 </style>
 
