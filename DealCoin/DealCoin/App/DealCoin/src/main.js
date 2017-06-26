@@ -14,7 +14,7 @@ import articles from './vue/articles.vue'
 import homeMembers from './vue/homeMembers.vue'
 import homeAdmin from './vue/homeAdmin.vue'
 import userAdmin from './vue/UserAdmin.vue'
-import cellAdmin from './vue/CellAdmin.vue'
+import sellAdmin from './vue/SellAdmin.vue'
 import articleAdmin from './vue/ArticleAdmin.vue'
 import reportAdmin from './vue/ReportAdmin.vue'
 import article from './vue/article.vue'
@@ -141,9 +141,9 @@ const router = new VueRouter({
       component: userAdmin,beforeEnter: requireAuth
     },
     {
-      path: '/cellAdmin',
-      name: 'cellAdmin',
-      component: cellAdmin,beforeEnter: requireAuth
+      path: '/sellAdmin',
+      name: 'sellAdmin',
+      component: sellAdmin,beforeEnter: requireAuth
     },
     {
       path: '/articleAdmin',

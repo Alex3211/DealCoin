@@ -2,29 +2,19 @@
 <div>
     <div class="container">
             <div class="col-lg-12 text-center">
-            <h3>Bonjour, {{model.nom}}, vous pouvez modifier votre compte ici.</h3>
+            <h3>Bonjour {{model.nom}}, vous pouvez modifier votre compte ici.</h3>
             <div class="row">
             <div class="col-md-12">
             <h1 class="display-1">Votre solde BitCoin</h1>
             <h1 class="display-1">{{solde.toFixed(8)}}</h1>
             </br>
             </div>
-            <div class="col-md-6">
-              <li class="dropdown">
-                <button type="button" class="btn-lg btn-primary dropdown-toggle" data-toggle="dropdown">Envoyer</button>
-                <ul style="margin-left: -95%;" class="dropdown-menu" role="menu">
-                  <div class="input-group">
-                    <input style="width:225px;" type="text" class="form-control col-lg-8">
-                    <span class="input-group-btn"><button class="btn btn-default" type="button">Envoyer</button></span>
-                  </div>
-                </ul>
-              </li>
-            </div>
             </br>
             </br>
-            <div class="col-md-6">
+            
+            <div class="col-md-12">
               <li class="dropdown">
-                <button type="button" class="btn-lg btn-info dropdown-toggle" data-toggle="dropdown">Recevoir</button>
+                <button type="button" class="btn-lg btn-info dropdown-toggle clrbtn" data-toggle="dropdown">Recevoir</button>
                 <ul style="margin-left: -95%;"class="dropdown-menu" role="menu">
                   <div  class="input-group">
                     <input style="width:225px;" type="text" class="form-control">
@@ -213,6 +203,11 @@ export default {
 </script>       
 
 <style scoped>
+.clrbtn{
+  background-color:#7F5D2F !important;
+  border:none;
+}
+
 h1, h2 {
   font-weight: normal;
 }
