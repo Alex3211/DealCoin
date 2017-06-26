@@ -63,7 +63,7 @@
 <style scoped>
 .thumbnail{
   width:250px;
-  height:300px;
+  height:350px;
 }
 h1, h2 {
   font-weight: normal;

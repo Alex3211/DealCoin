@@ -3,7 +3,7 @@
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <router-link to="/articles"><a href="#" class="MakaleYazariAdi">Retour aux articles</a></router-link>
+            <router-link to="/articles"><a href="#">Retour aux articles</a></router-link>
             <div class="btn-group" style="float:right;" v-if="this.email == user.email">
             	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             		<span>Modifier</span>

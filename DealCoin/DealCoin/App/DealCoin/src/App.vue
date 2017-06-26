@@ -1,7 +1,7 @@
-<template>
+<template class='test'>
 
   <div id="app">
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-fixed-top" style="background-color:#7F5D2F" role="navigation">
         <div class="container">
             <div v-if=" getStatut == 1" class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -108,6 +108,16 @@ export default {
 </script>
 
 <style>
+.navbar{
+    -moz-box-shadow: 0px 5px 5px 1px #7F5D2F;
+-webkit-box-shadow: 0px 5px 5px 1px #7F5D2F;
+-o-box-shadow: 0px 5px 5px 1px #7F5D2F;
+box-shadow: 0px 5px 5px 1px #7F5D2F;
+filter:progid:DXImageTransform.Microsoft.Shadow(color=#7F5D2F, Direction=180, Strength=5);
+}
+body{
+    background-color:#FFC54F;
+}
 .router-link-active a {
     color:white;
 }

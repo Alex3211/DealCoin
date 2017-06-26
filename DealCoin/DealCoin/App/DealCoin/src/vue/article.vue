@@ -2,7 +2,7 @@
     <div v-if="this.$route.path !== '/MyArticles'" class="thumbnail" >
       <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}"
        v-on:click.native="onVisited(Articleid)">
-        <img v-if="Articleid.photo!=='./maphoto.png'" width="150" height="100"  v-bind:src="Articleid.photo" />
+        <img v-if="Articleid.photo!==''" class="taille" v-bind:src="Articleid.photo" />
       </router-link>
       <div class="caption">
         <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}"
@@ -15,20 +15,17 @@
     </div>
       <div v-else class="thumbnail" >
       <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}">
-        <img width="150" height="150" v-bind:src="Articleid.photo" />
+        <img class="taille" v-bind:src="Articleid.photo" />
       </router-link>
-      <div class="caption">
-        <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}"><h3>{{Articleid.title}}</h3></router-link>
-        <p>{{Articleid.desc1}}</p>
-        <p>{{Articleid.price}} €</p>
-        <p> Article vu <b>{{Articleid.visits}}</b> fois.</p>
-        <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}">
-        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            		<span>Modifier</span>
-            	</button>
-              </router-link>
+        <div class="caption">
+          <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}"><h3>{{Articleid.title}}</h3></router-link>
+          <p>{{Articleid.desc1}}</p>
+          <p>{{Articleid.price}} €</p>
+          <p> Article vu <b>{{Articleid.visits}}</b> fois.</p>
+          <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}">
+          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Modifier</span></button></router-link>
+        </div>
       </div>
-    </div>
 </template>
 
 <script>
@@ -69,10 +66,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.articles{
-    width: 250px;
-    height: 250px;
-  border: 1px solid black;
+.taille{
+  height:140px
 }
 h1, h2 {
   font-weight: normal;

@@ -2,6 +2,8 @@
     <div class="container">
     <div v-if="article == 0">
         Vous n'avez actuellement aucun article dans votre panier !
+        <br/>
+        <router-link to="/articles"><button type="button" class="btn btn-default">Retour à la boutique</button></router-link> 
     </div>
         <div class="row" v-else>
             <div class="col-sm-12 col-md-10 col-md-offset-1">

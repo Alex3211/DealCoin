@@ -51,7 +51,7 @@
             </div>
             <div v-if="PaginatedArticleList == 0"> Aucun article pour le moment </div>
           </div>
-          <nav aria-label="Page navigation">
+          <nav aria-label="Page navigation" v-if="!this.SearchWithCategoryBool">
             <ul class="pagination">
               <li v-if="this.itemPage > 1" @click="pagDoUp(false)">
                 <a href="#" aria-label="Previous">
@@ -68,6 +68,24 @@
               </li>
             </ul>
           </nav>
+
+          <nav aria-label="Page navigation" v-else-if="this.SearchWithCategoryBool">
+            <ul class="pagination">
+              <li v-if="this.itemPage > 1" @click="pagDoUp(false)">
+                <a href="#" aria-label="Previous">
+                  <span aria-hidden="true" >&laquo;</span>
+                </a>
+              </li>
+              <li v-for="n in (Math.ceil(PaginatedArticleList.length/this.itemPerPage))" @click="pagi(n)">
+                <a href="#" >{{n}}</a>
+              </li>
+              <li v-if=" this.itemPage < (Math.ceil(PaginatedArticleList.length/this.itemPerPage)) " @click="pagDoUp(true)">
+                <a href="#" aria-label="Next">
+                  <span aria-hidden="true" >&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
       </div>
   </div>
 </template>
@@ -77,8 +95,18 @@
   background-color:black;
 }
 .thumbnail{
+  background-color: #FFFFFF;
+  border:none;
   width:250px;
-  height:300px;
+  height:350px;
+-moz-box-shadow: 5px 5px 15px 1px #656565;
+-webkit-box-shadow: 5px 5px 15px 1px #656565;
+-o-box-shadow: 5px 5px 15px 1px #656565;
+box-shadow: 5px 5px 15px 1px #656565;
+filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=15);
+-moz-border-radius: 7px;
+-webkit-border-radius: 7px;
+border-radius: 7px;
 }
 a {
   color: #42b983;
@@ -104,7 +132,8 @@ export default {
       searchString:"",
       BoolSearch : false,
       categorySearched: "",
-      categoryBool :false
+      categoryBool :false,
+      SearchWithCategoryBool : false
     }
   },
   async mounted(){
@@ -128,7 +157,6 @@ export default {
           }
       })
       // Return an array with the filtered data.
-      console.log(articles_array);
       return articles_array.slice(0,8);
     },
   },
@@ -140,7 +168,7 @@ export default {
       }
     },
     menuOut: function(event) {
-      console.log(event);
+      //console.log(event);
 
       if (event.target.parentElement.classList.contains('open') && this.categoryBool) {
         event.target.click();
@@ -162,7 +190,6 @@ export default {
       {
         var parentCategory = {};
         parentCategory.title = category[i].name;
-        console.log(category[i]);
         parentCategory.id = category[i].categoriesId;
         parentCategory.children = [];
         for(var j=0;j<category.length;j++)
@@ -197,12 +224,17 @@ export default {
         var i = (this.itemPage-1)*this.itemPerPage;
       }
       if(this.categorySearched == "") {
+        this.SearchWithCategoryBool = false;
         for(var u = i; u < (this.itemPerPage*this.itemPage); u++ ){
           if(this.article[u]) paginatedArticleList.push(this.article[u]);
         }
       } else {
-        for(var u = i; u < (this.itemPerPage*this.itemPage); u++ ){
-          if(this.article[u] && this.article[u].categoriesId == this.categorySearched) paginatedArticleList.push(this.article[u]);
+        this.SearchWithCategoryBool = true;
+        for(var u = 0; u < this.article.length; u++ ){
+          if(this.article[u] && (this.article[u].categoriesId == this.categorySearched)){
+              paginatedArticleList.push(this.article[u]);
+              console.log(this.article[u]);
+          } 
         }
       }
 

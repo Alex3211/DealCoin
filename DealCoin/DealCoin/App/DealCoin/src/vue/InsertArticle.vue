@@ -29,7 +29,7 @@
                             <input type="file" @change="onFileChange" v.model="model.photo">
                         </div>
                         <div v-else>
-                            <img :src="image" width="150" />
+                            <img :src="image" class="taille" />
                             <button @click="removeImage">Remove image</button>
                         </div>
                     </div>
@@ -65,6 +65,11 @@
 </template>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.taille{
+    max-height:150px;
+    max-width:150px;
+}
+
 h1, h2 {
   font-weight: normal;
 }
