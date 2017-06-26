@@ -69,10 +69,13 @@ export default {
 .taille{
   height:140px
 }
-h1, h2 {
+h1, h2, h3 {
   font-weight: normal;
+  color:white;
 }
-
+p{
+  color:white;
+}
 ul {
   list-style-type: none;
   padding: 0;

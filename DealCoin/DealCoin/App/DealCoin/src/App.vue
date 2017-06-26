@@ -1,7 +1,6 @@
 <template class='test'>
-
   <div id="app">
-    <nav class="navbar navbar-fixed-top" style="background-color:#7F5D2F" role="navigation">
+    <nav class="navbar navbar-fixed-top" role="navigation">
         <div class="container">
             <div v-if=" getStatut == 1" class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -40,13 +39,13 @@
 
                 <ul v-if="services.isConnected && getStatut!=1" class="nav navbar-nav navbar-right">
                     <li v-if="services.isConnected">
-                        <router-link to="/panier">Panier <span class="badge">{{ getCount }}</span></router-link>
+                        <router-link to="/panier">Panier <span class="baElementdge">{{ getCount }}</span></router-link>
                     </li>
                     <li v-if="services.isConnected">
                         <router-link to="/MyArticles"><a href="#" class="Element">Mes articles</a></router-link>
                     </li>
                     <li class="dropdown">
-                        <a v-if="services.isConnected" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+                        <a v-if="services.isConnected" class="dropdown-toggle Element" data-toggle="dropdown" role="button" 
                         aria-haspopup="true" aria-expanded="false">{{ auth.email }} <span class="caret"></span></a>
                         
                         <ul class="dropdown-menu">
@@ -62,7 +61,7 @@
 
                 <ul v-else class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a v-if="services.isConnected" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+                        <a v-if="services.isConnected" class="dropdown-toggle Element" data-toggle="dropdown" role="button" 
                         aria-haspopup="true" aria-expanded="false">{{ auth.email }} <span class="caret"></span></a>
                         
                         <ul class="dropdown-menu">
@@ -109,31 +108,31 @@ export default {
 
 <style>
 .navbar{
-    -moz-box-shadow: 0px 5px 5px 1px #7F5D2F;
--webkit-box-shadow: 0px 5px 5px 1px #7F5D2F;
--o-box-shadow: 0px 5px 5px 1px #7F5D2F;
-box-shadow: 0px 5px 5px 1px #7F5D2F;
-filter:progid:DXImageTransform.Microsoft.Shadow(color=#7F5D2F, Direction=180, Strength=5);
+-moz-box-shadow: 0px 5px 5px 1px #402E22;
+-webkit-box-shadow: 0px 5px 5px 1px #402E22;
+-o-box-shadow: 0px 5px 5px 1px #402E22;
+box-shadow: 0px 5px 5px 1px #402E22;
+filter:progid:DXImageTransform.Microsoft.Shadow(color=#402E22, Direction=180, Strength=5);
+background-color:#402E22;
 }
 body{
-    background-color:#FFC54F;
+    background-color:#7F6A4F;
 }
 .router-link-active a {
     color:white;
 }
-
-.Element{
-    color:#9d9d9d;
+a{
+    color:white!important;
 }
-.Element:hover{
-    color:white;
+li a:hover{
+    background-color:#BFA077!important;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #9d9d9d;
+  color: white;
   margin-top: 60px;
 }
 </style>

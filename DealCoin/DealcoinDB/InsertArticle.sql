@@ -1,9 +1,6 @@
 USE [DealcoinDB]
 GO
 
-USE [DealcoinDB]
-GO
-
 INSERT INTO [dc].[categories]([name],[parentId],[type],[description],[status],[position],[posted_date])VALUES('T�l�phonie',0,1,'T�l�phones',0,0,'2010-04-02')
 INSERT INTO [dc].[categories]([name],[parentId],[type],[description],[status],[position],[posted_date])VALUES('High-Tech et Informatique',0,1,'High-Tech et Informatique',0,0,'2010-04-02')
 INSERT INTO [dc].[categories]([name],[parentId],[type],[description],[status],[position],[posted_date])VALUES('Sports et Loisirs',0,1,'Sports et Loisirs',0,0,'2010-04-02')
