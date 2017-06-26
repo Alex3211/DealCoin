@@ -38,7 +38,7 @@
                     
                 </ul>
 
-                <ul v-if="services.isConnected" class="nav navbar-nav navbar-right">
+                <ul v-if="services.isConnected && getStatut == 0" class="nav navbar-nav navbar-right">
                     <li v-if="services.isConnected">
                         <router-link to="/panier">Panier <span class="badge">{{ getCount }}</span></router-link>
                     </li>
@@ -50,7 +50,7 @@
                         aria-haspopup="true" aria-expanded="false">{{ auth.email }} <span class="caret"></span></a>
                         
                         <ul class="dropdown-menu">
-                            <li v-if="services.isConnected">
+                            <li v-if="services.isConnected && getStatut == 0">
                                 <router-link to="/Account">Mon compte</router-link>
                             </li> 
                             <li>

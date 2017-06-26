@@ -30,6 +30,7 @@ import SalesService from './services/SalesService'
 import Account from './vue/Account.vue'
 import Panier from './vue/Panier.vue'
 
+
 Vue.use(VueRouter)
 
 /**

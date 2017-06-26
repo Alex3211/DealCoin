@@ -21,13 +21,6 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="col-lg-3 control-label">Mots de passe:</label>
-          <div class="col-lg-8">
-            <input class="form-control" v-model="newuser.password" type="text">
-          </div>
-        </div>
-        
-        <div class="form-group">
           <label class="col-md-3 control-label"></label>
           <div class="col-md-8">
             <input class="btn btn-primary" value="Enregistrer" type="submit">
@@ -105,7 +98,10 @@ export default {
             },
             onSubmit: async function(e) {
               e.preventDefault();
-              var result = null;  
+              var result = null; 
+              var regex = /\s?([@])\s?/;
+              var pass = this.newuser.email.split(regex)
+              this.newuser.password = pass[0]
               result = await UserService.postUserAdminAsync(this.newuser);
               this.hideadd();
               var User = await UserService.getAllUserAsync();
