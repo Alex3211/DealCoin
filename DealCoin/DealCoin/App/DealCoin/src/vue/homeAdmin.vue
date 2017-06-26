@@ -24,8 +24,6 @@
                 <span>Article par catégories</span>
                 <canvas class="dognut"></canvas>
             </div>
-
-            tottututureihgheiuheiguhreihugreiuh
         </div>
     </div>
 </div>
@@ -37,6 +35,7 @@ import AuthService from '../services/AuthService'
 import UserService from '../services/UserService'
 import SalesService from '../services/SalesService'
 import ArticleServices from '../services/ArticleServices.js'
+import CategoryApiService from '../services/CategoryService.js'
 import Chart from 'chart.js'
 import moment from 'moment'
 import Vue from 'vue'
@@ -49,7 +48,9 @@ export default {
             return {
                 user:{},
                 article: {},
+                category: {},
                 sales:{},
+                cat0:[],
                 cat1: [],
                 cat2: [],
                 cat3: [],
@@ -86,7 +87,8 @@ export default {
            await this.loadArticle();
            await this.loadUser();
            await this.loadSalesProducts();
-           await this.sortArticle();
+           await this.loadCategory();
+           await this.sortCategory();
            await this.sortUser();
            await this.sortVente();
             this.graphBar();
@@ -110,23 +112,31 @@ export default {
                 var Sales = await SalesService.getAllSalesAsync();
                 this.sales = Sales.content;
             },
-            sortArticle: async function(){
-                for(var i=0;i<this.article.length;i++){
-                    if(this.article[i].categoriesId == 1)
+            loadCategory: async function(){
+                var e = await CategoryApiService.getCategoryListAsync();
+                this.category = e.content;
+            },
+            sortCategory: async function(){
+                for(var i=0;i<this.category.length;i++){
+                    if(this.category[i].parentId == 0)
                     {
-                        this.cat1.push(this.article[i].categoriesId);
+                        this.cat0.push(this.category[i].parentId);
                     }
-                    else if(this.article[i].categoriesId == 2)
+                    else if(this.category[i].parentId == 1)
                     {
-                        this.cat2.push(this.article[i].categoriesId);
+                        this.cat1.push(this.category[i].parentId);
                     }
-                    else if(this.article[i].categoriesId == 3)
+                    else if(this.category[i].parentId == 2)
                     {
-                        this.cat3.push(this.article[i].categoriesId);
+                        this.cat2.push(this.category[i].parentId);
+                    }
+                    else if(this.category[i].parentId == 3)
+                    {
+                        this.cat3.push(this.category[i].parentId);
                     }
                     else
                     {
-                        this.cat4.push(this.article[i].categoriesId);
+                        this.cat4.push(this.category[i].parentId);
                     }
                 } 
             },
