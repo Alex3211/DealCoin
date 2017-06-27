@@ -1,6 +1,8 @@
 <template>
-  <div class="container">
+
+  <div class="container"><br>
         <div class="container">
+          <div class="row">
             <div class="btn-group drop" v-for="category in parentCategory" :key="category.categoriesId">
               <button class="btn btn-default  dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-on:mouseover="menuHover" v-on:mouseout="menuOut">
                 {{category.title}}
@@ -8,11 +10,13 @@
               </button>
               <ul class="dropdown-menu" >
                 <!--<li v-on:click="DoCategory(category.categoriesId)"><a href="#" class="categ">{{category.title}}</a></li>-->
-                <li v-for="children in category.children" v-on:click="DoCategory(children.categoriesId)"><a href="#" class="categ">{{children.name}}</a></li>
+                <li v-for="children in category.children" v-on:click="DoCategory(children.categoriesId, children.name)"><a href="#" class="categ">{{children.name}}</a></li>
               </ul>
             </div>
-
+          </div>
+          <br>
           <div class="row">
+
             <button class="btn btn-default dropdown-toggle" v-if="this.categorySearched != '' " v-on:click="DoCategory('')" type="button">
               Rechercher sur toute les catégories
             </button>
@@ -33,6 +37,10 @@
                 <li><a href="#" v-on:click="tri('De Z-A')">De Z a A</a></li>
               </ul>
             </div>
+            <br><br>
+            <h4 v-if="categorySearched !== ''">
+              Vous recherchez actuellement dans {{NameOfCategory}}
+            </h4>
           </div>
                       
             
@@ -40,13 +48,13 @@
             <div style='display:none;' class="col-md-10" id='invisible'>
               <br>
               <div class="input-group input-group-lg">
-                <span class="input-group-addon" id="sizing-addon1">Recherche d'article</span>
-                <input type="text" v-model="searchString" placeholder="Rechercher un article..." class="form-control"  aria-describedby="sizing-addon1"/>
+                <span class="input-group-addon LeftColorForSearch" id="sizing-addon1">Recherche d'article</span>
+                <input type="text" v-model="searchString" placeholder="Rechercher un article..." class="form-control RightColorForSearch"  aria-describedby="sizing-addon1"/>
               </div>
               <br><br>
             </div>       
         </div>
-        <div v-if="this.BoolSearch == true">
+        <div v-if="this.BoolSearch == true && searchString !== ''">
           <div class="row">
             <div v-for="article in filteredArticles" :key="article.productsId" class="col-md-3">
               <ArticlePage :id="article"></ArticlePage><br>
@@ -102,14 +110,45 @@
 </template>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+::-webkit-input-placeholder {
+   color: white;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: white;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: white;  
+}
+
+:-ms-input-placeholder {  
+   color: white;  
+}
 .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
-background-color: #BFA077;
+  background-color: #BFA077;
+  border:none;
+}
+.btn{
+    color:white !important;
+    text-decoration: none !important;
+}
+.RightColorForSearch:focus, .RightColorForSearch:hover{
+background-color: #402E22!important;
+color:white!important;
+}
+.RightColorForSearch{
+background-color: #BFA077!important;
 border:none;
-  margin-left:5px;
-  margin-right:5px;
+color:white;
+}
+.LeftColorForSearch{
+background-color: #BFA077!important;
+border:none;
+color:white;
 }
 button:hover{
-background-color:#BFA077!important;
+  background-color:#BFA077!important;
 }
 .btn{
   background-color:#BFA077;
@@ -118,7 +157,7 @@ background-color:#BFA077!important;
 .categ:hover{
   background-color:black;
 }
-li a:hover{
+li a:hover,.pagination > li > a:hover,.pagination > li > a:hover, .pagination > li > a:focus, .pagination > li > span:hover, .pagination > li > span:focus{
   background-color:#402E22!important;
 }
 .thumbnail{
@@ -129,6 +168,11 @@ li a:hover{
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
   border-radius: 7px;
+  -moz-box-shadow: 10px 10px 5px -5px #402E22;
+  -webkit-box-shadow: 10px 10px 5px -5px #402E22;
+  -o-box-shadow: 10px 10px 5px -5px #402E22;
+  box-shadow: 10px 10px 5px -5px #402E22;
+  filter:progid:DXImageTransform.Microsoft.Shadow(color=#402E22, Direction=315, Strength=5);
 }
 li a {
   color: white;
@@ -154,6 +198,7 @@ export default {
       itemPerPage: 8,
       itemPage: 1,
       searchString:"",
+      NameOfCategory:'',
       BoolSearch : false,
       categorySearched: "",
       categoryBool :false,
@@ -301,8 +346,9 @@ export default {
       }
       this.TempTab();
     },
-    DoCategory: function(categ){
+    DoCategory: function(categ, name){
         this.pagi(1);
+        this.NameOfCategory = name;
         this.categorySearched = categ;
         this.TempTab();
     }
