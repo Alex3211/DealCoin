@@ -61,10 +61,47 @@
 </template>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 .thumbnail{
+  background-color: #BFA077;
+  border:none;
   width:250px;
   height:350px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+  -moz-box-shadow: 10px 10px 5px -5px #402E22;
+-webkit-box-shadow: 10px 10px 5px -5px #402E22;
+-o-box-shadow: 10px 10px 5px -5px #402E22;
+box-shadow: 10px 10px 5px -5px #402E22;
+filter:progid:DXImageTransform.Microsoft.Shadow(color=#402E22, Direction=134, Strength=5);
 }
+.btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
+background-color: #BFA077;
+border:none;
+ margin-left:5px;
+ margin-right:5px;
+}
+button:hover{
+background-color:#BFA077!important;
+}
+.btn{
+ background-color:#BFA077;
+ border:none;
+}
+.categ:hover{
+ background-color:black;
+}
+li a:hover,.pagination > li > a:hover,.pagination > li > a:hover, .pagination > li > a:focus, .pagination > li > span:hover, .pagination > li > span:focus{
+ background-color:#402E22!important;
+}
+
+li a {
+ color: white;
+ background-color:#BFA077;
+ border:none;
+}
+
 h1, h2 {
   font-weight: normal;
 }
