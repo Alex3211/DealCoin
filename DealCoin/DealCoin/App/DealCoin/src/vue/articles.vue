@@ -22,8 +22,19 @@
             <div class="btn-group" role="group" aria-label="..." v-else-if="this.BoolSearch == true">
               <button type="button" class="btn btn-default" v-on:click="ShowSearchArticle()">Arrêter la recherche</button>
             </div>
+            <div class="btn-group">
+              <button id="tri" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Trier <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#" v-on:click="tri('Prix croissant')">Prix croissant</a></li>
+                <li><a href="#" v-on:click="tri('Prix décroissant')">Prix décroissant</a></li>
+                <li><a href="#" v-on:click="tri('De A-Z')">De A a Z</a></li>
+                <li><a href="#" v-on:click="tri('De Z-A')">De Z a A</a></li>
+              </ul>
+            </div>
           </div>
-
+                      
             
             <div class="col-md-1"></div>
             <div style='display:none;' class="col-md-10" id='invisible'>
@@ -91,8 +102,24 @@
 </template>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
+background-color: #BFA077;
+border:none;
+  margin-left:5px;
+  margin-right:5px;
+}
+button:hover{
+background-color:#BFA077!important;
+}
+.btn{
+  background-color:#BFA077;
+  border:none;
+}
 .categ:hover{
   background-color:black;
+}
+li a:hover{
+  background-color:#402E22!important;
 }
 .thumbnail{
   background-color: #BFA077;
@@ -164,6 +191,35 @@ export default {
         event.target.click();
       }
     },
+    tri: function(sorteDeTri){
+      switch (sorteDeTri) {
+        case "Prix croissant":
+            var ascending = this.article.sort((a, b) => parseInt(a.price) - parseInt(b.price));
+            break;
+        case "Prix décroissant":
+            var ascending = this.article.sort((a, b) => parseInt(b.price) - parseInt(a.price));
+            break;
+        case "De A-Z":
+            var ascending = this.article.sort(function(a, b){
+              if(a.title < b.title) return -1;
+              if(a.title > b.title) return 1;
+              return 0;
+            })
+            break;
+        case "De Z-A":
+            var ascending = this.article.sort(function(a, b){
+              if(a.title > b.title) return -1;
+              if(a.title < b.title) return 1;
+              return 0;
+            })
+            break;
+      }
+      if(ascending){
+        this.article = ascending;
+        document.getElementById("tri").innerHTML = sorteDeTri;
+      }
+      this.TempTab();
+    },
     menuOut: function(event) {
       //console.log(event);
 
@@ -230,7 +286,6 @@ export default {
         for(var u = 0; u < this.article.length; u++ ){
           if(this.article[u] && (this.article[u].categoriesId == this.categorySearched)){
               paginatedArticleList.push(this.article[u]);
-              console.log(this.article[u]);
           } 
         }
       }
