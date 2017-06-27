@@ -1,5 +1,6 @@
 <template class='test'>
   <div id="app">
+  <img src="./bitcoinlogo.png" style="width:10%;" >
     <nav class="navbar navbar-fixed-top" role="navigation">
         <div class="container">
             <div v-if=" getStatut == 1" class="navbar-header">
@@ -73,7 +74,6 @@
         </div>
     </nav>
     <router-view></router-view>
-    <img src="./bitcoinlogo.png" style="width:10%;" >
   </div>
 </template>
 
@@ -150,7 +150,7 @@ export default {
 -o-box-shadow: 0px 5px 5px 1px #402E22;
 box-shadow: 0px 5px 5px 1px #402E22;
 filter:progid:DXImageTransform.Microsoft.Shadow(color=#402E22, Direction=180, Strength=5);
-background-color:#402E22;
+background-color:#BFA077;
 }
 body{
     background-color:#7F6A4F;
@@ -159,7 +159,8 @@ body{
     color:white;
 }
 a{
-    color:white!important;
+    color:white !important;
+    text-decoration: none !important;
 }
 .profil a:hover{
     background-color:#402E22!important;
