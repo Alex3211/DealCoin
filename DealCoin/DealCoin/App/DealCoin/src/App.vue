@@ -49,26 +49,10 @@
                         aria-haspopup="true" aria-expanded="false">{{ auth.email }} <span class="caret"></span></a>
                         
                         <ul class="dropdown-menu">
-                            <li v-if="services.isConnected && getStatut == 0">
+                            <li v-if="services.isConnected && getStatut == 0" class="profil">
                                 <router-link to="/Account">Mon compte</router-link>
                             </li> 
-                            <li>
-                                <router-link to="/Logout">Se déconnecter</router-link>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <ul v-else class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a v-if="services.isConnected" class="dropdown-toggle Element" data-toggle="dropdown" role="button" 
-                        aria-haspopup="true" aria-expanded="false">{{ auth.email }} <span class="caret"></span></a>
-                        
-                        <ul class="dropdown-menu">
-                            <li v-if="services.isConnected && getStatut == 0">
-                                <router-link to="/Account">Mon compte</router-link>
-                            </li> 
-                            <li>
+                            <li class="profil">
                                 <router-link to="/Logout">Se déconnecter</router-link>
                             </li>
                         </ul>
@@ -124,7 +108,13 @@ body{
 a{
     color:white!important;
 }
+.profil a:hover{
+    background-color:#402E22!important;
+}
 li a:hover{
+    background-color:#BFA077!important;
+}
+.nav > li > a:hover, .nav > li > a:focus,.nav .open > a, .nav .open > a:hover, .nav .open > a:focus,.dropdown-menu{
     background-color:#BFA077!important;
 }
 #app {
