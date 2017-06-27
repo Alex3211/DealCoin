@@ -8,7 +8,11 @@
         <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}"
         v-on:click.native="onVisited(Articleid)"><h3>{{Articleid.title}}</h3></router-link>
         <p>{{Articleid.desc1}}</p>
-        <p>Prix : {{Articleid.price}} €</p>
+        <div>
+							<span itemprop="price" class="price product-price">
+							{{Articleid.price}}	€
+              </span>
+				</div>
         <p> Article vu <b>{{Articleid.visits}}</b> fois.</p> 
         <button v-on:click="addarticle(Articleid)">Ajouter au panier</button>
       </div>
@@ -89,5 +93,20 @@ li {
 a {
   color: #42b983;
 }
+
+.price.product-price {
+	font: 500 15px/17px "Roboto Condensed", sans-serif;
+	color: #FFF;
+	background:url(../imageprice.png);
+	width: 75px;
+	height: 34px;
+	line-height: 37px;
+	text-align: center;
+	display: inline-block;
+  border-radius : 5px;
+  margin-left:170px;
+	}
+  
+  
 
 </style>

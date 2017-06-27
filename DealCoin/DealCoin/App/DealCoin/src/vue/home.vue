@@ -32,7 +32,7 @@ a {
 </style>
 
 <script>
-import Connexion from './connexion.vue'
+import App from '../App.vue'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -49,7 +49,7 @@ export default {
   },
   components: {
     // <my-component> will only be available in parent's template
-    'connexion': Connexion
+    'app': App
   }
 }
 </script>
