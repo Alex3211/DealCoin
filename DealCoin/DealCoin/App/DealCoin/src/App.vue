@@ -138,6 +138,10 @@ export default {
 </script>
 
 <style>
+.btn-lg
+{
+  padding:8px 22px;
+}
 .navbar{
 -moz-box-shadow: 0px 5px 5px 1px #402E22;
 -webkit-box-shadow: 0px 5px 5px 1px #402E22;

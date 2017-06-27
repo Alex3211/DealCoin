@@ -1,6 +1,6 @@
 <template>
 
-<div class="container">
+<div class="container toto">
     <div class="panel panel-default">
         <div class="panel-heading">
             <router-link to="/articles"><a href="#">Retour aux articles</a></router-link>
@@ -47,6 +47,33 @@
 </template>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.panel-body{
+  background-color: #BFA077;
+  border:none;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+  -moz-box-shadow: 10px 10px 5px -5px #402E22;
+-webkit-box-shadow: 10px 10px 5px -5px #402E22;
+-o-box-shadow: 10px 10px 5px -5px #402E22;
+box-shadow: 10px 10px 5px -5px #402E22;
+filter:progid:DXImageTransform.Microsoft.Shadow(color=#402E22, Direction=134, Strength=5);
+}
+
+.btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
+background-color: #BFA077;
+border:none;
+ margin-left:5px;
+ margin-right:5px;
+}
+button:hover{
+background-color:#BFA077!important;
+}
+.btn{
+ background-color:#BFA077;
+ border:none;
+}
 h1, h2 {
   font-weight: normal;
 }

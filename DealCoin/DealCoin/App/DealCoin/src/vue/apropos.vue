@@ -1,6 +1,5 @@
 <template>
   <div class="hello">
-  <img src="../assets/logo.png">
         <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
