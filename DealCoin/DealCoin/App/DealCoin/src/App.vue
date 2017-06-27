@@ -1,6 +1,5 @@
 <template class='test'>
   <div id="app">
-  <img src="./bitcoinlogo.png" style="width:10%;" >
     <nav class="navbar navbar-fixed-top" role="navigation">
         <div class="container">
             <div v-if=" getStatut == 1" class="navbar-header">
@@ -139,18 +138,13 @@ export default {
 </script>
 
 <style>
-.btn-lg
-{
-  padding:8px 22px;
-}
-
 .navbar{
 -moz-box-shadow: 0px 5px 5px 1px #402E22;
 -webkit-box-shadow: 0px 5px 5px 1px #402E22;
 -o-box-shadow: 0px 5px 5px 1px #402E22;
 box-shadow: 0px 5px 5px 1px #402E22;
 filter:progid:DXImageTransform.Microsoft.Shadow(color=#402E22, Direction=180, Strength=5);
-background-color:#BFA077;
+background-color:#402E22;
 }
 body{
     background-color:#7F6A4F;
