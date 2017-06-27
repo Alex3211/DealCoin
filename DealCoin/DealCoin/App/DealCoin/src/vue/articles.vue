@@ -4,7 +4,7 @@
         <div class="container">
           <div class="row">
             <div class="btn-group drop" v-for="category in parentCategory" :key="category.categoriesId">
-              <button class="btn btn-default  dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-on:mouseover="menuHover" v-on:mouseout="menuOut">
+              <button class="btn btn-default  dropdown-toggle buttonCategory" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-on:mouseover="menuHover" v-on:mouseout="menuOut">
                 {{category.title}}
                 <span class="caret"></span>
               </button>
@@ -21,13 +21,13 @@
               Rechercher sur toute les catégories
             </button>
             <div class="btn-group" role="group" aria-label="..." v-if="this.BoolSearch == false">
-              <button type="button" class="btn btn-default" v-on:click="ShowSearchArticle()">Rechercher un article</button>
+              <button type="button" class="btn btn-default buttonCategory" v-on:click="ShowSearchArticle()">Rechercher un article</button>
             </div>
             <div class="btn-group" role="group" aria-label="..." v-else-if="this.BoolSearch == true">
-              <button type="button" class="btn btn-default" v-on:click="ShowSearchArticle()">Arrêter la recherche</button>
+              <button type="button" class="btn btn-default buttonCategory" v-on:click="ShowSearchArticle()">Arrêter la recherche</button>
             </div>
             <div class="btn-group">
-              <button id="tri" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button id="tri" class="btn btn-default dropdown-toggle buttonCategory" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Trier <span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
@@ -133,9 +133,14 @@
     color:white !important;
     text-decoration: none !important;
 }
-.RightColorForSearch:focus, .RightColorForSearch:hover{
+.RightColorForSearch:focus, .RightColorForSearch:hover, .buttonCategory:focus, .btn:hover{
 background-color: #402E22!important;
 color:white!important;
+-moz-box-shadow: 5px 5px 5px -5px #402E22;
+-webkit-box-shadow: 5px 5px 5px -5px #402E22;
+-o-box-shadow: 5px 5px 5px -5px #402E22;
+box-shadow: 5px 5px 5px -5px #402E22;
+filter:progid:DXImageTransform.Microsoft.Shadow(color=#402E22, Direction=134, Strength=5);
 }
 .RightColorForSearch{
 background-color: #BFA077!important;
@@ -178,6 +183,11 @@ li a {
   color: white;
   background-color:#BFA077;
   border:none;
+  -moz-box-shadow: 5px 5px 5px -5px #402E22;
+-webkit-box-shadow: 5px 5px 5px -5px #402E22;
+-o-box-shadow: 5px 5px 5px -5px #402E22;
+box-shadow: 5px 5px 5px -5px #402E22;
+filter:progid:DXImageTransform.Microsoft.Shadow(color=#402E22, Direction=134, Strength=5);
 }
 </style>
 

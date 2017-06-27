@@ -4,17 +4,17 @@
         <div class="row">
             <router-link to="/InsertArticle"><button type="button" class="btn btn-default">Ajouter un article</button></router-link> 
             <div class="btn-group" role="group" aria-label="..." v-if="this.BoolSearch == false">
-              <button type="button" class="btn btn-default" v-on:click="ShowSearchArticle()">Rechercher un article</button>
+              <button type="button" class="btn btn-default buttonCategory" v-on:click="ShowSearchArticle()">Rechercher un article</button>
             </div>
             <div class="btn-group" role="group" aria-label="..." v-else-if="this.BoolSearch == true">
-              <button type="button" class="btn btn-default" v-on:click="ShowSearchArticle()">Arrêter la recherche</button>
+              <button type="button" class="btn btn-default buttonCategory" v-on:click="ShowSearchArticle()">Arrêter la recherche</button>
             </div>
             <br>
             <div class="col-md-1"></div>
             <div style='display:none;' class="col-md-10" id='invisible'>
               <br>
               <div class="input-group input-group-lg">
-                <span class="input-group-addon" id="sizing-addon1">Recherche d'article</span>
+                <span class="input-group-addon buttonCategory" id="sizing-addon1">Recherche d'article</span>
                 <input type="text" v-model="searchString" placeholder="Rechercher un article..." class="form-control"  aria-describedby="sizing-addon1"/>
               </div>
               <br><br>
@@ -76,11 +76,25 @@
 box-shadow: 10px 10px 5px -5px #402E22;
 filter:progid:DXImageTransform.Microsoft.Shadow(color=#402E22, Direction=134, Strength=5);
 }
+.buttonCategory:focus, .btn:hover{
+background-color: #402E22!important;
+color:white!important;
+-moz-box-shadow: 5px 5px 5px -5px #402E22;
+-webkit-box-shadow: 5px 5px 5px -5px #402E22;
+-o-box-shadow: 5px 5px 5px -5px #402E22;
+box-shadow: 5px 5px 5px -5px #402E22;
+filter:progid:DXImageTransform.Microsoft.Shadow(color=#402E22, Direction=134, Strength=5);
+}
 .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
 background-color: #BFA077;
 border:none;
  margin-left:5px;
  margin-right:5px;
+ -moz-box-shadow: 5px 5px 5px -5px #402E22;
+-webkit-box-shadow: 5px 5px 5px -5px #402E22;
+-o-box-shadow: 5px 5px 5px -5px #402E22;
+box-shadow: 5px 5px 5px -5px #402E22;
+filter:progid:DXImageTransform.Microsoft.Shadow(color=#402E22, Direction=134, Strength=5);
 }
 button:hover{
 background-color:#BFA077!important;
@@ -118,6 +132,11 @@ li {
 
 a {
   color: #42b983;
+  -moz-box-shadow: 5px 5px 5px -5px #402E22;
+-webkit-box-shadow: 5px 5px 5px -5px #402E22;
+-o-box-shadow: 5px 5px 5px -5px #402E22;
+box-shadow: 5px 5px 5px -5px #402E22;
+filter:progid:DXImageTransform.Microsoft.Shadow(color=#402E22, Direction=134, Strength=5);
 }
 </style>
 

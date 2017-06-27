@@ -25,15 +25,14 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul v-if=" getStatut == 0" class="nav navbar-nav">
                       <li class="dropdown" v-if="!services.isConnected">
-                            <a class="dropdown-toggle Element" data-toggle="dropdown" role="button" 
-                            aria-haspopup="true" aria-expanded="false">Connexion <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <button type="button" @click="login('Google')" class="btn btn-lg btn-default"><i class="fa fa-google" aria-hidden="true"></i><img src="./logogoogle.png" style="width:10%;">Connexion avec Google</button>
-                                </li> 
-                                <li>
-                                    <button type="button" @click="login('Base')" class="btn btn-lg btn-default"><img src="./bitcoinlogo.png" style="width:10%;" >Connexion avec DealCoin</button>
-                                </li>
+                        <a class="dropdown-toggle Element" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Connexion <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <button type="button" @click="login('Google')" class="btn btn-lg btn-default"><i class="fa fa-google" aria-hidden="true"></i><img src="./logogoogle.png" style="width:10%;">Connexion avec Google</button>
+                            </li> 
+                            <li>
+                                <button type="button" @click="login('Base')" class="btn btn-lg btn-default"><img src="./bitcoinlogo.png" style="width:10%;" >Connexion avec DealCoin</button>
+                            </li>
                         </ul>
                     </li>
 
