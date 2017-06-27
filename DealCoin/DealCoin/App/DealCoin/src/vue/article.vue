@@ -14,7 +14,7 @@
               </span>
 				</div>
         <p> Article vu <b>{{Articleid.visits}}</b> fois.</p> 
-        <button v-on:click="addarticle(Articleid)">Ajouter au panier</button>
+        <button class="btn btn-default" v-on:click="addarticle(Articleid)">Ajouter au panier</button>
       </div>
     </div>
       <div v-else class="thumbnail" >
@@ -31,7 +31,7 @@
 				</div>
           <p> Article vu <b>{{Articleid.visits}}</b> fois.</p>
           <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}">
-          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Modifier</span></button></router-link>
+          <button type="button" class="btn btn-danger dropdown-toggle buttonCategory" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Modifier</span></button></router-link>
         </div>
       </div>
 </template>
@@ -86,11 +86,34 @@ h1, h2, h3 {
 p{
   color:white;
 }
+.btn-default:hover{
+  background-color: #BFA077;
+  border:1px solid #7F6A4F;
+-moz-box-shadow: 5px 5px 5px -5px #402E22;
+-webkit-box-shadow: 5px 5px 5px -5px #402E22;
+-o-box-shadow: 5px 5px 5px -5px #402E22;
+box-shadow: 5px 5px 5px -5px #402E22;
+filter:progid:DXImageTransform.Microsoft.Shadow(color=#402E22, Direction=134, Strength=5);
+}
+.btn{
+  color:white !important;
+  text-decoration: none !important;
+  background-color:#7F6A4F;
+  border:none;
+}
 ul {
   list-style-type: none;
   padding: 0;
 }
-
+.buttonCategory:focus, .btn:hover{
+background-color: #402E22!important;
+color:white!important;
+-moz-box-shadow: 5px 5px 5px -5px #402E22;
+-webkit-box-shadow: 5px 5px 5px -5px #402E22;
+-o-box-shadow: 5px 5px 5px -5px #402E22;
+box-shadow: 5px 5px 5px -5px #402E22;
+filter:progid:DXImageTransform.Microsoft.Shadow(color=#402E22, Direction=134, Strength=5);
+}
 li {
   display: inline-block;
   margin: 0 10px;
