@@ -67,7 +67,7 @@ a {
 </style>
 
 <script>
-import Connexion from './connexion.vue'
+import App from '../App.vue'
 import AuthService from '../services/AuthService.js'
 import UserService from '../services/UserService.js'
 import { mapGetters,mapActions } from 'vuex'
@@ -86,7 +86,7 @@ export default {
   },
   components: {
     // <my-component> will only be available in parent's template
-    'connexion': Connexion,
+    'app': App,
   },
   
   computed:{

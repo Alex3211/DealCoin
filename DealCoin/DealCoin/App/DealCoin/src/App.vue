@@ -24,9 +24,19 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul v-if=" getStatut == 0" class="nav navbar-nav">
-                    <li v-if="!services.isConnected">
-                      <router-link to="/connexion"><a href="#" class="Element">Connexion</a></router-link>
+                      <li class="dropdown" v-if="!services.isConnected">
+                            <a class="dropdown-toggle Element" data-toggle="dropdown" role="button" 
+                            aria-haspopup="true" aria-expanded="false">Connexion <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <button type="button" @click="login('Google')" class="btn btn-lg btn-default"><i class="fa fa-google" aria-hidden="true"></i><img src="./logogoogle.png" style="width:10%;">Connexion avec Google</button>
+                                </li> 
+                                <li>
+                                    <button type="button" @click="login('Base')" class="btn btn-lg btn-default"><img src="./bitcoinlogo.png" style="width:10%;" >Connexion avec DealCoin</button>
+                                </li>
+                        </ul>
                     </li>
+
                     <li>
                         <router-link to="/apropos"><a href="#" class="Element">À propos</a></router-link>
                     </li> 
@@ -79,6 +89,7 @@
         </div>
     </nav>
     <router-view></router-view>
+    <img src="./bitcoinlogo.png" style="width:10%;" >
   </div>
 </template>
 
@@ -89,15 +100,52 @@
 <script>
 import { mapGetters,mapActions } from 'vuex'
 import AuthService from './services/AuthService.js'
+import UserService from './services/UserService'
+import Vue from 'vue'
+import $ from 'jquery'
+
 
 export default {
     name: 'app',
     data() {
         return {
             services: AuthService,
-            status: 0
+            status: 0,
+            endpoint: null,
+            User:[],
+            email: null
         }
     },
+    mounted() {
+            AuthService.registerAuthenticatedCallback(() => this.onAuthenticated());
+        },
+        beforeDestroy() {
+            AuthService.removeAuthenticatedCallback(() => this.onAuthenticated());
+        },
+        methods: {
+            ...mapActions(['setStatut']),
+            login(provider) {
+                AuthService.login(provider);
+            },
+            onAuthenticated() {
+                this.email = AuthService.hisEmail();
+                this.loadModelUser(this.email);
+            },
+            loadModelUser: async function(email) {
+              this.User = await UserService.getUserAsync(this.email);
+              this.User = this.User.content;
+                if(this.User.status == 1)
+                {
+                    this.setStatut(1);
+                    this.$router.replace('/homeAdmin');
+                }
+                else
+                {
+                    this.setStatut(0);
+                    this.$router.replace('/homeMembers'); 
+                }
+            }
+        },
     computed:{
     ...mapGetters(['getCount']),
     ...mapGetters(['getStatut']),
@@ -107,6 +155,11 @@ export default {
 </script>
 
 <style>
+.btn-lg
+{
+  padding:8px 22px;
+}
+
 .navbar{
 -moz-box-shadow: 0px 5px 5px 1px #402E22;
 -webkit-box-shadow: 0px 5px 5px 1px #402E22;

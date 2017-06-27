@@ -7,7 +7,6 @@ import $ from 'jquery'
 
 import App from './App.vue'
 import home from './vue/home.vue'
-import connexion from './vue/connexion.vue'
 import Logout from './vue/Logout.vue'
 import apropos from './vue/apropos.vue'
 import articles from './vue/articles.vue'
@@ -42,7 +41,7 @@ Vue.use(VueRouter)
 function requireAuth (to, from, next)  {
   if (!AuthService.isConnected) {
     next({
-      path: '/connexion',
+      path: './app',
       query: { redirect: to.fullPath }
     });
 
@@ -69,11 +68,6 @@ const router = new VueRouter({
       path: '/',
       name: 'home',
       component: home
-    },
-    {
-      path: '/connexion',
-      name: 'connexion',
-      component: connexion
     },
     {
       path: '/logout',
