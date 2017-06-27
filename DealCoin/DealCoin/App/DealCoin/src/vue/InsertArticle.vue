@@ -65,6 +65,20 @@
 </template>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
+background-color: #BFA077;
+border:none;
+ margin-left:5px;
+ margin-right:5px;
+}
+button:hover{
+background-color:#BFA077!important;
+}
+.btn{
+ background-color:#BFA077;
+ border:none;
+}
+
 .taille{
     max-height:150px;
     max-width:150px;

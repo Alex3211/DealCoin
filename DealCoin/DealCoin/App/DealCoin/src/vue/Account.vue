@@ -129,6 +129,7 @@
               <label class="col-md-3 control-label"></label>
               <div class="col-md-5">
                 <input name ="Save" class="btn btn-primary" value="Modifier le mot de passe" type="submit">
+                <br/>
                 <a  align="right" class="btn btn-danger" @click="deleteAccount(model.userId)">Supprimer le compte</a>           
               </div>
             </div>
@@ -203,8 +204,21 @@ export default {
 </script>       
 
 <style scoped>
+.btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
+background-color: #BFA077;
+border:none;
+ margin-left:5px;
+ margin-right:5px;
+}
+button:hover{
+background-color:#BFA077!important;
+}
+.btn{
+ background-color:#BFA077;
+ border:none;
+}
 .clrbtn{
-  background-color:#7F5D2F !important;
+  background-color:#BFA077 !important;
   border:none;
 }
 

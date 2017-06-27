@@ -24,7 +24,11 @@
         <div class="caption">
           <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}"><h3>{{Articleid.title}}</h3></router-link>
           <p>{{Articleid.desc1}}</p>
-          <p>{{Articleid.price}} €</p>
+          <div>
+							<span itemprop="price" class="price product-price">
+							{{Articleid.price}}	€
+              </span>
+				</div>
           <p> Article vu <b>{{Articleid.visits}}</b> fois.</p>
           <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}">
           <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Modifier</span></button></router-link>
@@ -70,6 +74,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+
 .taille{
   height:140px
 }

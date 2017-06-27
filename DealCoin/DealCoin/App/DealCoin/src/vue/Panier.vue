@@ -60,6 +60,24 @@
         </div>
     </div>
 </template>
+
+<style scoped>
+
+.btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
+background-color: #BFA077;
+border:none;
+ margin-left:5px;
+ margin-right:5px;
+}
+button:hover{
+background-color:#BFA077!important;
+}
+.btn{
+ background-color:#BFA077;
+ border:none;
+}
+</style>
+
 <script>
 import Vue from 'vue'
 import $ from 'jquery'
