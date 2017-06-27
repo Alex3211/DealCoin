@@ -28,10 +28,10 @@
                         <a class="dropdown-toggle Element" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Connexion <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <button type="button" @click="login('Google')" class="btn btn-lg btn-default"><i class="fa fa-google" aria-hidden="true"></i><img src="./logogoogle.png" style="width:10%;">Connexion avec Google</button>
+                                <button type="button" @click="login('Google')" class="btn btn-lg btn-default buttonCategory"><i class="fa fa-google" aria-hidden="true"></i><img src="./logogoogle.png" style="width:10%;">Connexion avec Google</button>
                             </li> 
                             <li>
-                                <button type="button" @click="login('Base')" class="btn btn-lg btn-default"><img src="./bitcoinlogo.png" style="width:10%;" >Connexion avec DealCoin</button>
+                                <button type="button" @click="login('Base')" class="btn btn-lg btn-default buttonCategory"><img src="./bitcoinlogo.png" style="width:10%;" >Connexion avec DealCoin</button>
                             </li>
                         </ul>
                     </li>
@@ -46,7 +46,7 @@
                     
                 </ul>
 
-                <ul v-if="services.isConnected && getStatut == 0" class="nav navbar-nav navbar-right">
+                <ul v-if="services.isConnected" class="nav navbar-nav navbar-right">
                     <li v-if="services.isConnected && getStatut == 0">
                         <router-link to="/panier">Panier <span class="badge">{{ getCount }}</span></router-link>
                     </li>
@@ -124,7 +124,7 @@ export default {
                 else
                 {
                     this.setStatut(0);
-                    this.$router.replace('/homeMembers'); 
+                    this.$router.go('/home'); 
                 }
             }
         },
@@ -161,6 +161,22 @@ a{
 }
 .profil a:hover{
     background-color:#402E22!important;
+}
+.btn{
+  color:white !important;
+  text-decoration: none !important;
+  background-color:#7F6A4F;
+  border:1px solid #402E22;
+  border-radius:0px;
+}
+.buttonCategory:focus, .btn:hover{
+background-color: #402E22!important;
+color:white!important;
+-moz-box-shadow: 5px 5px 5px -5px #402E22;
+-webkit-box-shadow: 5px 5px 5px -5px #402E22;
+-o-box-shadow: 5px 5px 5px -5px #402E22;
+box-shadow: 5px 5px 5px -5px #402E22;
+filter:progid:DXImageTransform.Microsoft.Shadow(color=#402E22, Direction=134, Strength=5);
 }
 li a:hover{
     background-color:#BFA077!important;
