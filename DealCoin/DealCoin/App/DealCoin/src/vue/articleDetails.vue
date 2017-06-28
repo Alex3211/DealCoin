@@ -3,7 +3,7 @@
 <div class="container " style="border:none;">
     <div class="panel panel-default ">
         <div class="panel-heading toto">
-            <router-link to="/articles"><a href="#">Retour aux articles</a></router-link>
+            <router-link to="/articles"><a href="#" class="btn btn-default">Retour aux articles</a></router-link>
             <div class="btn-group" style="float:right;" v-if="this.email == user.email">
             	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             		<span>Modifier</span>
@@ -20,7 +20,7 @@
         <div class="panel-body">
             <div class="media">
                 <div class="media-left">
-                    <img class="media-object" width="300" v-bind:src="Articleid.photo" />
+                    <img class="media-object" max-width="300" max-height="200" v-bind:src="Articleid.photo" />
                     <iframe v-if="this.bool == true"
                       width="300" height="150"
                       frameborder="0" style="border:0"
@@ -35,7 +35,7 @@
                     <p>Crée le {{Articleid.created}}</p>
                     <p>Mis a jour le {{Articleid.updated}}</p>
                     <div>
-                      <button class="btn btn-default" v-on:click="addarticle(Articleid)">Ajouter au panier</button>
+                      <button v-if="this.email !== user.email" class="btn btn-default" v-on:click="addarticle(Articleid)">Ajouter au panier</button>
                     </div>
                                 
                 <div class="clearfix"></div>
