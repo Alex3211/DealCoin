@@ -35,7 +35,7 @@
                     <p>Crée le {{Articleid.created}}</p>
                     <p>Mis a jour le {{Articleid.updated}}</p>
                     <div>
-                      <button v-on:click="addarticle(Articleid)">Ajouter au panier</button>
+                      <button class="btn btn-default" v-on:click="addarticle(Articleid)">Ajouter au panier</button>
                     </div>
                                 
                 <div class="clearfix"></div>
@@ -47,7 +47,24 @@
 </template>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
+  background-color: #BFA077;
+  border:none;
+}
+.btn{
+    color:white !important;
+    text-decoration: none !important;
+    
+}
+.btn:hover{
+background-color: #402E22!important;
+color:white!important;
+-moz-box-shadow: 5px 5px 5px -5px #402E22;
+-webkit-box-shadow: 5px 5px 5px -5px #402E22;
+-o-box-shadow: 5px 5px 5px -5px #402E22;
+box-shadow: 5px 5px 5px -5px #402E22;
+filter:progid:DXImageTransform.Microsoft.Shadow(color=#402E22, Direction=134, Strength=5);
+}
 .panel-body{
   background-color: #BFA077;
   border:none;
@@ -63,12 +80,7 @@ filter:progid:DXImageTransform.Microsoft.Shadow(color=#402E22, Direction=134, St
 .toto{
   background-color:#BFA077;
   border:none;
-}
-.btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
-background-color: #BFA077;
-border:none;
- margin-left:5px;
- margin-right:5px;
+  
 }
 .panel{
   border:none;
@@ -78,7 +90,8 @@ background-color:#BFA077!important;
 }
 .btn{
  background-color:#BFA077;
- border:none;
+ border: 1px solid #402E22;
+ border-radius:10px;
 }
 h1, h2 {
   font-weight: normal;
