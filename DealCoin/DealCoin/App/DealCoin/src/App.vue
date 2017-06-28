@@ -48,7 +48,7 @@
 
                 <ul v-if="services.isConnected" class="nav navbar-nav navbar-right">
                     <li v-if="services.isConnected && getStatut == 0">
-                        <router-link to="/panier">Panier <span class="badge">{{ getCount }}</span></router-link>
+                       <router-link to="/Panier"><a href="#" class="Element"><img src="./cartlogo.png" class="image1"><p class="text1">{{getCount}}</p></img></a></router-link> 
                     </li>
                     <li v-if="services.isConnected && getStatut == 0">
                         <router-link to="/MyArticles"><a href="#" class="Element">Mes articles</a></router-link>
@@ -137,6 +137,17 @@ export default {
 </script>
 
 <style>
+.image1 {
+	width: 36px;
+    height:26px;
+}
+.text1{
+   margin-left:-8px;
+   margin-top:-35px;
+}
+
+
+
 .btn-lg
 {
   padding:8px 22px;
