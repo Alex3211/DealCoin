@@ -11,127 +11,153 @@
             </div>
             </br>
             </br>
-            
-            <div class="col-md-12">
-              <li class="dropdown">
-                <button type="button" class="btn-lg btn-info dropdown-toggle clrbtn" data-toggle="dropdown">Recevoir</button>
-                <ul style="margin-left: -95%;"class="dropdown-menu" role="menu">
-                  <div  class="input-group">
-                    <input style="width:225px;" type="text" class="form-control">
-                    <span class="input-group-btn"><button class="btn btn-default" type="button">Recevoir</button></span>
-                  </div>
-                </ul>
-              </li>
+            <div class="row">
+              <div class="col-md-12">
+                <li class="dropdown">
+                  <button type="button" class="btn-lg btn-info dropdown-toggle clrbtn" data-toggle="dropdown">Créditer votre compte</button>
+                  <ul class="dropdown-menu" role="menu">
+                    <div  class="input-group">
+                      <input style="width:225px;" type="text" class="form-control">
+                      <span class="input-group-btn"><button class="btn btn-default" type="button">Recevoir</button></span>
+                    </div>
+                  </ul>
+                </li>
+              </div>            
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="btn-group" role="group" aria-label="..." v-if="this.modify == false">
+                  
+                  <button type="button" class="btn-lg btn-info clrbtn" v-on:click="ShowAccountModify()">Modifier son compte</button>
+                </div>
               </div>
+            </div>
+
+
             </br>
-            </br>
-          <div class="col-md-6">
-                <h1>Modifier le profil</h1>
-                
-              <form @submit="onSubmit($event)" class="form-horizontal" role="form">
-                <div class="form-group">
-                  <label class="col-lg-3 control-label">Nom:</label>
-                  <div class="col-lg-5">
-                    <input class="form-control" v-model="model.nom" type="text" value="ddddd">
-                  </div>
-                  <br>
-                </div>
+            <div class="row" style='display:none;' id="invisible">
+              <div class="col-md-1"></div>
+              <div class="col-md-10">
+                <div class="row">
+                  <div class="col-md-6">
+                      <h1>Modifier le profil</h1>
+                      <form @submit="onSubmit($event)" class="form-horizontal" role="form">
+                        <div class="form-group">
+                          <label class="col-lg-3 control-label">Nom:</label>
+                          <div class="col-lg-5">
+                            <input v-if="model.nom == null || model.nom == ''" class="form-control red" v-model="model.nom" type="text" value="ddddd">
+                            <input v-else class="form-control" v-model="model.nom" type="text" value="ddddd">
+                          </div>
+                          <br>
+                        </div>
 
-                <div class="form-group">
-                  <label class="col-lg-3 control-label">Prénom:</label>
-                  <div class="col-lg-5">
-                    <input class="form-control" v-model="model.prenom" type="text">
-                  </div>
-                  <br>
-                </div>
+                        <div class="form-group">
+                          <label class="col-lg-3 control-label">Prénom:</label>
+                          <div class="col-lg-5">
+                            <input v-if="model.prenom == null || model.prenom == ''" class="form-control red" v-model="model.prenom" type="text">
+                            <input v-else class="form-control" v-model="model.prenom" type="text">
+                          </div>
+                          <br>
+                        </div>
 
-                <div class="form-group">
-                  <label class="col-lg-3 control-label">Téléphone:</label>
-                  <div class="col-lg-5">
-                    <input class="form-control" v-model="model.phone" type="text">
-                  </div>
-                  <br>
-                </div> 
+                        <div class="form-group">
+                          <label class="col-lg-3 control-label">Téléphone:</label>
+                          <div class="col-lg-5">
+                            <input v-if="model.phone == null || model.phone == ''" class="form-control red" v-model="model.phone" type="text">
+                            <input v-else class="form-control" v-model="model.phone" type="text">
+                          </div>
+                          <br>
+                        </div> 
 
-                <div class="form-group">
-                  <label class="col-lg-3 control-label">Adresse:</label>
-                  <div class="col-lg-5">
-                    <input class="form-control" v-model="model.addresse" type="text">
-                  </div>
-                  <br>
-                </div> 
+                        <div class="form-group">
+                          <label class="col-lg-3 control-label">Adresse:</label>
+                          <div class="col-lg-5">
+                            <input v-if="model.addresse == null || model.addresse == ''" class="form-control red" v-model="model.addresse" type="text">
+                            <input v-else class="form-control" v-model="model.addresse" type="text">
+                          </div>
+                          <br>
+                        </div> 
 
-                <div class="form-group">
-                  <label class="col-lg-3 control-label">Département:</label>
-                  <div class="col-lg-5">
-                    <input class="form-control" v-model="model.departement" type="text">
-                  </div>
-                  <br>
-                </div> 
+                        <div class="form-group">
+                          <label class="col-lg-3 control-label">Département:</label>
+                          <div class="col-lg-5">
+                            <input v-if="model.departement == null || model.departement == ''" class="form-control red" v-model="model.departement" type="text">
+                            <input v-else class="form-control" v-model="model.departement" type="text">
+                          </div>
+                          <br>
+                        </div> 
 
-                <div class="form-group">
-                  <label class="col-lg-3 control-label">Ville: </label>
-                  <div class="col-lg-5">
-                    <input class="form-control" v-model="model.city" type="text">
-                  </div>
-                  <br>
-                </div>
+                        <div class="form-group">
+                          <label class="col-lg-3 control-label">Ville: </label>
+                          <div class="col-lg-5">
+                            <input v-if="model.city == null || model.city == ''" class="form-control red" v-model="model.city" type="text">
+                            <input v-else class="form-control" v-model="model.city" type="text">
+                          </div>
+                          <br>
+                        </div>
 
-                <div class="form-group">
-                  <label class="col-lg-3 control-label">Code Postale:</label>
-                  <div class="col-lg-5">
-                    <input class="form-control" v-model="model.postale" type="text">
-                  </div>
-                  <br>
-                </div> 
+                        <div class="form-group">
+                          <label class="col-lg-3 control-label">Code Postale:</label>
+                          <div class="col-lg-5">
+                            <input v-if="model.postale == null || model.postale == ''" class="form-control red" v-model="model.postale" type="text">
+                            <input v-else class="form-control" v-model="model.postale" type="text">
+                          </div>
+                          <br>
+                        </div> 
 
-                <div class="form-group">
-                  <label class="col-md-3 control-label"></label>
-                  <div class="col-md-5">
-                    <input class="btn btn-primary" value="Enregistrer" type="submit">
-                </div>
-                </div>
-              </form>
-          </div>
+                        <div class="form-group">
+                          <label class="col-md-3 control-label"></label>
+                          <div class="col-md-5">
+                            <input class="btn btn-primary" value="Enregistrer" type="submit">
+                        </div>
+                        </div>
+                      </form>
+                  </div>
 
-          <div class="col-md-6">
-            <h1>Modifier le compte</h1>
-            <form @submit="onSubmitPasse($event)" class="form-horizontal" role="form">    
-                <div class="form-group">
-                  <label class="col-lg-5 control-label"><h4>{{model.email}}</h4></label>
-                </div>
-                <div class="form-group">
-                  <label class="col-md-3 control-label">Acien mot de passe:</label>
-                  <div class="col-md-5">
-                    <input class="form-control" v-model="PastCode" type="password">
+                  <div class="col-md-6">
+                    <h1>Modifier le compte</h1>
+                    <form @submit="onSubmitPasse($event)" class="form-horizontal" role="form">    
+                        <div class="form-group">
+                          <label class="col-lg-5 control-label"><h4>{{model.email}}</h4></label>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-md-3 control-label">Acien mot de passe:</label>
+                          <div class="col-md-5">
+                            <input class="form-control" v-model="PastCode" type="password">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-md-3 control-label">Mot de passe:</label>
+                          <div class="col-md-5">
+                            <input required class="form-control" v-model="newCode" type="password" pattern="^[a-zA-Z]\w{4,14}$" title="
+                            Premier caractère doit être une lettre, 
+                            Minimum 5 caractères, Max 15, 
+                            Que des chiffres et lettres">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-md-3 control-label"> Confirmation du mot de passe:</label>
+                          <div class="col-md-5">
+                            <input required class="form-control" v-model="confirmNewCode" type="password"  pattern="^[a-zA-Z]\w{4,14}$" title="Premier caractère 
+                        doit être une lettre, un minumum de 5 caractères et maximum 15, que des chiffres et lettres">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-md-3 control-label"></label>
+                          <div class="col-md-5">
+                            <input name ="Save" class="btn btn-primary" value="Modifier le mot de passe" type="submit">
+                            <br><br>
+                            <a  align="right" class="btn btn-danger" @click="deleteAccount(model.userId)">Supprimer le compte</a>           
+                          </div>
+                        </div>
+                    </form>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label class="col-md-3 control-label">Mot de passe:</label>
-                  <div class="col-md-5">
-                    <input required class="form-control" v-model="newCode" type="password" pattern="^[a-zA-Z]\w{4,14}$" title="
-                    Premier caractère doit être une lettre, 
-                    Minimum 5 caractères, Max 15, 
-                    Que des chiffres et lettres">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-md-3 control-label"> Confirmation du mot de passe:</label>
-                  <div class="col-md-5">
-                    <input required class="form-control" v-model="confirmNewCode" type="password"  pattern="^[a-zA-Z]\w{4,14}$" title="Premier caractère 
-                doit être une lettre, un minumum de 5 caractères et maximum 15, que des chiffres et lettres">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-md-3 control-label"></label>
-                  <div class="col-md-5">
-                    <input name ="Save" class="btn btn-primary" value="Modifier le mot de passe" type="submit">
-                    <br><br>
-                    <a  align="right" class="btn btn-danger" @click="deleteAccount(model.userId)">Supprimer le compte</a>           
-                  </div>
-                </div>
-            </form>
-          </div>
+              </div>
+              <div class="col-md-1"></div>
+            </div>
+
 </div>
             </div>
         </div>
@@ -151,7 +177,8 @@ export default {
         PastCode: null,
         newCode: null,
         confirmNewCode: null,
-        solde: 0.00000000
+        solde: 0.00000000,
+        modify: false
       }
      },
     async mounted() {
@@ -159,6 +186,15 @@ export default {
             this.loadModelUser(this.email);
         },
     methods: {
+          ShowAccountModify: async function(){
+              this.modify = !this.modify;
+              if(document.getElementById('invisible').style.display == 'none'){
+                document.getElementById('invisible').style.display = 'block';
+                }
+                else {
+                document.getElementById('invisible').style.display = 'none';
+              }      
+            },
             onSubmit: async function(e) {
               e.preventDefault();
               var result = null;  
@@ -200,6 +236,18 @@ export default {
 </script>       
 
 <style scoped>
+    .form-control:focus {
+        border-color: #402E22;
+        outline: 0;
+        -webkit-box-shadow: inset 0 1px 1px #402E22, 0 0 8px #402E22;
+        box-shadow: inset 0 1px 1px #402E22, 0 0 8px #402E22;
+    }
+.red {
+    border-color: red;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px red, 0 0 8px red;
+    box-shadow: inset 0 1px 1px red, 0 0 8px red;
+}
 .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
 background-color: #BFA077;
 border:none;
