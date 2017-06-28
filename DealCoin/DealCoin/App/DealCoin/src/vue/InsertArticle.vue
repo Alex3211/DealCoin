@@ -8,7 +8,12 @@
                     <label class="col-lg-1 control-label">Catégorie:</label>
                     <div class="col-lg-11">
                         <select class="form-control" name="cars">
-                            <option id="test" v-for="i in category" v-model="model.categoriesId" v-bind:value="i.categoriesId"> {{i.name}}</option>
+                            <option id="test" v-for="i in category" v-model="model.categoriesId" v-bind:value="i.categoriesId" v-if="i.parentId!==0">
+                            <div class="font1">
+                            {{i.name}}
+                            </div>
+                            
+                            </option>
                         </select>
                     </div>
                     <br>
@@ -64,6 +69,10 @@
 </template>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.font1{
+    font-weight: bold !important;
+}
+
 .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
 background-color: #BFA077;
 border:none;
