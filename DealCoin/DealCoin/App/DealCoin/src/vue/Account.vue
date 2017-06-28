@@ -119,7 +119,7 @@
                     <h1>Modifier le compte</h1>
                     <form @submit="onSubmitPasse($event)" class="form-horizontal" role="form">    
                         <div class="form-group">
-                          <label class="col-lg-5 control-label"><h4>{{model.email}}</h4></label>
+                          <label class="col-lg-5 control-label"><p>Votre mail: {{model.email}}</p></label>
                         </div>
                         <div class="form-group">
                           <label class="col-md-3 control-label">Acien mot de passe:</label>
