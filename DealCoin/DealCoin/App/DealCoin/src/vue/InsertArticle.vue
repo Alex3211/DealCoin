@@ -69,6 +69,12 @@
 </template>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.form-control:focus {
+        border-color: #402E22;
+        outline: 0;
+        -webkit-box-shadow: inset 0 1px 1px #402E22, 0 0 8px #402E22;
+        box-shadow: inset 0 1px 1px #402E22, 0 0 8px #402E22;
+    }
 .font1{
     font-weight: bold !important;
 }
