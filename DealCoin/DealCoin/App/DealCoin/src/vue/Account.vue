@@ -96,45 +96,41 @@
 
           <div class="col-md-6">
             <h1>Modifier le compte</h1>
-                <form @submit="onSubmitPasse($event)" class="form-horizontal" role="form">    
-            <div class="form-group">
-              <label class="col-lg-5 control-label"><h4>{{model.email}}</h4></label>
-            </div>
-            <div class="form-group">
-              <label class="col-md-3 control-label">Acien mot de passe:</label>
-              <div class="col-md-5">
-                <input class="form-control" v-model="PastCode" type="password" pattern="^[a-zA-Z]\w{3,14}$" title="
-                Premier caractère doit être une lettre, 
-                Minimum 4 caractères, Max 15, 
-                Que des chiffres et lettres">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-md-3 control-label">Mot de passe:</label>
-              <div class="col-md-5">
-                <input class="form-control" v-model="newCode" type="password" pattern="^[a-zA-Z]\w{3,14}$" title="
-                Premier caractère doit être une lettre, 
-                Minimum 4 caractères, Max 15, 
-                Que des chiffres et lettres">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-md-3 control-label"> Confirmation du mot de passe:</label>
-              <div class="col-md-5">
-                <input class="form-control" v-model="confirmNewCode" type="password"  pattern="^[a-zA-Z]\w{3,14}$" title="Premier caractère 
-            doit être une lettre, un minumum de 6 caractères et maximum 15, que des chiffres et lettres">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-md-3 control-label"></label>
-              <div class="col-md-5">
-                <input name ="Save" class="btn btn-primary" value="Modifier le mot de passe" type="submit">
-                <br/>
-                <a  align="right" class="btn btn-danger" @click="deleteAccount(model.userId)">Supprimer le compte</a>           
-              </div>
-            </div>
+            <form @submit="onSubmitPasse($event)" class="form-horizontal" role="form">    
+                <div class="form-group">
+                  <label class="col-lg-5 control-label"><h4>{{model.email}}</h4></label>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Acien mot de passe:</label>
+                  <div class="col-md-5">
+                    <input class="form-control" v-model="PastCode" type="password">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Mot de passe:</label>
+                  <div class="col-md-5">
+                    <input required class="form-control" v-model="newCode" type="password" pattern="^[a-zA-Z]\w{4,14}$" title="
+                    Premier caractère doit être une lettre, 
+                    Minimum 5 caractères, Max 15, 
+                    Que des chiffres et lettres">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-3 control-label"> Confirmation du mot de passe:</label>
+                  <div class="col-md-5">
+                    <input required class="form-control" v-model="confirmNewCode" type="password"  pattern="^[a-zA-Z]\w{4,14}$" title="Premier caractère 
+                doit être une lettre, un minumum de 5 caractères et maximum 15, que des chiffres et lettres">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-3 control-label"></label>
+                  <div class="col-md-5">
+                    <input name ="Save" class="btn btn-primary" value="Modifier le mot de passe" type="submit">
+                    <br><br>
+                    <a  align="right" class="btn btn-danger" @click="deleteAccount(model.userId)">Supprimer le compte</a>           
+                  </div>
+                </div>
             </form>
-
           </div>
 </div>
             </div>

@@ -39,7 +39,7 @@
             </div>
             <br><br>
             <h4 v-if="categorySearched !== ''">
-              Vous recherchez actuellement dans {{NameOfCategory}}
+              Vous êtes dans la catégorie <b>{{NameOfCategory}}</b>.
             </h4>
           </div>
                       

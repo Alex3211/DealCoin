@@ -1,16 +1,16 @@
 <template>
     <div class="container">
     <div v-if="article == 0">
-        Vous n'avez actuellement aucun article dans votre panier !
+         <h3>Vous n'avez actuellement aucun article dans votre panier !</h3>
         <br/>
-        <router-link to="/articles"><button type="button" class="btn btn-default">Retour à la boutique</button></router-link> 
+        <router-link to="/articles"><button type="button" class="btn btn-default buttonCategory">Retour à la boutique</button></router-link> 
     </div>
         <div class="row" v-else>
             <div class="col-sm-12 col-md-10 col-md-offset-1">
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>article</th>
+                            <th>Article</th>
                             <th class="text-center">Total : </th>
                             <th> </th>
                         </tr>
@@ -24,7 +24,7 @@
                             </td>
                             <td class="col-sm-1 col-md-1 text-center"><strong><h4>{{a.price}} €</h4></strong></td>
                             <td class="col-sm-1 col-md-1">
-                            <button type="button" class="btn btn-danger" v-on:click="Delarticle(index)">
+                            <button type="button" class="btn btn-danger buttonCategory" v-on:click="Delarticle(index)">
                                 <span></span> Supprimer l'article
                             </button></td>
                         </tr>
@@ -46,11 +46,11 @@
                         <tr>
                             <td>   </td>
                             <td>
-                            <button type="button" class="btn btn-info">
+                            <button type="button" class="btn btn-info buttonCategory">
                             <router-link to="/articles"><i class="fa fa-list-alt fa-fw"></i>Continuer mes achats</router-link>
                             </button></td>
                             <td>
-                            <button type="button" class="btn btn-success">
+                            <button type="button" class="btn btn-success buttonCategory">
                                 Procéder au paiement <span></span>
                             </button></td>
                         </tr>
@@ -62,6 +62,19 @@
 </template>
 
 <style scoped>
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #402E22;
+}
+.buttonCategory:focus, .btn:hover{
+background-color: #BFA077!important;
+color:white!important;
+-moz-box-shadow: 5px 5px 5px -5px #BFA077;
+-webkit-box-shadow: 5px 5px 5px -5px #BFA077;
+-o-box-shadow: 5px 5px 5px -5px #BFA077;
+box-shadow: 5px 5px 5px -5px #BFA077;
+filter:progid:DXImageTransform.Microsoft.Shadow(color=#BFA077, Direction=134, Strength=5);
+}
 
 .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
 background-color: #BFA077;
