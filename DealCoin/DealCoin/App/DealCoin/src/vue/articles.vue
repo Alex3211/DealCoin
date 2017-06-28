@@ -142,12 +142,7 @@ color:white!important;
 box-shadow: 5px 5px 5px -5px #402E22;
 filter:progid:DXImageTransform.Microsoft.Shadow(color=#402E22, Direction=134, Strength=5);
 }
-.RightColorForSearch{
-background-color: #BFA077!important;
-border:none;
-color:white;
-}
-.LeftColorForSearch{
+.RightColorForSearch, .LeftColorForSearch{
 background-color: #BFA077!important;
 border:none;
 color:white;
