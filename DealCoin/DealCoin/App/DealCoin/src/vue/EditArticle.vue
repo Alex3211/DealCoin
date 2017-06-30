@@ -1,7 +1,6 @@
 <template>
   <div class="hello">
         <div class="container">
-        <img src="../assets/logo.png">
         <div class="row">
             <h1>Editez votre article</h1>
             <form @submit="onSubmit($event)" class="form-horizontal" role="form">

@@ -4,7 +4,7 @@
         <div class="container">
           <div class="row">
             <div class="btn-group drop" v-for="category in parentCategory" :key="category.categoriesId">
-              <button class="btn btn-default  dropdown-toggle buttonCategory" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-on:mouseover="menuHover" v-on:mouseout="menuOut">
+              <button class="btn btn-default  dropdown-toggle buttonCategory" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-on:mouseover="menuHover">
                 {{category.title}}
                 <span class="caret"></span>
               </button>
