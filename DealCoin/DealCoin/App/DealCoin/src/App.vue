@@ -61,7 +61,6 @@
             </div>
         </div>
     </nav>
-    <img src="./logo_sf.png" style="margin-top:-70px;margin-bottom:-70px;">
     <router-view></router-view>
   </div>
 </template>

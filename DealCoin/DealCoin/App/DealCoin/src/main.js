@@ -27,6 +27,7 @@ import UserService from './services/UserService'
 import SalesService from './services/SalesService'
 import Account from './vue/Account.vue'
 import Panier from './vue/Panier.vue'
+import Report from './vue/Report.vue'
 
 
 Vue.use(VueRouter)
@@ -97,6 +98,11 @@ const router = new VueRouter({
       path: '/DelArticle',
       name: 'DelArticle',
       component: DelArticle, beforeEnter: requireAuth
+    },
+    {
+      path: '/Report',
+      name: 'Report',
+      component: Report, beforeEnter: requireAuth
     },
     {
       path: '/InsertArticle',
