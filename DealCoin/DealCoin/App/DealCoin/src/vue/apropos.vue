@@ -3,6 +3,7 @@
         <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
+                <img src="../assets/logo_sf.png" style="margin-top:-70px;margin-bottom:-70px;">
                 <h1>DealCoin</h1>
                 <p class="lead">Avec l’ascension du e-commerce ainsi que les problèmes de paiements, 
                 nous avons décidé de créer DealCoin. C’est un site de e-commerce sécurisé et anonyme 

@@ -7,7 +7,6 @@
       <div class="caption">
         <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}"
         v-on:click.native="onVisited(Articleid)"><h3>{{Articleid.title}}</h3></router-link>
-        <p>{{Articleid.desc1}}</p>
         <div>
 							<span itemprop="price" class="price product-price">
 							{{Articleid.price}}	€
@@ -23,7 +22,6 @@
       </router-link>
         <div class="caption">
           <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}"><h3>{{Articleid.title}}</h3></router-link>
-          <p>{{Articleid.desc1}}</p>
           <div>
 							<span itemprop="price" class="price product-price">
 							{{Articleid.price}}	€
