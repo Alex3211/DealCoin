@@ -20,6 +20,10 @@ class SalesService {
     {
         return await getAsync(endpoint, 'AllProducts/', AuthService.accessToken);
     }
+    async getAllSaleandProductByUserIdAsync(id)
+    {
+        return await getAsync(endpoint, 'AllSaleandProductByUserId/'+id, AuthService.accessToken);
+    }
     async postSalesAsync(model)
     {
         return await postAsync(endpoint, model.salesId, AuthService.accessToken, model);

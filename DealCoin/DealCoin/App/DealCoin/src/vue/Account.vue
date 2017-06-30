@@ -30,7 +30,7 @@
                 <div class="btn-group" role="group" aria-label="..." >
                   
                   <button type="button" class="btn-lg btn-info clrbtn" v-on:click="ShowAccountModify()">Modifier son compte</button>
-                  <button type="button" class="btn-lg btn-info clrbtn" v-on:click="ShowAccountGraphs()">Stat</button>
+                  <button type="button" class="btn-lg btn-info clrbtn" v-on:click="ShowAccountGraphs()">Informations</button>
                 </div>
               </div>
             </div>
@@ -38,7 +38,47 @@
 
             </br>
             <div class="row" style='display:none;' id="invisibleGrap">
-                toto
+                <p>Nombre d'article En Vente: {{this.article.length}}</p>
+                <div class="col-lg-12">
+                    <table class="table" id="table">
+                        <thead>
+                            <tr>
+                                <th>Description article</th>
+                                <th>Nb Vue</th>
+                                <th>Date d'ajout</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="a of articleev">
+                                <td>{{a.desc1}}</td>
+                                <td>{{a.visits}}</td>
+                                <td>{{a.updated}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr>
+                </div>
+                </br>
+                <p>Nombre d'article Vendue: {{this.sales.length}}</p>
+                <div class="col-lg-12">
+                    <table class="table" id="table">
+                        <thead>
+                            <tr>
+                                <th>Description article</th>
+                                <th>Prix</th>
+                                <th>Date de Vente</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="s of articlev">
+                                <td>{{s.title}}</td>
+                                <td>{{s.price}} €</td>
+                                <td>{{s.sales_date}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr>
+                </div>
             </div>
             <div class="row" style='display:none;' id="invisible">
               <div class="col-md-1"></div>
@@ -170,6 +210,9 @@
 </template>
 
 <script>
+import moment from 'moment'
+import articleApiService from '../services/ArticleServices.js'
+import SalesService from '../services/SalesService'
 import UserService from '../services/UserService.js'
 import AuthService from '../services/AuthService.js'
 
@@ -177,6 +220,10 @@ export default {
   	data () {
       return {
         model: {},
+        article:[],
+        sales:[],
+        articleev:[],
+        articlev:[],
         email: "",
         PastCode: null,
         newCode: null,
@@ -188,9 +235,39 @@ export default {
      },
     async mounted() {
             this.email = AuthService.hisEmail();
-            this.loadModelUser(this.email);
+            await this.loadModelUser(this.email);
+            await this.loadSalesProducts();
+            await this.loadArticle();
+            await this.sortSales();
+            await this.sortArticle();
         },
     methods: {
+          loadSalesProducts: async function(){
+              var Sales = await SalesService.getAllSaleandProductByUserIdAsync(this.model.userId);
+              this.sales = Sales.content;
+          },
+          loadArticle: async function(){
+            var e = await articleApiService.GetArticleListByIdAsync(this.model.userId);
+            this.article = e.content;
+          },
+          sortArticle: async function(){
+              for(var i=0;i<this.article.length;i++){
+                 if(this.article[i]){
+                  var date = moment(this.article[i].updated, moment.ISO_8601);
+                  this.article[i].updated = date.fromNow();
+                  this.articleev.push(this.article[i]);
+                }
+              } 
+          },
+          sortSales: async function(){
+              for(var i=0;i<this.sales.length;i++){
+                 if(this.sales[i]){
+                  var date = moment(this.sales[i].sales_date, moment.ISO_8601);
+                  this.sales[i].sales_date = date.fromNow();
+                  this.articlev.push(this.sales[i]);
+                }
+              } 
+          },
           ShowAccountModify: async function(){
               this.modify = !this.modify;
               this.graphs = false;

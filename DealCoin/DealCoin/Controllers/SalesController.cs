@@ -40,6 +40,12 @@ namespace DealCoin.Controllers
             Result<IEnumerable<SalesProducts>> result = _salesService.getAllSalesProducts();
             return new JsonResult(result);
         }
+        [HttpGet("AllSaleandProductByUserId/{id}")]
+        public IActionResult GetAllSaleandProductByUserId(int id)
+        {
+            Result<IEnumerable<Sales>> result = _salesService.getAllSaleandProductByUserId(id);
+            return new JsonResult(result);
+        }
 
         //[HttpPut("{model}")]
         //public IActionResult UpdateSales([FromBody] SalesViewModel _model)

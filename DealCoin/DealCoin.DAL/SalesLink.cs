@@ -45,7 +45,17 @@ namespace DealCoin.DAL
                         );
             }
         }
-
+        
+        public IEnumerable<Sales> getAllSaleandProductByUserId(int _id)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                return con.Query<Sales>(
+                        "SELECT * FROM dc.orders  inner JOIN dc.ordersProducts on  orders.ordersId = ordersProducts.ordersId  where orders.usersId = @Id", 
+                        new { Id = _id }
+                        );
+            }
+        }
         public void CreateSales(string email, byte[] password)
         {
             using (SqlConnection con = new SqlConnection(_connectionString))
