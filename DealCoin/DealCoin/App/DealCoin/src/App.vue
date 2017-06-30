@@ -2,24 +2,15 @@
   <div id="app">
     <nav class="navbar navbar-fixed-top" role="navigation">
         <div class="container">
-            <div v-if=" getStatut == 1" class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <div  class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span class="caret"></span>
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <router-link to="/homeAdmin"><a class="navbar-brand Element" style="color:#f7931b!important;" href="#" >DealCoin</a></router-link>
-            </div>
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div v-if=" getStatut == 0" class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <router-link to="/"><a class="navbar-brand Element" style="color:#f7931b!important;"  href="#" >DealCoin</a></router-link>
+                <router-link v-if=" getStatut == 1" to="/homeAdmin"><a class="navbar-brand Element" style="color:#f7931b!important;" href="#" >DealCoin</a></router-link>
+                <router-link v-else to="/"><a class="navbar-brand Element" style="color:#f7931b!important;"  href="#" ><img src="./assets/logo_sf.png"  class="image2"></a></router-link>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -137,9 +128,18 @@ export default {
 </script>
 
 <style>
+.navbar-toggle {
+    background-color: #7F6A4F;
+    border: 1px solid #7F6A4F;
+}
 .image1 {
 	width: 36px;
     height:26px;
+}
+.image2 {
+	width: 128px;
+    height:64px;
+    margin-top:-24px;
 }
 .text1{
    margin-left:-8px;
