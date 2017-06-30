@@ -3,15 +3,58 @@
         <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <img src="../assets/logo_sf.png" style="margin-top:-70px;margin-bottom:-70px;">
+            <h1 class="page-header">À propos</h1>
                 <h1>DealCoin</h1>
-                <p class="lead">Avec l’ascension du e-commerce ainsi que les problèmes de paiements, 
-                nous avons décidé de créer DealCoin. C’est un site de e-commerce sécurisé et anonyme 
-                grâce à notre méthode de paiement en bitcoins. Cela permet à un utilisateur d’acheter
-                 ou vendre un article et de pouvoir se faire livrer à domicile. L’avantage de notre 
-                 méthode de paiement est de remplacer la carte de crédit qui est traçable et piratable.
-                 </p>
+                <h5 class="lead">
+                Voulant une vision différente des sites d’annonces ainsi qu’ayant un attrait envers le monde
+                du e-commerce, nous avons décidé de combiner ces deux aspects et donc de développer un
+                nouveau service.Parfois les consommateurs ne peuvent pas se déplacer pour acheter l’objet ou ne possèdent pas de carte de crédit. Avec notre site, l’achat devient instantané et accessible à tous, une
+                livraison sera proposée aussi pour que la vente soit faite.
+                 </h5>
             </div>
+        <!-- Team Members Row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Notre équipe</h2>
+            </div>
+            <div class="col-lg-12">
+              <div class="col-lg-4 text-center">
+                  <img class="img-circle img-center" src="http://placehold.it/200?text=Victor" alt="">
+                  <h3>André Victor
+                      <h6><u>Chef de projet</u></h6>
+                  </h3>
+                  <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
+              </div>
+              <div class="col-lg-4 text-center">
+                  <img class="img-circle  img-center" src="http://placehold.it/200?text=Alexandre" alt="">
+                  <h3>Alexandre Picard
+                      <h6><u>Architecte/Développeur</u></h6>
+                  </h3>
+                  <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
+              </div>
+              <div class="col-lg-4 text-center">
+                  <img class="img-circle img-center" src="http://placehold.it/200?text=Kamil" alt="">
+                  <h3>Kamil EL Kohen
+                      <h6><u>Architecte/Développeur</u></h6>
+                  </h3>
+                  <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
+              </div>  
+                
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; DealCoin 2017</p>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </footer>
         </div>
     </div>
   </div>
