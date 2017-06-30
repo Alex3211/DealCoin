@@ -7,7 +7,7 @@ namespace DealCoin.DAL
     public class Sales
     {
         public int ordersId { get; set; }
-        public int userId { get; set; }
+        public int usersId { get; set; }
         public string fname { get; set; }
         public string lname { get; set; }
         public string phone { get; set; }
@@ -24,6 +24,12 @@ namespace DealCoin.DAL
         public string delivery_postale { get; set; }
         public float shipping_cost { get; set; }
         public DateTime sales_date { get; set; }
+        public int orderProductsId { get; set; }
+        public int productsId { get; set; }
+        public string title { get; set; }
+        public string photo { get; set; }
+        public string desc1 { get; set; }
+        public string price { get; set; }
 
     }
 }

@@ -30,7 +30,11 @@ namespace DealCoin.Services
         {
             return Result.Success(Status.Ok, _SalesLink.getAllSalesProducts());
         }
-
+        
+        public Result<IEnumerable<Sales>> getAllSaleandProductByUserId(int _id)
+        {
+            return Result.Success(Status.Ok, _SalesLink.getAllSaleandProductByUserId(_id));
+        }
         public void DeleteSales(int _id)
         {
             _SalesLink.delete(_id);
