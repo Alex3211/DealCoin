@@ -1,28 +1,10 @@
 <template>
   <div class="hello">
         <div class="container">
+        <img src="../assets/logo_sf.png" style="margin-top:-70px;margin-bottom:-70px;">
         <div class="row">
             <div class="col-lg-12 text-center">
-            <h1 class="page-header">À propos</h1>
-                <h1>DealCoin</h1>
-                <h5 class="lead">
-                Voulant une vision différente des sites d’annonces ainsi qu’ayant un attrait envers le monde
-                du e-commerce, nous avons décidé de combiner ces deux aspects et donc de développer un
-                nouveau service.Parfois les consommateurs ne peuvent pas se déplacer pour acheter l’objet ou ne possèdent pas de carte de crédit. Avec notre site, l’achat devient instantané et accessible à tous, une
-                livraison sera proposée aussi pour que la vente soit faite.
-                <br><br>
-                                Après avoir étudié plusieurs différents sites (Amazon,Fnac, Cdiscount, Ebay, Vivastreet,
-                Leboncoin,Topannonces) nous avons remarqué qu’aucun n’utilisait des Bitcoins. Nous
-                voulons donc améliorer, faciliter, accélérer et changer la transaction traditionnelle grâce à
-                cette monnaie. De plus le site sera totalement sécurisé et nous ne demanderons pas
-                d’informations personnelles telles qu’une carte de crédit.
-                Ce projet est une opportunité pour tous les membres de l’équipe. En effet, notre idée pourrait
-                attirer des entreprises du fait de sa simplicité et de sa performance. Finalement, cette
-                mission nous aidera à renforcer et approfondir nos connaissances aussi bien transverses
-                que techniques.
-                 </h5>
-            </div>
-        <!-- Team Members Row -->
+                <!-- Team Members Row -->
         <div class="row">
             <div class="col-lg-12">
                 <h2 class="page-header">Notre équipe</h2>
@@ -52,7 +34,24 @@
                 
             </div>
         </div>
-
+        <hr>
+                <h5 class="lead">
+                Voulant une vision différente des sites d’annonces ainsi qu’ayant un attrait envers le monde
+                du e-commerce, nous avons décidé de combiner ces deux aspects et donc de développer un
+                nouveau service.Parfois les consommateurs ne peuvent pas se déplacer pour acheter l’objet ou ne possèdent pas de carte de crédit. Avec notre site, l’achat devient instantané et accessible à tous, une
+                livraison sera proposée aussi pour que la vente soit faite.
+                <br><br>
+                                Après avoir étudié plusieurs différents sites (Amazon,Fnac, Cdiscount, Ebay, Vivastreet,
+                Leboncoin,Topannonces) nous avons remarqué qu’aucun n’utilisait des Bitcoins. Nous
+                voulons donc améliorer, faciliter, accélérer et changer la transaction traditionnelle grâce à
+                cette monnaie. De plus le site sera totalement sécurisé et nous ne demanderons pas
+                d’informations personnelles telles qu’une carte de crédit.
+                Ce projet est une opportunité pour tous les membres de l’équipe. En effet, notre idée pourrait
+                attirer des entreprises du fait de sa simplicité et de sa performance. Finalement, cette
+                mission nous aidera à renforcer et approfondir nos connaissances aussi bien transverses
+                que techniques.
+                 </h5>
+            </div>
         <hr>
 
         <!-- Footer -->
