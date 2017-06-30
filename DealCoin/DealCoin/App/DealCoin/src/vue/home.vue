@@ -1,7 +1,6 @@
 <template>
       <div class="container">
-        <img src="../assets/logo_sf.png">
-        <img src="../bitcoinlogo.png" style="width:10%;" >
+        <img src="../assets/logo_sf.png" style="margin-top:-70px;margin-bottom:-70px;">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <p class="lead">Avec l’ascension du e-commerce ainsi que les problèmes de paiements, nous avons décidé de créer DealCoin. C’est un site de e-commerce sécurisé et anonyme grâce à notre méthode de paiement en bitcoins. Cela permet à un utilisateur d’acheter ou vendre un article et de pouvoir se faire livrer à domicile. L’avantage de notre méthode de paiement est de remplacer la carte de crédit qui est traçable et piratable.</p>
@@ -83,7 +82,6 @@ export default {
               
               var Model= await UserService.getUserAsync(email);
               this.model=Model.content;
-              //this.model.userId = this.model.content.userId;
             }
           },
   computed: {

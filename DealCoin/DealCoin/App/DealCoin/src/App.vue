@@ -43,7 +43,6 @@
                         <router-link to="/articles"><a href="#" class="Element">Boutique</a></router-link>
                     </li>
                     
-                    
                 </ul>
 
                 <ul v-if="services.isConnected" class="nav navbar-nav navbar-right">
