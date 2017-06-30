@@ -27,15 +27,19 @@
             <br>
             <div class="row">
               <div class="col-md-12">
-                <div class="btn-group" role="group" aria-label="..." v-if="this.modify == false">
+                <div class="btn-group" role="group" aria-label="..." >
                   
                   <button type="button" class="btn-lg btn-info clrbtn" v-on:click="ShowAccountModify()">Modifier son compte</button>
+                  <button type="button" class="btn-lg btn-info clrbtn" v-on:click="ShowAccountGraphs()">Stat</button>
                 </div>
               </div>
             </div>
 
 
             </br>
+            <div class="row" style='display:none;' id="invisibleGrap">
+                toto
+            </div>
             <div class="row" style='display:none;' id="invisible">
               <div class="col-md-1"></div>
               <div class="col-md-10">
@@ -178,7 +182,8 @@ export default {
         newCode: null,
         confirmNewCode: null,
         solde: 0.00000000,
-        modify: false
+        modify: false,
+        graphs: false
       }
      },
     async mounted() {
@@ -188,11 +193,22 @@ export default {
     methods: {
           ShowAccountModify: async function(){
               this.modify = !this.modify;
+              this.graphs = false;
               if(document.getElementById('invisible').style.display == 'none'){
                 document.getElementById('invisible').style.display = 'block';
                 }
                 else {
                 document.getElementById('invisible').style.display = 'none';
+              }      
+            },
+            ShowAccountGraphs: async function(){
+              this.graphs = !this.graphs;
+              this.modify = false;
+              if(document.getElementById('invisibleGrap').style.display == 'none'){
+                document.getElementById('invisibleGrap').style.display = 'block';
+                }
+                else {
+                document.getElementById('invisibleGrap').style.display = 'none';
               }      
             },
             onSubmit: async function(e) {
