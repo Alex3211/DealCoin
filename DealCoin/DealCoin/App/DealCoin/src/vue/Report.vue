@@ -46,6 +46,7 @@
 <script>
 import UserService from '../services/UserService.js'
 import AuthService from '../services/AuthService.js'
+import ReportService from '../services/ReportServices.js'
 
 export default {
   	data () {
@@ -62,7 +63,7 @@ export default {
             onSubmit: async function(e) {
               e.preventDefault();
               var result = null;  
-              result = await UserService.putUserAsync(this.model);
+              result = await ReportService.putReportAsync(this.model);
               confirm("Nous avons bien reçu votre commentaire !");
             },
             loadModelUser: async function(email) {

@@ -21,6 +21,21 @@ export async function postAsync(endpoint, id, token, data) {
     });
 }
 
+// export async function postRAsync(endpoint, token, data) {
+//  //   console.log(JSON.stringify(data));
+//     return await $.ajax({
+//         method: 'POST',
+//         url: endpoint,
+//         dataType: 'json',
+//         contentType: 'application/json; charset=utf-8',
+//         data: JSON.stringify(data),
+//         dataFilter: dataFilter,
+//         headers: {
+//             Authorization: `Bearer ${token}`
+//         }
+//     });
+// }
+
 export async function postArticleAsync(url, data) {
     return await $.ajax({
         method: 'POST',
@@ -31,6 +46,20 @@ export async function postArticleAsync(url, data) {
         dataFilter: dataFilter,
         headers: {
             Authorization: `Bearer ${AuthService.accessToken}`
+        }
+    });
+}
+
+export async function putRAsync(endpoint, token, data) {
+    return await $.ajax({
+        method: 'PUT',
+        url: endpoint,
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(data),
+        dataFilter: dataFilter,
+        headers: {
+            Authorization: `Bearer ${token}`
         }
     });
 }

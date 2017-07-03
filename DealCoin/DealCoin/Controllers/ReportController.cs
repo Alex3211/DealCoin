@@ -31,11 +31,11 @@ namespace DealCoin.Controllers
             return new JsonResult(result);
         }
 
-        [HttpPost]
+        [HttpPut]
         public IActionResult AddReport([FromBody] ReportViewModel _model)
         {
             
-            Result<IEnumerable<Article>> result = _reportController.AddReportS(_model.email, _model.phone, _model.subject, _model.message, _model.response, _model.status);
+            Result<IEnumerable<Report>> result = _reportController.AddReportS(_model.email, _model.phone, _model.subject, _model.message, _model.response, _model.status);
             return new JsonResult(result);
         }
     }
