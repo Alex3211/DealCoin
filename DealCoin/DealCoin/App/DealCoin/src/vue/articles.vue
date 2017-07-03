@@ -242,28 +242,28 @@ export default {
       }
     },
     tri: function(sorteDeTri){
-      switch (sorteDeTri) {
-        case "Prix croissant":
-            var ascending = this.article.sort((a, b) => parseInt(a.price) - parseInt(b.price));
-            break;
-        case "Prix décroissant":
-            var ascending = this.article.sort((a, b) => parseInt(b.price) - parseInt(a.price));
-            break;
-        case "De A-Z":
-            var ascending = this.article.sort(function(a, b){
-              if(a.title < b.title) return -1;
-              if(a.title > b.title) return 1;
-              return 0;
-            })
-            break;
-        case "De Z-A":
-            var ascending = this.article.sort(function(a, b){
-              if(a.title > b.title) return -1;
-              if(a.title < b.title) return 1;
-              return 0;
-            })
-            break;
-      }
+        switch (sorteDeTri) {
+          case "Prix croissant":
+              var ascending = this.article.sort((a, b) => parseInt(a.price) - parseInt(b.price));
+              break;
+          case "Prix décroissant":
+              var ascending = this.article.sort((a, b) => parseInt(b.price) - parseInt(a.price));
+              break;
+          case "De A-Z":
+              var ascending = this.article.sort(function(a, b){
+                if(a.title < b.title) return -1;
+                if(a.title > b.title) return 1;
+                return 0;
+              })
+              break;
+          case "De Z-A":
+              var ascending = this.article.sort(function(a, b){
+                if(a.title > b.title) return -1;
+                if(a.title < b.title) return 1;
+                return 0;
+              })
+              break;
+        }
       if(ascending){
         this.article = ascending;
         document.getElementById("tri").innerHTML = sorteDeTri;
