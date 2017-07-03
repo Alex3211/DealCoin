@@ -31,6 +31,7 @@
                   
                   <button type="button" class="btn-lg btn-info clrbtn" v-on:click="ShowAccountModify()">Modifier son compte</button>
                   <button type="button" class="btn-lg btn-info clrbtn" v-on:click="ShowAccountGraphs()">Informations</button>
+                  <router-link to="/Report"><a class="btn-lg btn-info clrbtn" href="#" >Envoyer un message</a></router-link>
                 </div>
               </div>
             </div>
@@ -293,6 +294,7 @@ export default {
               var result = null;  
               result = await UserService.putUserAsync(this.model);
               confirm("Vous avez modifié votre compte.");
+              this.$router.replace('/Account'); 
             },
             loadModelUser: async function(email) {
               
@@ -320,6 +322,7 @@ export default {
               var result = null;
               result = await UserService.putUserPassAsync(this.model);
               confirm("Vous avez modifié votre mot de passe !");
+              this.$router.replace('/Account'); 
               }
               
               //this.model.pass = null

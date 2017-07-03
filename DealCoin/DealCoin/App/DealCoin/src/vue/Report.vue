@@ -8,7 +8,7 @@
                         <div class="form-group">
                           <label class="col-lg-3 control-label">Message :</label>
                           <div class="col-lg-5">
-                            <textarea class="form-control" rows="5" id="comment"></textarea>
+                            <textarea  v-model="model.message" class="form-control" rows="5" id="comment"></textarea>
                           </div>
                           <br>
                         </div>
@@ -38,9 +38,9 @@
                         </div>
                       </form>
                   </div>
+                  
         </div>
-    </div>
-    
+    </div>    
 </template>
 
 <script>
@@ -65,6 +65,7 @@ export default {
               var result = null;  
               result = await ReportService.putReportAsync(this.model);
               confirm("Nous avons bien reçu votre commentaire !");
+              this.$router.replace('/Account'); 
             },
             loadModelUser: async function(email) {
               
