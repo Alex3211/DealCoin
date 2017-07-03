@@ -32,8 +32,8 @@
                     <p>{{Articleid.desc1}}</p>
                     <p>{{Articleid.price}}</p>
                     <p>{{Articleid.visits}}</p>
-                    <p>Crée le {{Articleid.created}}</p>
-                    <p>Mis a jour le {{Articleid.updated}}</p>
+                    <p>Crée le {{Articleid.created.substring(0,10)}}</p>
+                    <p>Mis a jour le {{Articleid.updated.substring(0,10)}}</p>
                     <div>
                       <button v-if="this.email !== user.email" class="btn btn-default" v-on:click="addarticle(Articleid)">Ajouter au panier</button>
                     </div>

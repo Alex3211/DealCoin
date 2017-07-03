@@ -39,8 +39,8 @@ namespace DealCoin.DAL
             {
                 return con.Query<Article>(
                     "insert into dc.products([userId],[categoriesId],[title],[photo],[desc1],[price],[posted_date],[created],[created_pk],[created_ip],[updated],[updated_pk],[updated_ip]) " +
-                    "values(@UserId, @categorieId, @title, @photo, @desc1, @price,null,null,null,null,null,null,null); ",
-                    new { UserId = userId, categorieId = categorieId, title = title, photo = photo, desc1 = desc1, price = price });
+                    "values(@UserId, @categorieId, @title, @photo, @desc1, @price, @posted_date, @posted_date,null ,null,@updaed_date,null,null); ",
+                    new { UserId = userId, categorieId = categorieId, title = title, photo = photo, desc1 = desc1, price = price, posted_date = DateTime.Now, created_date = DateTime.Now, updaed_date = DateTime.Now });
             }
         }
 
@@ -49,8 +49,10 @@ namespace DealCoin.DAL
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 return con.Query<Article>(
-                    "UPDATE [dc].[products] SET [userId] = @UserId, [categoriesId] = @categorieId, [title] = @title, [photo] = @photo, [desc1] = @desc1, [price] = @price WHERE [productsId] = @ProductsId;",
-                    new { UserId = userId, categorieId = categorieId, title = title, photo = photo, desc1 = desc1, price = price, ProductsId = productsId });
+                    "UPDATE [dc].[products] " +
+                    "SET [userId] = @UserId, [categoriesId] = @categorieId, [title] = @title, [photo] = @photo, [desc1] = @desc1, [price] = @price , [updated] = @updaed_date" +
+                    "WHERE [productsId] = @ProductsId;",
+                    new { UserId = userId, categorieId = categorieId, title = title, photo = photo, desc1 = desc1, price = price, ProductsId = productsId, updaed_date = DateTime.Now });
             }
         }
 
