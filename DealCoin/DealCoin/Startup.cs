@@ -51,9 +51,11 @@ namespace DealCoin
 
             services.AddSingleton(_ => new UserLink(Configuration["ConnectionStrings:DealcoinDB"]));
             services.AddSingleton(_ => new ArticleLink(Configuration["ConnectionStrings:DealcoinDB"]));
+            services.AddSingleton(_ => new ReportLink(Configuration["ConnectionStrings:DealcoinDB"]));
             services.AddSingleton(_ => new SalesLink(Configuration["ConnectionStrings:DealcoinDB"]));
             services.AddSingleton(_ => new CategoryLink(Configuration["ConnectionStrings:DealcoinDB"]));
             services.AddSingleton<PasswordHasher>();
+            services.AddSingleton<ReportServices>();
             services.AddSingleton<UserService>();
             services.AddSingleton<ArticleService>();
             services.AddSingleton<SalesService>();
