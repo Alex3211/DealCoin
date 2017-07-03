@@ -129,7 +129,7 @@ export default {
     return {
       model: {},
       services: AuthService,
-       article: [],
+      article: [],
       category: [],
       parentCategory:[],
       childCategory:[],

@@ -1,4 +1,4 @@
-import { getAsync, postAsync, putAsync, deleteAsync, putRAsync } from '../helper/apiUser'
+import { getAsync, postAsync, putAsync, deleteAsync, putRAsync,getAsyncReport } from '../helper/apiUser'
 import AuthService from './AuthService'
 
 const endpoint = "/api/report";
@@ -18,7 +18,7 @@ class ReportService {
     }
     async getAllReportAsync()
     {
-        return await getAsync(endpoint, 'All/', AuthService.accessToken);
+        return await getAsyncReport(endpoint, AuthService.accessToken);
     }
     async putReportAsync(model)
     {

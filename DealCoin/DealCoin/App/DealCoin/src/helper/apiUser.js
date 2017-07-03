@@ -104,6 +104,18 @@ export async function getAsync(endpoint, id, token) {
     });
 }
 
+export async function getAsyncReport(endpoint, token) {
+    return await $.ajax({
+        method: 'GET',
+        url: endpoint,
+        dataType: 'json',
+        dataFilter: dataFilter,
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
+
 export async function getArticleAsync(url,token) {
     return await $.ajax({
         method: 'GET',

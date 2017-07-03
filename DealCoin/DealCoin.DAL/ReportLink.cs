@@ -22,7 +22,7 @@ namespace DealCoin.DAL
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 return con.Query<Report>(
-                        "select * from dc.orders;"
+                        "select * from dc.message;"
                         );
             }
         }

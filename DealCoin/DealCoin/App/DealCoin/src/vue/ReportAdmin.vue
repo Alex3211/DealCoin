@@ -12,84 +12,17 @@
             </ul>   
         </div>
     </nav>
-		<div class="well">
-        <h1 class="text-center">Vote for your favorite</h1>
-        <div class="list-group">
-          <a href="#" class="list-group-item active">
-                <div class="media col-md-3">
-                    <figure class="pull-left">
-                        <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" >
-                    </figure>
+		<div class="well colorB">
+        <h1 class="text-center">Vos messages</h1>
+        <div class="list-group" v-for="reports in filteredArticles">
+          <div href="#" class=" list-group-item colorC">
+                <div class="col-md-12 row" >
+                        <label class="col-md-4 control-label">Message de {{reports.email}} : </label>
+                        <div class="col-md-8">
+                          <p style="word-break:break-all;">{{reports.message}}</p>
+                        </div>
                 </div>
-                <div class="col-md-6">
-                    <h4 class="list-group-item-heading"> List group heading </h4>
-                    <p class="list-group-item-text"> Qui diam libris ei, vidisse incorrupte at mel. His euismod salutandi dissentiunt eu. Habeo offendit ea mea. Nostro blandit sea ea, viris timeam molestiae an has. At nisl platonem eum. 
-                        Vel et nonumy gubergren, ad has tota facilis probatus. Ea legere legimus tibique cum, sale tantas vim ea, eu vivendo expetendis vim. Voluptua vituperatoribus et mel, ius no elitr deserunt mediocrem. Mea facilisi torquatos ad.
-                    </p>
-                </div>
-                <div class="col-md-3 text-center">
-                    <h2> 14240 <small> votes </small></h2>
-                    <button type="button" class="btn btn-default btn-lg btn-block"> Vote Now! </button>
-                    <div class="stars">
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                    </div>
-                    <p> Average 4.5 <small> / </small> 5 </p>
-                </div>
-          </a>
-          <a href="#" class="list-group-item">
-                <div class="media col-md-3">
-                    <figure class="pull-left">
-                        <img class="media-object img-rounded img-responsive" src="http://placehold.it/350x250" alt="placehold.it/350x250" >
-                    </figure>
-                </div>
-                <div class="col-md-6">
-                    <h4 class="list-group-item-heading"> List group heading </h4>
-                    <p class="list-group-item-text"> Eu eum corpora torquatos, ne postea constituto mea, quo tale lorem facer no. Ut sed odio appetere partiendo, quo meliore salutandi ex. Vix an sanctus vivendo, sed vocibus accumsan petentium ea. 
-                        Sed integre saperet at, no nec debet erant, quo dico incorrupte comprehensam ut. Et minimum consulatu ius, an dolores iracundia est, oportere vituperata interpretaris sea an. Sed id error quando indoctum, mel suas saperet at.                         
-                    </p>
-                </div>
-                <div class="col-md-3 text-center">
-                    <h2> 12424 <small> votes </small></h2>
-                    <button type="button" class="btn btn-primary btn-lg btn-block">Vote Now!</button>
-                    <div class="stars">
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                    </div>
-                    <p> Average 3.9 <small> / </small> 5 </p>
-                </div>
-          </a>
-          <a href="#" class="list-group-item">
-                <div class="media col-md-3">
-                    <figure class="pull-left">
-                        <img class="media-object img-rounded img-responsive" src="http://placehold.it/350x250" alt="placehold.it/350x250">
-                    </figure>
-                </div>
-                <div class="col-md-6">
-                    <h4 class="list-group-item-heading"> List group heading </h4>
-                    <p class="list-group-item-text"> Ut mea viris eripuit theophrastus, cu ponderum accusata consequuntur cum. Suas quaestio cotidieque pro ea. Nam nihil persecuti philosophia id, nam quot populo ea. 
-                        Falli urbanitas ei pri, eu est enim volumus, mei no volutpat periculis. Est errem iudicabit cu. At usu vocibus officiis, ad ius eros tibique appellantur.                         
-                    </p>
-                </div>
-                <div class="col-md-3 text-center">
-                    <h2> 13540 <small> votes </small></h2>
-                    <button type="button" class="btn btn-primary btn-lg btn-block">Vote Now!</button>
-                    <div class="stars">
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                    </div>
-                    <p> Average 4.1 <small> / </small> 5 </p>
-                </div>
-          </a>
+          </div>
         </div>
         </div>
 </div>
@@ -99,6 +32,7 @@
 <script>
 import AuthService from '../services/AuthService'
 import UserService from '../services/UserService'
+import ReportService from '../services/ReportServices'
 import Chart from 'chart.js';
 import Vue from 'vue'
 import $ from 'jquery'
@@ -108,37 +42,72 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
         data() {
             return {
-                user:{}
+                report:{},
+                model: {},
+                email: "",
+                reports: []
             }
         },
-        mounted() {
+       async mounted() {
             this.loadUser();
+            this.email = AuthService.hisEmail();
+            await this.loadModelUser(this.email);
         },
         methods: {
             ...mapGetters(['getUser']),
             ...mapActions(['setuser']),
             loadUser: async function(){
-                var User = await UserService.getAllUserAsync();
-                this.user = User;
-                this.setuser(User);
+                var Report = await ReportService.getAllReportAsync();
+                this.report =Report.content;
+            },
+            loadModelUser: async function(email) {
+              var Model2= await UserService.getUserAsync(email);
+              this.model=Model2.content;
+              //this.model.userId = this.model.content.userId;
             }
+        },
+        computed : {
+            
+        filteredArticles: function () {
+      var articles_array = this.report,
+          searchString = this.searchString;
+      if(!searchString){
+          return articles_array;
+      }
+      searchString = searchString.trim().toLowerCase();
+      articles_array = articles_array.filter(function(item){
+          if(item.title.toLowerCase().indexOf(searchString) !== -1){
+              return item;
+          }
+      })
+      // Return an array with the filtered data.
+      return articles_array.slice(0,5);
+    }
         }
     }
 </script>
 <style scoped>
+
 body{margin-top:20px;}
 .fa-fw {width: 2em;
 .btn-glyphicon { padding:8px; background:#ffffff; margin-right:4px; }
 .icon-btn { padding: 1px 15px 3px 2px; border-radius:50px;}
 }
-a.list-group-item {
+list-group-item {
     height:auto;
     min-height:220px;
 }
-a.list-group-item.active small {
+list-group-item.active small {
     color:#fff;
 }
-.stars {
-    margin:20px auto 1px;    
+
+.colorB{
+    background:#402E22!important;
+}
+
+.colorC{
+    background:#402E22!important;
+    color:white!important;
+    border:solid 1px #402E22!important;
 }
 </style>

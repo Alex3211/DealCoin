@@ -10,6 +10,7 @@ namespace DealCoin.DAL
         public string phone { get; set; }
         public string subject { get; set; }
         public string response { get; set; }
+        public string message { get; set; }
         public int status { get; set; }
         public DateTime posted_date { get; set; }
     }

@@ -37,7 +37,7 @@
         </div>
         </br>
         <div class="row" style="display:none;" id="dmin">
-          <form @submit="onSubmit($event)" class="form-horizontal" role="form">
+          <form @submit="submitReportReport()" class="form-horizontal" role="form">
             <div class="form-group">
               <label class="col-lg-3 control-label">Message :</label>
                 <div class="col-lg-5">
@@ -243,6 +243,7 @@ import articleApiService from '../services/ArticleServices.js'
 import SalesService from '../services/SalesService'
 import UserService from '../services/UserService.js'
 import AuthService from '../services/AuthService.js'
+import ReportService from '../services/ReportServices.js'
 
 export default {
   	data () {
@@ -348,6 +349,13 @@ export default {
                 this.user = User.content;
                 this.$router.replace('/Logout');                    
                 }
+            },
+               submitReportReport: async function() {
+              
+              var result = null;  
+              result = await ReportService.putReportAsync(this.model);
+              confirm("Nous avons bien reçu votre commentaire !");
+              this.$router.replace('/Account'); 
             },
             onSubmitPasse: async function(e) {
               e.preventDefault();
