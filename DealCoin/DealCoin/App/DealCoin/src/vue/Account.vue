@@ -200,12 +200,6 @@
                         <label class="col-lg-5 control-label"><p>Votre mail: {{model.email}}</p></label>
                       </div>
                       <div class="form-group">
-                        <label class="col-md-3 control-label">Acien mot de passe:</label>
-                        <div class="col-md-5">
-                          <input class="form-control" v-model="PastCode" type="password">
-                        </div>
-                      </div>
-                      <div class="form-group">
                         <label class="col-md-3 control-label">Mot de passe:</label>
                         <div class="col-md-5">
                           <input required class="form-control" v-model="newCode" type="password" pattern="^[a-zA-Z]\w{4,14}$" title="
@@ -259,7 +253,6 @@ export default {
         articleev:[],
         articlev:[],
         email: "",
-        PastCode: null,
         newCode: null,
         confirmNewCode: null,
         solde: 0.00000000,
@@ -370,8 +363,6 @@ export default {
               confirm("Vous avez modifié votre mot de passe !");
               this.$router.replace('/Account'); 
               }
-              
-              //this.model.pass = null
             }
     }
 }
