@@ -4,59 +4,12 @@
         <div class="row">
         <div class="container">
             <div class="col-md-12 text-center">
-                  <div id="myCarousel" class="carousel slide " data-ride="carousel">
-                      <!-- Indicators -->
-                      
-
-                      <!-- Wrapper for slides -->
-                      <div class="carousel-inner  " >
-                        <div class="item active ">
-                          <img v-bind:src="this.article[1].photo" alt="Chania" class="imageT ">
-                          <div class="carousel-caption colorI">
-                            <h3>{{article[0].title}}</h3>
-                            <p>{{article[0].desc1}}</p>
-                            
-                          </div>
-                        </div>
-
-                        <div class="item"  v-for="article in filteredArticles">
-                          <img v-bind:src="article.photo" alt="Chania" class="imageT ">
-                          <div class="carousel-caption colorI">
-                            <h3>{{article.title}}</h3>
-                            <p>{{article.desc1}}</p>
-                          </div>
-                          
-                        </div><div class="item" >
-                          <img v-bind:src="this.article[3].photo" alt="Chania" class="imageT ">
-                          <div class="carousel-caption colorI">
-                            <h3>{{this.article[3].title}}</h3>
-                            <p>{{this.article[3].desc1}}</p>
-                          </div>
-                        </div>
-
-                        
-
-                      <!-- Left and right controls -->
-                      <a class="left carousel-control colorI" href="#myCarousel" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                        <span class="sr-only">Previous</span>
-                      </a>
-                      <a class="right carousel-control colorI" href="#myCarousel" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                        <span class="sr-only">Next</span>
-                      </a>
-                    </div>
-                    </div>
-
-                
-              
-            </ul>
-          </nav>
+                             
+            <p class="lead">Avec l’ascension du e-commerce ainsi que les problèmes de paiements, nous avons décidé de créer DealCoin. C’est un site de e-commerce sécurisé et anonyme grâce à notre méthode de paiement en bitcoins. Cela permet à un utilisateur d’acheter ou vendre un article et de pouvoir se faire livrer à domicile. L’avantage de notre méthode de paiement est de remplacer la carte de crédit qui est traçable et piratable.</p>
+          
             </div>
-
             <div v-if="services.isConnected && model.city==''">
               <router-link to="/Account"><button  type="button" class="btn btn-default buttonCategory">Finaliser les informations de mon compte</button></router-link> 
-            
             </div>
         </div>
     </div>
