@@ -90,11 +90,9 @@ export default {
             ...mapActions(['delArticle']),
             ...mapActions(['decrement']),
             loadArticle: async function(){
-                var articles = await this.getArticle();
-                for(var i =0 ; i < articles.length; i++) {
-                    var article = articles[i];
-                    article.userAdresse = await this.GetBitcoinAdress(article.userId);
-                    this.article.push(article);
+                this.article = await this.getArticle();
+                for(var i =0 ; i < this.article.length; i++) {
+                    this.$set(this.article[i], 'userAdresse', await this.GetBitcoinAdress(this.article[i].userId));
                 }
             },
             GetBitcoinAdress : async function(id){
