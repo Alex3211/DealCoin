@@ -8,7 +8,7 @@
             <p class="lead">Avec l’ascension du e-commerce ainsi que les problèmes de paiements, nous avons décidé de créer DealCoin. C’est un site de e-commerce sécurisé et anonyme grâce à notre méthode de paiement en bitcoins. Cela permet à un utilisateur d’acheter ou vendre un article et de pouvoir se faire livrer à domicile. L’avantage de notre méthode de paiement est de remplacer la carte de crédit qui est traçable et piratable.</p>
           
             </div>
-            <div v-if="services.isConnected && model.city==''">
+            <div v-if="services.isConnected && model !== null && model.city == ''">
               <router-link to="/Account"><button  type="button" class="btn btn-default buttonCategory">Finaliser les informations de mon compte</button></router-link> 
             </div>
         </div>
@@ -92,11 +92,12 @@ export default {
     }
   },
     async mounted() {
-            this.email = AuthService.hisEmail();
-            this.loadModelUser(this.email);
-            await this.loadArticle();
-            await this.TempTab();
-            //this.afficheChildCategory();
+       if(AuthService.isConnected){
+        this.email = AuthService.hisEmail();
+        this.loadModelUser(this.email);
+        await this.loadArticle();
+        await this.TempTab();
+      }
         },
          methods: {
             loadModelUser: async function(email) {

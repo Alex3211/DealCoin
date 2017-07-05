@@ -20,42 +20,14 @@
                             <td class="col-sm-8 col-md-6">
                             <a class="thumbnail pull-left"> <img class="media-object"  v-bind:src="a.photo" style="width: 72px; height: 72px;"> </a>
                                 <h4>{{a.title}}</h4>
-                                <h5>{{a.desc1}}</h5>
+                                <span>Veuillez envoyer {{a.price}}€ a cette adresse :<h6 style='color:orange;'>{{a.userAdresse}}</h6></span>
+                              
                             </td>
                             <td class="col-sm-1 col-md-1 text-center"><strong><h4>{{a.price}} €</h4></strong></td>
                             <td class="col-sm-1 col-md-1">
                             <button type="button" class="btn btn-danger buttonCategory" v-on:click="Delarticle(index)">
                                 <span></span> Supprimer l'article
                             </button></td>
-                        </tr>
-                        <tr>
-                            <td>   </td>
-                            <td><h4>Total Hors Taxe</h4></td>
-                            <td class="text-right"><h4><strong>{{totaleprix}} €</strong></h4></td>
-                        </tr>
-                        <tr>
-                            <td>   </td>
-                            <td><h4>Coût de livraison</h4><h5>(Gratuit à partir de 50 €)</h5></td>
-                            <td class="text-right"><h4><strong>{{livraison.toFixed(2)}} €</strong></h4></td>
-                        </tr>
-                        <tr>
-                            <td>   </td>
-                            <td><h3>Total</h3></td>
-                            <td class="text-right"><h3><strong>{{totaletopay.toFixed(2)}} €</strong></h3></td>
-                        </tr>
-                        <tr>
-                            <td>   </td>
-                            <td>
-                            <button type="button" class="btn btn-info buttonCategory">
-                            <router-link to="/articles"><i class="fa fa-list-alt fa-fw"></i>Continuer mes achats</router-link>
-                            </button></td>
-                            <td>
-                                <router-link  to="/payment">
-                                    <button type="button" class="btn btn-success buttonCategory">
-                                        Procéder au paiement <span></span>
-                                    </button>
-                                </router-link>
-                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -98,6 +70,7 @@ background-color:#BFA077!important;
 import Vue from 'vue'
 import $ from 'jquery'
 import { mapGetters,mapActions } from 'vuex'
+import UserService from '../services/UserService.js'
 
 export default {
         data() {
@@ -117,18 +90,16 @@ export default {
             ...mapActions(['delArticle']),
             ...mapActions(['decrement']),
             loadArticle: async function(){
-                this.article = this.getArticle();
-                
-                for(var i=0;i<this.article.length;i++){
-                this.totaleprix += parseInt(this.article[i].price)
+                var articles = await this.getArticle();
+                for(var i =0 ; i < articles.length; i++) {
+                    var article = articles[i];
+                    article.userAdresse = await this.GetBitcoinAdress(article.userId);
+                    this.article.push(article);
                 }
-                if(this.totaleprix<=50){
-                    this.livraison = this.totaleprix/this.tva
-                }else{
-                    this.livraison =0
-                }
-                 
-                this.totaletopay = this.livraison+this.totaleprix
+            },
+            GetBitcoinAdress : async function(id){
+                var User = await UserService.getUserByIdAsync(id);
+                return User.content.adresse_bitcoin;
             },
             Delarticle(i){
                 this.delArticle(i)

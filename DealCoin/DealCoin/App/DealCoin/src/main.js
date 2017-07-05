@@ -9,6 +9,7 @@ import App from './App.vue'
 import home from './vue/home.vue'
 import Logout from './vue/Logout.vue'
 import apropos from './vue/apropos.vue'
+import payment from './vue/payment.vue'
 import articles from './vue/articles.vue'
 import homeAdmin from './vue/homeAdmin.vue'
 import userAdmin from './vue/UserAdmin.vue'
@@ -83,6 +84,11 @@ const router = new VueRouter({
       path: '/articles',
       name: 'articles',
       component: articles, beforeEnter: requireAuth
+    },
+    {
+      path: '/payment',
+      name: 'payment',
+      component: payment, beforeEnter: requireAuth
     },
     {
       path: '/articleDetails',

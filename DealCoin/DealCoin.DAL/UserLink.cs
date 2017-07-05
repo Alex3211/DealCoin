@@ -29,7 +29,7 @@ namespace DealCoin.DAL
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 return con.Query<User>(
-                        "select userId, email, Password, nom, prenom, phone, addresse,departement,city,postale,role,status,visits,last_login from dc.users where email = @Mail ;",
+                        "select userId, email, Password, nom, prenom, phone, addresse,departement,city,postale, role,status,adresse_bitcoin,visits,last_login from dc.users where email = @Mail ;",
                         new { Mail = _Mail })
                     .FirstOrDefault();
             }
