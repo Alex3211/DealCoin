@@ -32,10 +32,36 @@
               <button type="button" class="btn-lg btn-info clrbtn" v-on:click="ShowAccount('invisible')">Modifier son compte</button>
               <button type="button" class="btn-lg btn-info clrbtn" v-on:click="ShowAccount('invisibleGrap')">Informations</button>
               <button type="button" class="btn-lg btn-info clrbtn" v-on:click="ShowAccount('dmin')">Contacter un administrateur</button>
+              <button type="button" class="btn-lg btn-info clrbtn" v-on:click="ShowAccount('artvente')">Mes articles en vente</button>
             </div>
           </div>
         </div>
         </br>
+        <div class="row" style="display:none;" id="artvente">
+          <h2>Mes articles en vente</h2>
+          <div class="row">
+           <table class="table" id="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Catégorie</th>
+                        <th>Nom</th>
+                        <th>Prix</th>
+                        <th>Date d'ajout</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="a of article">
+                        <td>{{a.productsId}}</td>
+                        <td>{{a.desc1}}</td>
+                        <td>{{a.title}}</td>
+                        <td>{{a.price}}</td>
+                        <td>12/10/2016</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
         <div class="row" style="display:none;" id="dmin">
           <form @submit="submitReportReport()" class="form-horizontal" role="form">
             <div class="form-group">
@@ -251,6 +277,8 @@ import SalesService from '../services/SalesService'
 import UserService from '../services/UserService.js'
 import AuthService from '../services/AuthService.js'
 import ReportService from '../services/ReportServices.js'
+import Vue from 'vue'
+import $ from 'jquery'
 
 export default {
   	data () {

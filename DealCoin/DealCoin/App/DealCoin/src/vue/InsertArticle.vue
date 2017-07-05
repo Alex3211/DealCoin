@@ -7,7 +7,7 @@
             <form @submit="onSubmit($event)" class="form-horizontal" role="form">
                 <div class="form-group">
                     <label class="col-lg-1 control-label">Catégorie:</label>
-                    <div class="col-lg-11">
+                    <div class="col-lg-2">
                         <select class="form-control" name="cars">
                             <option id="test" v-for="i in category" v-model="model.categoriesId" v-bind:value="i.categoriesId" v-if="i.parentId!==0">
                             <div class="font1">
@@ -21,7 +21,7 @@
                 </div> 
                 <div class="form-group">
                     <label class="col-lg-1 control-label">Titre:</label>
-                    <div class="col-lg-11">
+                    <div class="col-lg-2">
                     <input class="form-control" v-model="model.title" type="text">
                     </div>
                     <br>
@@ -29,7 +29,7 @@
 
                 <div class="form-group" id="app">
                     <label class="col-lg-1 control-label">Photo:</label>
-                    <div class="col-lg-11">
+                    <div class="col-lg-2">
                             <div v-if="!image">
                             <input type="file" @change="onFileChange" v.model="model.photo">
                         </div>
@@ -43,15 +43,15 @@
 
                 <div class="form-group">
                     <label class="col-lg-1 control-label">Description:</label>
-                    <div class="col-lg-11">
-                    <input class="form-control" v-model="model.desc1" type="text">
+                    <div class="col-lg-3">
+                     <textarea  v-model="model.desc1" class="form-control" rows="5" id="Description :"></textarea>
                     </div>
                     <br>
                 </div> 
 
                 <div class="form-group">
                     <label class="col-lg-1 control-label">Prix: </label>
-                    <div class="col-lg-11">
+                    <div class="col-lg-2">
                     <input class="form-control" v-model="model.price" type="text">
                     </div>
                     <br>
