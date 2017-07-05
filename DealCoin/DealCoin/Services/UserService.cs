@@ -88,10 +88,10 @@ namespace DealCoin.Services
         }
 
         public Result<IEnumerable<User>> UpdateUser(int userId,string nom, string prenom, string phone, string addresse,
-            string departement, string city, string postale)
+            string departement, string city, string postale,string adresse_bitcoin)
         {
             return Result.Success(Status.Ok, _userLink.UpdateUser(userId,nom,prenom,phone,addresse,departement,
-            city,postale));
+            city,postale, adresse_bitcoin));
         }
 
         public bool UpdateUserCode(int _userId, string _password)

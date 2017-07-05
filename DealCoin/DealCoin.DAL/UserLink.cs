@@ -39,7 +39,7 @@ namespace DealCoin.DAL
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 return con.Query<User>(
-                        "select userId, email, Password, nom, prenom, phone, addresse,departement,city,postale,role,status,visits,last_login from dc.users where userId = @Id ;",
+                        "select userId, email, Password, nom, prenom, phone, addresse,departement,city,postale,role,status,adresse_bitcoin,visits,last_login from dc.users where userId = @Id ;",
                         new { Id = _id })
                     .FirstOrDefault();
             }
@@ -49,7 +49,7 @@ namespace DealCoin.DAL
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 return con.Query<User>(
-                        "select userId, email, Password, nom, prenom, phone, addresse,departement,city,postale,role,status,visits,last_login,first_login from dc.users;"
+                        "select userId, email, Password, nom, prenom, phone, addresse,departement,city,postale,role,status,adresse_bitcoin,visits,last_login,first_login from dc.users;"
                         );
             }
         }
@@ -162,13 +162,13 @@ namespace DealCoin.DAL
         }
 
         public IEnumerable<User> UpdateUser(int _userId, string _nom, string _prenom, string _phone, string _addresse,
-            string _departement, string _city, string _postale)
+            string _departement, string _city, string _postale, string _adresse_bitcoin)
         {
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 return con.Query<User>(
-                    "update dc.users set nom = @nom, prenom = @prenom, phone = @phone, addresse = @addresse, departement = @departement, city = @city, postale = @postale where userId = @userId; ",
-                new { userId = _userId, nom = _nom, prenom = _prenom, phone = _phone, addresse = _addresse, departement = _departement, city = _city, postale = _postale });
+                    "update dc.users set nom = @nom, prenom = @prenom, phone = @phone, addresse = @addresse, departement = @departement, city = @city, postale = @postale, adresse_bitcoin = @Adresse_bitcoin where userId = @userId; ",
+                new { userId = _userId, nom = _nom, prenom = _prenom, phone = _phone, addresse = _addresse, departement = _departement, city = _city, postale = _postale,Adresse_bitcoin = _adresse_bitcoin });
             }
         }
 

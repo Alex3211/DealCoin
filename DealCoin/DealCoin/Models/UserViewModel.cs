@@ -27,7 +27,8 @@ namespace DealCoin.Models
         public string departement { get; set; }
         
         public string city { get; set; }
-      
+        public string adresse_bitcoin { get; set; }
+
         public string postale { get; set; }
     }
 }
