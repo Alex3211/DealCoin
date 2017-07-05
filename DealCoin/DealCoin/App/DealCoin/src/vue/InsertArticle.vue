@@ -3,6 +3,7 @@
         <div class="container">
         <div class="row">
             <h1>Ajouter un article</h1>
+            <h1 v-if="this.error !== ''">{{this.error}}</h1>
             <form @submit="onSubmit($event)" class="form-horizontal" role="form">
                 <div class="form-group">
                     <label class="col-lg-1 control-label">Catégorie:</label>
@@ -148,7 +149,8 @@ export default {
             price : null,
         },
         model1:{},
-        image:''
+        image:'',
+        error: ''
     }
   },
   async mounted(){
@@ -181,14 +183,22 @@ export default {
       this.image = '';
     },
     onSubmit: async function(e) {
-        e.preventDefault();
-        var result = null;
-        this.model.categoriesId = document.getElementById("test").value;
-        this.model.photo=this.image;
-        if (this.model.title.length == 0)
-            this.model.title = 0;   
-        result = await articleApiService.postArticleListAsync(this.model);
-        this.$router.replace('/MyArticles');
+        if(this.isEmpty(this.model1.content.adresse_bitcoin) == false){
+            e.preventDefault();
+            var result = null;
+            this.model.categoriesId = document.getElementById("test").value;
+            this.model.photo=this.image;
+            if (this.model.title.length == 0)
+                this.model.title = 0;   
+            result = await articleApiService.postArticleListAsync(this.model);
+            this.$router.replace('/MyArticles');
+        } else {
+            this.error = "Vous n'avez pas d'adresse bitcoin!";
+        }
+
+    },
+    isEmpty: function(str) {
+        return (!str || 0 === str.length);
     },
     LoadModelUser: async function(email){
         this.model1 = await UserService.getUserAsync(email);

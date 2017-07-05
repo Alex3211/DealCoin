@@ -4,9 +4,9 @@
       <div class="col-lg-12 text-center">
       <h3>Bonjour {{model.nom}}, vous pouvez modifier votre compte ici.</h3>
       <div class="row">
-        <div class="col-md-12">
-          <h1 class="display-1">Votre solde BitCoin</h1>
-          <h1 class="display-1">{{solde.toFixed(8)}}</h1>
+        <div class="col-md-12" v-if="this.model.adresse_bitcoin !== '' || this.model.adresse_bitcoin !== null">
+          <h1 class="display-1">Votre adresse BitCoin</h1>
+          <h1 class="display-1">{{this.model.adresse_bitcoin}}</h1>
           </br>
         </div>
           </br>
@@ -122,6 +122,14 @@
                     <h1>Modifier le profil</h1>
                     <form @submit="onSubmit($event)" class="form-horizontal" role="form">
                       <div class="form-group">
+                        <label class="col-lg-3 control-label">adresse bitcoin:</label>
+                        <div class="col-lg-5">
+                          <input v-if="model.adresse_bitcoin == null || model.adresse_bitcoin == ''" class="form-control red" v-model="model.adresse_bitcoin" type="text" value="ddddd">
+                          <input v-else class="form-control" v-model="model.adresse_bitcoin" type="text" value="ddddd">
+                        </div>
+                        <br>
+                      </div>
+                      <div class="form-group">
                         <label class="col-lg-3 control-label">Nom:</label>
                         <div class="col-lg-5">
                           <input v-if="model.nom == null || model.nom == ''" class="form-control red" v-model="model.nom" type="text" value="ddddd">
@@ -129,7 +137,6 @@
                         </div>
                         <br>
                       </div>
-
                       <div class="form-group">
                         <label class="col-lg-3 control-label">Prénom:</label>
                         <div class="col-lg-5">
