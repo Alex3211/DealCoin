@@ -5,25 +5,11 @@
       <h3>Bonjour {{model.nom}}, vous pouvez modifier votre compte ici.</h3>
       <div class="row">
         <div class="col-md-12" v-if="this.model.adresse_bitcoin !== '' || this.model.adresse_bitcoin !== null">
-          <h1 class="display-1">Votre adresse BitCoin</h1>
-          <h1 class="display-1">{{this.model.adresse_bitcoin}}</h1>
+          <h3>Votre adresse BitCoin: {{this.model.adresse_bitcoin}}</h3>
           </br>
         </div>
           </br>
           </br>
-        <div class="row">
-          <div class="col-md-12">
-            <li class="dropdown">
-              <button type="button" class="btn-lg btn-info dropdown-toggle clrbtn" data-toggle="dropdown">Créditer votre compte</button>
-              <ul class="dropdown-menu" role="menu">
-                <div  class="input-group">
-                  <input style="width:225px;" type="text" class="form-control">
-                  <span class="input-group-btn"><button class="btn btn-default" type="button">Recevoir</button></span>
-                </div>
-              </ul>
-            </li>
-          </div>            
-        </div>
           <br>
         <div class="row">
           <div class="col-md-12">
@@ -31,8 +17,8 @@
               
               <button type="button" class="btn-lg btn-info clrbtn" v-on:click="ShowAccount('invisible')">Modifier son compte</button>
               <button type="button" class="btn-lg btn-info clrbtn" v-on:click="ShowAccount('invisibleGrap')">Informations</button>
-              <button type="button" class="btn-lg btn-info clrbtn" v-on:click="ShowAccount('dmin')">Contacter un administrateur</button>
               <button type="button" class="btn-lg btn-info clrbtn" v-on:click="ShowAccount('mArticles')">Gestion de mes articles</button>
+              <button type="button" class="btn-lg btn-info clrbtn" v-on:click="ShowAccount('dmin')">Contacter un administrateur</button>
             </div>
           </div>
         </div>
