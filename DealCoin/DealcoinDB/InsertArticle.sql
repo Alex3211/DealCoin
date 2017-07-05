@@ -54,10 +54,13 @@ GO
 
 INSERT INTO [dc].[orders]([usersId],[fname],[lname],[phone],[addresse],[departement],[city],[postale],[delivery_fname],[delivery_lname],[delivery_phone],[delivery_adresse],[delivery_departement],[delivery_city],[delivery_postale],[shipping_cost],[sales_date])VALUES(2,'Patrick','dupond','0146832170','14 rue du generale de gaule','idf','Paris','75016',null,null,null,null,null,null,null,10,'2017-06-02')
 INSERT INTO [dc].[orders]([usersId],[fname],[lname],[phone],[addresse],[departement],[city],[postale],[delivery_fname],[delivery_lname],[delivery_phone],[delivery_adresse],[delivery_departement],[delivery_city],[delivery_postale],[shipping_cost],[sales_date])VALUES(1,'jojo','dupond','0146782170','26 rue du generale de gaule','idf','Paris','75016',null,null,null,null,null,null,null,10,'2017-10-02')
+INSERT INTO [dc].[orders]([usersId],[fname],[lname],[phone],[addresse],[departement],[city],[postale],[delivery_fname],[delivery_lname],[delivery_phone],[delivery_adresse],[delivery_departement],[delivery_city],[delivery_postale],[shipping_cost],[sales_date])VALUES(1,'titi','dupond','0146782170','26 rue du generale de gaule','idf','Paris','75016',null,null,null,null,null,null,null,107,'2017-09-02')
+INSERT INTO [dc].[orders]([usersId],[fname],[lname],[phone],[addresse],[departement],[city],[postale],[delivery_fname],[delivery_lname],[delivery_phone],[delivery_adresse],[delivery_departement],[delivery_city],[delivery_postale],[shipping_cost],[sales_date])VALUES(1,'tutu','dupond','0146782170','26 rue du generale de gaule','idf','Paris','75016',null,null,null,null,null,null,null,108,'2017-01-02')
 --orderProduct
 
 INSERT INTO [dc].[ordersProducts]([ordersId],[productsId],[title],[photo],[desc1],[price])VALUES(2,8,'Ce site vent que des t�l�phones ?','','Super 3310 !','10')
 
-
+INSERT INTO [dc].[ordersProducts]([ordersId],[productsId],[title],[photo],[desc1],[price])VALUES(4,8,'Ce site vent que des t�l�phones ?','','Super 3310 !','10')
+INSERT INTO [dc].[ordersProducts]([ordersId],[productsId],[title],[photo],[desc1],[price])VALUES(5,8,'Ce site vent que des t�l�phones ?','','Super 3310 !','10')
 
 
