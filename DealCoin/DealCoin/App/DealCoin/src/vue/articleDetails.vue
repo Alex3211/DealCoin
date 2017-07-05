@@ -12,7 +12,7 @@
             	<ul class="dropdown-menu">
             		<li><router-link v-bind:to="{ path: 'EditArticle', query: { article: Articleid }}"><a href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Modifier</a></router-link></li>
             		<li role="separator" class="divider"></li>
-            		<li><router-link v-bind:to="{ path: 'DelArticle', query: { article: Articleid }}"><a href="#"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>Supprimer</a></router-link></li>
+            		<li><router-link v-bind:to="{ path: 'DelArticle', query: { article: Articleid, account: false }}"><a href="#"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>Supprimer</a></router-link></li>
             	</ul>
             </div>
             <div class="clearfix"></div>

@@ -37,6 +37,7 @@ import articleApiService from '../services/ArticleServices.js'
 export default {
   data() {
     return {
+      boolAcc: this.$route.query.account,
       error: '',
       model: {
             userId : null,
@@ -52,7 +53,10 @@ export default {
   },
   async mounted(){
       this.test = await articleApiService.deleteArticleListAsync(this.$route.query.article.productsId);
-      if(await articleApiService.deleteArticleListAsync(this.$route.query.article.productsId)) this.$router.replace('/MyArticles');
+      if(await articleApiService.deleteArticleListAsync(this.$route.query.article.productsId)) {
+        if(this.boolAcc == true) this.$router.replace('/Account');
+        else this.$router.replace('/MyArticles');
+      } 
       else document.getElementById('error').innerHTML = 'error';
   }
 }        

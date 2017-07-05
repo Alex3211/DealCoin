@@ -32,15 +32,13 @@
               <button type="button" class="btn-lg btn-info clrbtn" v-on:click="ShowAccount('invisible')">Modifier son compte</button>
               <button type="button" class="btn-lg btn-info clrbtn" v-on:click="ShowAccount('invisibleGrap')">Informations</button>
               <button type="button" class="btn-lg btn-info clrbtn" v-on:click="ShowAccount('dmin')">Contacter un administrateur</button>
-              <button type="button" class="btn-lg btn-info clrbtn" v-on:click="ShowAccount('artvente')">Mes articles en vente</button>
+              <button type="button" class="btn-lg btn-info clrbtn" v-on:click="ShowAccount('mArticles')">Gestion de mes articles</button>
             </div>
           </div>
         </div>
         </br>
-        <div class="row" style="display:none;" id="artvente">
-          <h2>Mes articles en vente</h2>
-          <div class="row">
-           <table class="table" id="table">
+        <div class="row" style="display:none;" id="mArticles">
+        <table class="table" id="table">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -57,11 +55,11 @@
                         <td>{{a.title}}</td>
                         <td>{{a.price}}</td>
                         <td>12/10/2016</td>
+                        <td><router-link v-bind:to="{ path: 'DelArticle', query: { article: a, account: true }}"><a href="#"><button type="button" class="btn-lg btn-info clrbtn">Supprimer</button></a></router-link></td>
                     </tr>
                 </tbody>
             </table>
         </div>
-
         <div class="row" style="display:none;" id="dmin">
           <form @submit="submitReportReport()" class="form-horizontal" role="form">
             <div class="form-group">
@@ -294,6 +292,7 @@ export default {
         solde: 0.00000000,
         modify: false,
         graphs: false,
+        BoolArticle: false,
         sendReport: false
       }
      },
@@ -333,6 +332,10 @@ export default {
               } 
           },
           ShowAccount: async function(id){
+            if(this.BoolArticle){
+              this.ShowFunction('mArticles');
+              this.BoolArticle = !this.BoolArticle;
+            } 
             if(this.modify){
               this.ShowFunction('invisible');
               this.modify = !this.modify;
@@ -345,6 +348,9 @@ export default {
               this.ShowFunction('dmin');
               this.sendReport = !this.sendReport;
             }
+            if(id == 'mArticles'){
+              this.BoolArticle = !this.BoolArticle;
+            } 
             if(id == 'invisible'){
               this.modify = !this.modify;
             } 
