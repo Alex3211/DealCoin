@@ -1,9 +1,9 @@
 <template>
 
 <div class="container " style="border:none;">
-    <div class="panel panel-default ">
-        <div class="panel-heading toto">
-            <router-link to="/articles"><a href="#" class="btn btn-default">Retour aux articles</a></router-link>
+        <div class="panel-body">
+              <router-link to="/articles"><button href="#" class="btn btn-default" style='margin-left:80px;'>Retour aux articles</button></router-link>
+            
             <div class="btn-group" style="float:right;" v-if="this.email == user.email">
             	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             		<span>Modifier</span>
@@ -16,31 +16,40 @@
             	</ul>
             </div>
             <div class="clearfix"></div>
-        </div>
-        <div class="panel-body">
-            <div class="media">
-                <div class="media-left">
-                    <img class="media-object" max-width="300" max-height="200" v-bind:src="Articleid.photo" />
-                    <iframe v-if="this.bool == true"
+<br>
+        <div class="row"> 
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                      
+              <div class="row"><h4 class="media-heading col-md-12">{{Articleid.title}}</h4></div>
+                <div class="row">
+                    <img class="media-object col-md-12 imag" v-bind:src="Articleid.photo" />
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                    <br>
+                          <p>{{Articleid.desc1}}</p>
+                          <p>{{Articleid.price}}</p>
+                          <p>{{Articleid.visits}}</p>
+                          <p>Crée le {{Articleid.created.substring(0,10)}}</p>
+                          <p>Mis a jour le {{Articleid.updated.substring(0,10)}}</p>
+                          <div>
+                            <button v-if="this.email !== user.email" class="btn btn-default" v-on:click="addarticle(Articleid)">Ajouter au panier</button>
+                          </div>
+                                      
+                      <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="row">
+                <br>
+                    <iframe v-if="this.bool == true" class="col-md-12"
                       width="300" height="150"
                       frameborder="0" style="border:0"
                       :src="url" allowfullscreen>
                     </iframe>
                 </div>
-                <div class="media-body">
-                <h4 class="media-heading">{{Articleid.title}}</h4>
-                    <p>{{Articleid.desc1}}</p>
-                    <p>{{Articleid.price}}</p>
-                    <p>{{Articleid.visits}}</p>
-                    <p>Crée le {{Articleid.created.substring(0,10)}}</p>
-                    <p>Mis a jour le {{Articleid.updated.substring(0,10)}}</p>
-                    <div>
-                      <button v-if="this.email !== user.email" class="btn btn-default" v-on:click="addarticle(Articleid)">Ajouter au panier</button>
-                    </div>
-                                
-                <div class="clearfix"></div>
-               </div>
-            </div>
+              </div>
+              <div class="col-md-4"></div>
         </div>
     </div>
 </div>
@@ -72,6 +81,17 @@ filter:progid:DXImageTransform.Microsoft.Shadow(color=#402E22, Direction=134, St
   -webkit-border-radius: 0px;
   border-radius: 0px;
   -moz-box-shadow: 10px 10px 5px -5px #402E22;
+-webkit-box-shadow: 10px 10px 5px -5px #402E22;
+-o-box-shadow: 10px 10px 5px -5px #402E22;
+box-shadow: 10px 10px 5px -5px #402E22;
+filter:progid:DXImageTransform.Microsoft.Shadow(color=#402E22, Direction=134, Strength=5);
+}
+.imag{
+  margin-left:30px;
+  padding: 0;
+  width:300px;
+  max-height: 400px;
+    -moz-box-shadow: 10px 10px 5px -5px #402E22;
 -webkit-box-shadow: 10px 10px 5px -5px #402E22;
 -o-box-shadow: 10px 10px 5px -5px #402E22;
 box-shadow: 10px 10px 5px -5px #402E22;

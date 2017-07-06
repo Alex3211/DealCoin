@@ -50,7 +50,7 @@ namespace DealCoin.DAL
             {
                 return con.Query<Article>(
                     "UPDATE [dc].[products] " +
-                    "SET [userId] = @UserId, [categoriesId] = @categorieId, [title] = @title, [photo] = @photo, [desc1] = @desc1, [price] = @price , [updated] = @updaed_date" +
+                    "SET [userId] = @UserId, [categoriesId] = @categorieId, [title] = @title, [photo] = @photo, [desc1] = @desc1, [price] = @price , [updated] = @updaed_date " +
                     "WHERE [productsId] = @ProductsId;",
                     new { UserId = userId, categorieId = categorieId, title = title, photo = photo, desc1 = desc1, price = price, ProductsId = productsId, updaed_date = DateTime.Now });
             }
