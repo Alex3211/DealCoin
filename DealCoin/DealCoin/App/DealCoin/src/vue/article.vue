@@ -2,7 +2,7 @@
     <div v-if="this.$route.path !== '/MyArticles'" class="thumbnail" >
       <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}"
        v-on:click.native="onVisited(Articleid)">
-        <img v-if="Articleid.photo!==''" class="taille" v-bind:src="Articleid.photo" />
+        <img v-if="Articleid.photo!==''" class="taille imag" v-bind:src="Articleid.photo" />
       </router-link>
       <div class="caption">
         <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}"
@@ -18,7 +18,7 @@
     </div>
       <div v-else class="thumbnail" >
       <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}">
-        <img class="taille" v-bind:src="Articleid.photo" />
+        <img class="taille imag" v-bind:src="Articleid.photo" />
       </router-link>
         <div class="caption">
           <router-link v-bind:to="{ path: 'articleDetails', query: { article: Articleid }}"><h3>{{Articleid.title}}</h3></router-link>
@@ -73,7 +73,13 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-
+.imag{
+    -moz-box-shadow: 10px 10px 5px -5px #402E22;
+-webkit-box-shadow: 10px 10px 5px -5px #402E22;
+-o-box-shadow: 10px 10px 5px -5px #402E22;
+box-shadow: 10px 10px 5px -5px #402E22;
+filter:progid:DXImageTransform.Microsoft.Shadow(color=#402E22, Direction=134, Strength=5);
+}
 .taille{
   height:140px
 }

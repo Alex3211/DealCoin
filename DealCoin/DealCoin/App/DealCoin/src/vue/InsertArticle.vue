@@ -1,75 +1,88 @@
 <template>
   <div class="hello">
         <div class="container">
-        <div class="row">
-            <h1>Ajouter un article</h1>
-            <h1 v-if="this.error !== ''">{{this.error}}</h1>
-            <form @submit="onSubmit($event)" class="form-horizontal" role="form">
-                <div class="form-group">
-                    <label class="col-lg-1 control-label">Catégorie:</label>
-                    <div class="col-lg-2">
-                        <select class="form-control" name="cars">
-                            <option id="test" v-for="i in category" v-model="model.categoriesId" v-bind:value="i.categoriesId" v-if="i.parentId!==0">
-                            <div class="font1">
-                            {{i.name}}
+        <div class="col-md-4"></div>
+        <div class="col-md-6 panel-body">
+            <div class="row">
+                <h1>Ajouter un article</h1>
+                <h1 v-if="this.error !== ''">{{this.error}}</h1>
+                <form @submit="onSubmit($event)" class="form-horizontal row" role="form" >
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Catégorie:</label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="cars">
+                                <option id="test" v-for="i in category" v-model="model.categoriesId" v-bind:value="i.categoriesId" v-if="i.parentId!==0">
+                                <div class="font1">
+                                {{i.name}}
+                                </div>
+                                
+                                </option>
+                            </select>
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <label class=" control-label col-md-4">Titre:</label>
+                        <div class="col-md-6">
+                        <input class="form-control" v-model="model.title" type="text">
+                        </div>
+                    </div> 
+
+                    <div class="form-group" >
+                        <label class="col-md-4 control-label">Photo:</label>
+                        <div class="col-md-6">
+                                <div v-if="!image">
+                                <input class="btn btn-primary" type="file" @change="onFileChange" v.model="model.photo">
                             </div>
-                            
-                            </option>
-                        </select>
-                    </div>
-                    <br>
-                </div> 
-                <div class="form-group">
-                    <label class="col-lg-1 control-label">Titre:</label>
-                    <div class="col-lg-2">
-                    <input class="form-control" v-model="model.title" type="text">
-                    </div>
-                    <br>
-                </div> 
-
-                <div class="form-group" id="app">
-                    <label class="col-lg-1 control-label">Photo:</label>
-                    <div class="col-lg-2">
-                            <div v-if="!image">
-                            <input type="file" @change="onFileChange" v.model="model.photo">
+                            <div v-else class='col-md-6'>
+                                <img :src="image" class="taille" />
+                                <button class="btn btn-primary" @click="removeImage">Remove image</button>
+                            </div>
                         </div>
-                        <div v-else>
-                            <img :src="image" class="taille" />
-                            <button @click="removeImage">Remove image</button>
+                        <br>
+                    </div> 
+
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Description:</label>
+                        <div class="col-md-6">
+                        <textarea  v-model="model.desc1" class="form-control" rows="5" id="Description :"></textarea>
+                        </div>
+                        <br>
+                    </div> 
+
+                    <div class="form-group">
+                        <label class=" control-label col-md-4">Prix: </label>
+                        <div class="col-md-6">
+                        <input class="form-control " v-model="model.price" type="text">
+                        </div>
+                        <br>
+                    </div>
+
+                    <div class="form-group">
+                        <label class=" control-label"></label>
+                        <div class="">
+                            <input name ="Save" class="btn btn-primary" value="Enregistrer" type="submit">            
                         </div>
                     </div>
-                    <br>
-                </div> 
-
-                <div class="form-group">
-                    <label class="col-lg-1 control-label">Description:</label>
-                    <div class="col-lg-3">
-                     <textarea  v-model="model.desc1" class="form-control" rows="5" id="Description :"></textarea>
-                    </div>
-                    <br>
-                </div> 
-
-                <div class="form-group">
-                    <label class="col-lg-1 control-label">Prix: </label>
-                    <div class="col-lg-2">
-                    <input class="form-control" v-model="model.price" type="text">
-                    </div>
-                    <br>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-md-1 control-label"></label>
-                    <div class="col-md-11">
-                        <input name ="Save" class="btn btn-primary" value="Enregistrer" type="submit">            
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
   </div>
 </template>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.panel-body{
+  background-color: #BFA077;
+  border:none;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  -moz-box-shadow: 10px 10px 5px -5px #402E22;
+-webkit-box-shadow: 10px 10px 5px -5px #402E22;
+-o-box-shadow: 10px 10px 5px -5px #402E22;
+box-shadow: 10px 10px 5px -5px #402E22;
+filter:progid:DXImageTransform.Microsoft.Shadow(color=#402E22, Direction=134, Strength=5);
+}
 .form-control:focus {
         border-color: #402E22;
         outline: 0;

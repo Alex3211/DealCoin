@@ -15,21 +15,18 @@
                   <h3>André Victor
                       <h6><u>Chef de projet</u></h6>
                   </h3>
-                  <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
               </div>
               <div class="col-lg-4 text-center">
                   <img class="img-circle  img-center" src="http://placehold.it/200?text=Alexandre" alt="">
                   <h3>Alexandre Picard
                       <h6><u>Architecte/Développeur</u></h6>
                   </h3>
-                  <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
               </div>
               <div class="col-lg-4 text-center">
                   <img class="img-circle img-center" src="http://placehold.it/200?text=Kamil" alt="">
                   <h3>Kamil EL Kohen
                       <h6><u>Architecte/Développeur</u></h6>
                   </h3>
-                  <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
               </div>  
                 
             </div>
